@@ -144,7 +144,7 @@ async def one_sample(
         "sample": sample,
         "seed": seed,
         "draw": draw,
-        "k": K,
+        "k": arm.k,
         "input_tokens": 0,
         "output_tokens": 0,
         "attempts": 0,
@@ -181,7 +181,7 @@ async def one_sample(
             parsed = parse_answer(arm.shape, reply.text)
             row["items"] = parsed["items"]
             row["properties"] = parsed["properties"]
-            if len(parsed["items"]) == K and all(parsed["items"]):
+            if len(parsed["items"]) == arm.k and all(parsed["items"]):
                 row["status"] = "ok"
                 return row
             row["status"] = "bad_count"

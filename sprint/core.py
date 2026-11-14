@@ -31,6 +31,7 @@ class Arm:
     shape: str  # which JSON shape the answer takes: items | notes | responses | properties
     follow_up: bool = False  # a second turn after a fresh plain answer
     draw: str | None = None  # "word" or "dimensions"
+    k: int = K  # items asked for; only the longer-list baseline differs
 
 
 ARMS: dict[str, Arm] = {
@@ -43,6 +44,7 @@ ARMS: dict[str, Arm] = {
         Arm("random_word", "random_word", "notes", draw="word"),
         Arm("properties", "properties", "properties"),
         Arm("properties_nudged", "properties", "properties", draw="dimensions"),
+        Arm("plain16", "plain", "items", k=16),  # added after the freeze: a plain list twice as long
     ]
 }
 
@@ -94,11 +96,11 @@ def _template(stem: str, arms_dir: Path) -> str:
     return text
 
 
-def _fill(text: str, task: Task, draw: dict) -> str:
+def _fill(text: str, task: Task, draw: dict, k: int = K) -> str:
     fields = {
         "vignette": task.vignette,
         "ask": task.ask,
-        "k": K,
+        "k": k,
         "item": task.item,
         "item_plural": task.item_plural,
         "word": draw.get("word", ""),
@@ -115,7 +117,7 @@ def first_prompt(arm: Arm, task: Task, draw: dict, arms_dir: Path | None = None)
     text = _template(arm.template, arms_dir)
     if arm.draw == "dimensions":
         text = text + "\n\n" + _template("properties_nudge", arms_dir)
-    return _fill(text, task, draw)
+    return _fill(text, task, draw, arm.k)
 
 
 def follow_up_prompt(arm: Arm, task: Task, arms_dir: Path | None = None) -> str:

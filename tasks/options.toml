@@ -1,0 +1,66 @@
+# The two courses of action each vignette poses, as short neutral phrases.
+# Used only for the forced choice that measures whether a missing fact is decisive.
+
+[job-offer-a]
+option_a = "accept the startup's offer"
+option_b = "stay at the hospital system"
+
+[job-offer-b]
+option_a = "accept the competitor's director role"
+option_b = "stay with the current employer"
+
+[lease-a]
+option_a = "take the one-bedroom on the 12-month lease"
+option_b = "take the room in the shared house month to month"
+
+[lease-b]
+option_a = "renew the lease on the current house at the higher rent"
+option_b = "move to the other house on the two-year lease"
+
+[first-home-a]
+option_a = "make an offer on the house"
+option_b = "keep renting for now"
+
+[first-home-b]
+option_a = "buy the condo"
+option_b = "keep renting her apartment"
+
+[grad-school-a]
+option_a = "enroll in the part-time MBA program"
+option_b = "decline the place"
+
+[grad-school-b]
+option_a = "enroll in the nurse practitioner program"
+option_b = "decline the place"
+
+[family-loan-a]
+option_a = "lend his brother the $15,000"
+option_b = "decline to lend the money"
+
+[family-loan-b]
+option_a = "lend her daughter the $20,000"
+option_b = "decline to lend the money"
+
+[parent-care-a]
+option_a = "move her father into their spare room"
+option_b = "move her father into the assisted living facility"
+
+[parent-care-b]
+option_a = "take unpaid leave and move back in with his mother"
+option_b = "hire in-home aides for his mother"
+
+[go-freelance-a]
+option_a = "leave the agency and go independent"
+option_b = "stay at the agency"
+
+[go-freelance-b]
+option_a = "leave and start his own business"
+option_b = "stay with the contractor"
+
+[partner-move-a]
+option_a = "move with her boyfriend to the new city"
+option_b = "stay where she is"
+
+[partner-move-b]
+option_a = "move with his wife to the other state"
+option_b = "stay where they are"

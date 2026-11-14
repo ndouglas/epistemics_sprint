@@ -119,25 +119,47 @@ def analyze(run_dir: Path, tasks) -> dict:
             obvious[t] = {c for c, n in count.items() if n >= len(sets) / 2}
     out["obvious_sizes"] = boot(per_type(lambda d: mean(len(obvious[t]) for t in pair[d])))
 
-    def good(t: str, c) -> bool:  # useful for this person and not in the obvious set
-        return useful.get(t, {}).get(str(c), False) and c not in obvious[t]
+    # Leave-one-out obvious sets. A plain answer helped define the set it would be scored
+    # against, which flatters plain. So plain answer i is scored against the set built from
+    # the other nine, and every other arm's answer against each of those ten sets in turn.
+    loo = {}
+    for d in types:
+        for t in pair[d]:
+            sets = samples(answers, FIX_MODEL, t, "plain")
+            loo[t] = []
+            for i in range(len(sets)):
+                rest = sets[:i] + sets[i + 1 :]
+                count = Counter(c for s in rest for c in s)
+                loo[t].append({c for c, n in count.items() if n >= len(rest) / 2})
 
     def is_useful(t: str, c) -> bool:
         return useful.get(t, {}).get(str(c), False)
+
+    def good(t: str, c) -> bool:  # for the across-ten measures: useful and not in the full obvious set
+        return is_useful(t, c) and c not in obvious[t]
+
+    def scored(t: str, arm: str, fn) -> float:
+        """Mean over an arm's answers of fn(answer, obvious set), with held-out sets."""
+        sets = samples(answers, FIX_MODEL, t, arm)
+        if arm == "plain":
+            return mean(fn(s, loo[t][i]) for i, s in enumerate(sets))
+        return mean(fn(s, o) for s in sets for o in loo[t])
 
     rows = {}
     measures = {
         "distinct_in_10": lambda arm: lambda d: mean(len(set().union(*samples(answers, FIX_MODEL, t, arm))) for t in pair[d]),
         "useful_in_10": lambda arm: lambda d: mean(sum(is_useful(t, c) for c in set().union(*samples(answers, FIX_MODEL, t, arm))) for t in pair[d]),
         "good_in_10": lambda arm: lambda d: mean(sum(good(t, c) for c in set().union(*samples(answers, FIX_MODEL, t, arm))) for t in pair[d]),
-        "good_per_answer": lambda arm: lambda d: mean(sum(good(t, c) for c in s) for t in pair[d] for s in samples(answers, FIX_MODEL, t, arm)),
+        "good_per_answer": lambda arm: lambda d: mean(scored(t, arm, lambda s, o, t=t: sum(is_useful(t, c) and c not in o for c in s)) for t in pair[d]),
+        "obvious_per_answer": lambda arm: lambda d: mean(scored(t, arm, lambda s, o: len(s & o)) for t in pair[d]),
+        "distinct_per_answer": lambda arm: lambda d: mean(len(s) for t in pair[d] for s in samples(answers, FIX_MODEL, t, arm)),
         "useful_per_answer": lambda arm: lambda d: mean(sum(is_useful(t, c) for c in s) for t in pair[d] for s in samples(answers, FIX_MODEL, t, arm)),
-        "nonobvious_per_answer": lambda arm: lambda d: mean(sum(c not in obvious[t] for c in s) for t in pair[d] for s in samples(answers, FIX_MODEL, t, arm)),
-        "obvious_kept": lambda arm: lambda d: mean(len(s & obvious[t]) / max(1, len(obvious[t])) for t in pair[d] for s in samples(answers, FIX_MODEL, t, arm)),
+        "nonobvious_per_answer": lambda arm: lambda d: mean(scored(t, arm, lambda s, o: len(s - o)) for t in pair[d]),
+        "obvious_kept": lambda arm: lambda d: mean(scored(t, arm, lambda s, o: len(s & o) / max(1, len(o))) for t in pair[d]),
         "same_person": lambda arm: lambda d: mean(within(samples(answers, FIX_MODEL, t, arm)) for t in pair[d]),
         "two_people": lambda arm: lambda d: across(*(samples(answers, FIX_MODEL, t, arm) for t in pair[d])),
     }
-    arms = [a for a in ARMS if samples(answers, FIX_MODEL, pair[types[0]][0], a)]
+    arms = [a for a in ARMS if ARMS[a].k == K and samples(answers, FIX_MODEL, pair[types[0]][0], a)]
     by_type_values = {a: {name: per_type(fn(a)) for name, fn in measures.items()} for a in arms}
     for a in arms:
         row = {name: boot(v) for name, v in by_type_values[a].items()}

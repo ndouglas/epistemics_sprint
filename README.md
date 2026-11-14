@@ -48,3 +48,33 @@ Useful flags: `--arms plain,properties`, `--limit-tasks 2`, `--samples 10`, `--s
 - Thinking is off on both models and effort is set to `medium` outright, so no arm gets hidden reasoning. Output tokens are logged per sample.
 - All seven arms run on Sonnet. Haiku and one non-Anthropic model run `--arms plain` only, for the cross-model overlap.
 - These models reject a non-default temperature, so there is no temperature arm.
+
+## Missing-fact study: fixed before it ran (Nov 14)
+
+Added after an adversarial review of the first analysis. Question: when a fact that
+would change the decision is missing from the vignette, does a briefing raise it, more
+often than it raises a missing fact that would not change the decision?
+
+- **Probes** (`tasks/probes.toml`): drafted by GPT-5.5 from the vignette alone, edited by
+  Nathan without looking at any generated answer, committed before any answer is scored.
+- **Decisive or inert is measured.** Each probe has two possible answers. Three models
+  each make a forced choice between the vignette's two options (`tasks/options.toml`)
+  under each answer, 10 times. Shift = total-variation distance between the choice
+  shares under the two answers. Decisive: shift >= 0.5 in at least 2 of 3 models.
+  Inert: shift <= 0.1 in all 3. Anything else is set aside as "middle."
+- **Primary check has two options only.** In a smoke test with invented inputs the models
+  chose "something else" in 26 of 30 forced choices when it was offered, which would
+  hide most shifts. So the two-option version defines decisive and inert; the
+  three-option version is run as well and reported as a sensitivity check.
+- **Scoring:** a judge that sees only the vignette, an answer's items and the probe
+  questions marks each question as asked about, mentioned or absent. It never sees the
+  arm, the model, the probe's answers or its status. A hit is "asks" or "mentions."
+- **The one pre-named contrast:** hit rate on decisive probes minus hit rate on inert
+  probes, plain prompt, three models pooled, paired by decision type, bootstrap over
+  the eight types.
+- **Controls:** the fact stated in the vignette (should be used); probes from a
+  different decision type (should not hit); about 80 judge calls labeled blind by
+  Nathan after 8 practice pairs.
+- **Secondary, exploratory:** by model, by arm, 8 against 16 items, probes about the
+  shape of the decision against probes about details, "asks" against "mentions," and
+  the list of decisive probes that no answer raised.

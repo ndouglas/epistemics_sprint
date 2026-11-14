@@ -47,7 +47,7 @@ class Fake:
 
 
 def test_every_arm_has_a_schema_and_seven_arms():
-    assert len(ARMS) == 7
+    assert len([a for a in ARMS.values() if a.k == K]) == 7
     assert all(a.shape in core.SCHEMAS for a in ARMS.values())
 
 
@@ -62,7 +62,7 @@ def test_prompts_carry_the_vignette_and_k(arms_dir):
         draw = core.make_draw(arm, 0, "m", TASK.id, 0)
         text = core.first_prompt(arm, TASK, draw, arms_dir)
         assert "Ana has a job offer." in text and "{" not in text
-        assert str(K) in text
+        assert str(arm.k) in text
 
 
 def test_nudged_arm_is_the_plain_treatment_plus_three_dimensions(arms_dir):

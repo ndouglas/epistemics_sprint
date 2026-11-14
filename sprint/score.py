@@ -98,19 +98,23 @@ def load_items(run_dir: Path) -> list[dict]:
         row = json.loads(line)
         if row["status"] != "ok":
             continue
-        for idx, text in enumerate(row["items"]):
+        turns = [(row["arm"], row["items"])]
+        if row.get("first_turn"):  # the plain answer that a "What else?" second turn followed
+            turns.append((row["arm"] + "_t1", [t.strip() for t in json.loads(row["first_turn"])["items"]]))
+        for arm, texts in turns:
+          for idx, text in enumerate(texts):
             items.append(
-                {
-                    "id": f"{row['model']}|{row['task']}|{row['arm']}|{row['sample']}|{idx}",
-                    "type": row["type"],
-                    "task": row["task"],
-                    "model": row["model"],
-                    "arm": row["arm"],
-                    "sample": row["sample"],
-                    "idx": idx,
-                    "text": text,
-                }
-            )
+                  {
+                      "id": f"{row['model']}|{row['task']}|{arm}|{row['sample']}|{idx}",
+                      "type": row["type"],
+                      "task": row["task"],
+                      "model": row["model"],
+                      "arm": arm,
+                      "sample": row["sample"],
+                      "idx": idx,
+                      "text": text,
+                  }
+              )
     return items
 
 
@@ -328,6 +332,44 @@ async def judge_task(judge: Judge, vignette: str, entries: list[tuple[int, str]]
     return out
 
 
+ANCHOR = """A person is making a decision. Here is everything we were told about their situation:
+
+{vignette}
+
+Below is a numbered list of considerations an adviser raised. Sort each one:
+
+- from a stated detail (true): the consideration is about a specific thing the description \
+states, such as a figure, a deadline, a named circumstance or a person it mentions. Had the \
+description left that detail out, the adviser would have had no reason to raise it.
+- brought in (false): the description does not mention it. The adviser raised it from \
+general knowledge of this kind of decision.
+
+A consideration that applies general knowledge to a stated detail (what stock options are \
+usually worth, when the description mentions stock options) is from a stated detail."""
+
+ANCHOR_SCHEMA = _obj(
+    {
+        "ratings": {
+            "type": "array",
+            "items": _obj({"consideration": {"type": "integer"}, "from_stated_detail": {"type": "boolean"}}),
+        }
+    }
+)
+
+
+async def anchor_task(judge: Judge, vignette: str, entries: list[tuple[int, str]]) -> dict[int, bool]:
+    system = ANCHOR.format(vignette=vignette)
+    user = "\n".join(f"{n}. {text}" for n, text in entries)
+    out: dict[int, bool] = {}
+    for _ in range(3):
+        data = await judge.ask(system, user, ANCHOR_SCHEMA)
+        valid = {n for n, _ in entries}
+        out.update({r["consideration"]: r["from_stated_detail"] for r in data["ratings"] if r["consideration"] in valid})
+        if len(out) == len(entries):
+            break
+    return out
+
+
 async def main_async(args) -> None:
     run_dir: Path = args.run_dir
     tasks = load_tasks(args.tasks)
@@ -356,6 +398,25 @@ async def main_async(args) -> None:
             *(code_type(judge, run_dir, d, its, vignettes_text(tasks, d), args.seed, PROPERTIES) for d, its in pgroups.items())
         )
 
+    if args.cmd == "anchor":
+        out = run_dir / "anchored.json"
+        anchored = json.loads(out.read_text()) if out.exists() else {}
+
+        async def one_anchor(task) -> None:
+            data = json.loads((run_dir / "codes" / f"{task.type}.json").read_text())
+            used = sorted({data["assigned"][it["id"]] for it in groups[task.type] if it["task"] == task.id} - {0})
+            have = anchored.get(task.id, {})
+            used = [c for c in used if str(c) not in have]
+            if not used:
+                return
+            entries = [(c, f"{data['codes'][c - 1]['label']}: {data['codes'][c - 1]['definition']}") for c in used]
+            random.Random(f"{args.seed}:{task.id}:anchor:{len(have)}").shuffle(entries)
+            ratings = await anchor_task(judge, task.vignette, entries)
+            anchored[task.id] = {str(k): v for k, v in sorted(({int(k): v for k, v in have.items()} | ratings).items())}
+
+        await asyncio.gather(*(one_anchor(t) for t in tasks if t.type in groups))
+        out.write_text(json.dumps(anchored, indent=1))
+
     if args.cmd == "judge":
         out = run_dir / "useful.json"
         useful = json.loads(out.read_text()) if out.exists() else {}
@@ -381,7 +442,7 @@ async def main_async(args) -> None:
 
 def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="sprint.score")
-    p.add_argument("cmd", choices=["code", "props", "judge"])
+    p.add_argument("cmd", choices=["code", "props", "judge", "anchor"])
     p.add_argument("run_dir", type=Path)
     p.add_argument("--tasks", type=Path, default=Path("tasks/decisions.toml"))
     p.add_argument("--only", help="comma-separated decision types")
