@@ -315,6 +315,29 @@ def add_probe_labels(c: dict, run_dir: Path, r: dict) -> None:
         c[f"labels.probes.hand_standard.{st}_asks"] = pct(100 * sum(mix[l] / n * asks[l] for l in asks))
     c["labels.probes.hand_standard.gap"] = whole(100 * (est["decisive"] - est["inert"]))
 
+    # the author's own corrections, made after seeing the results (not blind): a sensitivity check only
+    rev_path = lab / "probes_revisions.json"
+    if rev_path.exists():
+        from sprint.label import kappa
+        changed = {x["i"] for x in json.loads(rev_path.read_text())["revisions"] if x["raised"]}
+        pairs = [(sample[h["i"]]["machine"], h["label"] != "absent" or h["i"] in changed, sample[h["i"]]["probe"])
+                 for h in hand if not sample[h["i"]]["practice"]]
+        both = [(m != "absent", h) for m, h, _ in pairs]
+        c["labels.probes.revised.n"] = str(len(changed))
+        c["labels.probes.revised.raised_agree"] = pct(100 * sum(a == b for a, b in both) / len(both))
+        c["labels.probes.revised.raised_kappa"] = f"{kappa(both):.2f}"
+        share = {}
+        for label in ("asks", "mentions", "absent"):
+            mine = [h for m, h, _ in pairs if m == label]
+            share[label] = sum(mine) / len(mine)
+            c[f"labels.probes.revised.judge_{label}.hand_raised"] = f"{sum(mine)} of {len(mine)}"
+        est = {}
+        for st in ("decisive", "inert"):
+            mix = Counter(x["label"] for x in rows if x["arm"] == "plain" and status.get(x["probe"]) == st)
+            est[st] = sum(mix[l] / sum(mix.values()) * share[l] for l in share)
+            c[f"labels.probes.revised.hand_standard.{st}"] = pct(100 * est[st])
+        c["labels.probes.revised.hand_standard.gap"] = whole(100 * (est["decisive"] - est["inert"]))
+
 
 def main() -> int:
     run_dir = Path(sys.argv[1])

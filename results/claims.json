@@ -867,5 +867,14 @@
  "labels.probes.hand_standard.decisive_asks": "36%",
  "labels.probes.hand_standard.inert": "38%",
  "labels.probes.hand_standard.inert_asks": "18%",
- "labels.probes.hand_standard.gap": "24"
+ "labels.probes.hand_standard.gap": "24",
+ "labels.probes.revised.n": "3",
+ "labels.probes.revised.raised_agree": "82%",
+ "labels.probes.revised.raised_kappa": "0.64",
+ "labels.probes.revised.judge_asks.hand_raised": "25 of 27",
+ "labels.probes.revised.judge_mentions.hand_raised": "16 of 26",
+ "labels.probes.revised.judge_absent.hand_raised": "2 of 27",
+ "labels.probes.revised.hand_standard.decisive": "68%",
+ "labels.probes.revised.hand_standard.inert": "42%",
+ "labels.probes.revised.hand_standard.gap": "25"
 }

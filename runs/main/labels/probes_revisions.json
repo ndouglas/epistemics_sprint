@@ -1,0 +1,8 @@
+{
+ "note": "Made by the author on Nov 14 after the blind labels were scored and after he had seen the results and discussed the disagreements with Claude. Not blind. The blind labels in probes.jsonl are unchanged and remain the primary record. Each entry changes one of his 'absent' labels to 'raised'.",
+ "revisions": [
+  {"i": 78, "raised": true, "why": "the list proposes a trial period, delayed start or temporary arrangement: a third option"},
+  {"i": 62, "raised": true, "why": "the list tells him to assess the realistic caregiving demands"},
+  {"i": 43, "raised": true, "why": "the list tells them to research the true costs of moving, such as movers and deposits"}
+ ]
+}
