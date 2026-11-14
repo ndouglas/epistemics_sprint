@@ -209,6 +209,15 @@ def add_probes(c: dict, run_dir: Path) -> None:
     for arm, b in r["arm_vs_plain"].items():
         put(c, f"probe.vs.{arm.replace('+', '_')}.decisive", b["decisive"], 100, whole)
         put(c, f"probe.vs.{arm.replace('+', '_')}.asks", b["decisive_asks"], 100, whole)
+        for kind in ("decisive", "asks"):
+            sg = b.get(f"{kind}_signs")
+            if sg:
+                key = f"probe.vs.{arm.replace('+', '_')}.{kind}"
+                c[f"{key}.higher"] = f"{sg['higher']} of {sg['n']}"
+                c[f"{key}.lower"] = f"{sg['lower']} of {sg['n']}"
+                c[f"{key}.largest"] = whole(100 * sg["largest"])
+    if r["plain_pooled"].get("inert_paired_types"):
+        put(c, "probe.plain.inert_paired", r["plain_pooled"]["inert_paired_types"], 100, pct)
     for band, row in r["by_mean_shift"].items():
         key = band.replace(" to ", "_").replace(".", "")
         c[f"probe.band.{key}.n"] = str(row["probes"])

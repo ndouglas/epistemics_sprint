@@ -70,6 +70,13 @@
    0.037460317460317465,
    0.31912698412698415,
    7
+  ],
+  "inert_paired_types": [
+   0.47547619047619044,
+   0.3011904761904762,
+   0.6635714285714286,
+   7,
+   660
   ]
  },
  "plain_by_model": {
@@ -875,7 +882,19 @@
     -0.26458333333333334,
     -0.015000000000000003,
     8
-   ]
+   ],
+   "decisive_signs": {
+    "higher": 1,
+    "lower": 6,
+    "n": 8,
+    "largest": -0.3333333333333333
+   },
+   "asks_signs": {
+    "higher": 2,
+    "lower": 5,
+    "n": 8,
+    "largest": -0.45
+   }
   },
   "verbalized": {
    "decisive": [
@@ -889,7 +908,19 @@
     -0.19458333333333333,
     -0.07291666666666669,
     8
-   ]
+   ],
+   "decisive_signs": {
+    "higher": 1,
+    "lower": 3,
+    "n": 8,
+    "largest": -0.11666666666666659
+   },
+   "asks_signs": {
+    "higher": 0,
+    "lower": 8,
+    "n": 8,
+    "largest": -0.3333333333333333
+   }
   },
   "what_else": {
    "decisive": [
@@ -903,7 +934,19 @@
     -0.33333333333333337,
     -0.06875,
     8
-   ]
+   ],
+   "decisive_signs": {
+    "higher": 0,
+    "lower": 8,
+    "n": 8,
+    "largest": -0.8
+   },
+   "asks_signs": {
+    "higher": 1,
+    "lower": 7,
+    "n": 8,
+    "largest": -0.55
+   }
   },
   "random_word": {
    "decisive": [
@@ -917,7 +960,19 @@
     -0.21166666666666667,
     -0.009166666666666663,
     8
-   ]
+   ],
+   "decisive_signs": {
+    "higher": 4,
+    "lower": 3,
+    "n": 8,
+    "largest": -0.35
+   },
+   "asks_signs": {
+    "higher": 1,
+    "lower": 7,
+    "n": 8,
+    "largest": -0.3666666666666667
+   }
   },
   "properties": {
    "decisive": [
@@ -931,7 +986,19 @@
     -0.012499999999999994,
     0.18125000000000002,
     8
-   ]
+   ],
+   "decisive_signs": {
+    "higher": 3,
+    "lower": 3,
+    "n": 8,
+    "largest": -0.11666666666666659
+   },
+   "asks_signs": {
+    "higher": 5,
+    "lower": 2,
+    "n": 8,
+    "largest": 0.4
+   }
   },
   "properties_nudged": {
    "decisive": [
@@ -945,7 +1012,19 @@
     -0.07041666666666668,
     0.10458333333333333,
     8
-   ]
+   ],
+   "decisive_signs": {
+    "higher": 3,
+    "lower": 2,
+    "n": 8,
+    "largest": -0.1333333333333333
+   },
+   "asks_signs": {
+    "higher": 4,
+    "lower": 4,
+    "n": 8,
+    "largest": 0.30000000000000004
+   }
   },
   "plain16": {
    "decisive": [
@@ -959,7 +1038,19 @@
     0.053750000000000006,
     0.15125,
     8
-   ]
+   ],
+   "decisive_signs": {
+    "higher": 5,
+    "lower": 1,
+    "n": 8,
+    "largest": 0.21999999999999997
+   },
+   "asks_signs": {
+    "higher": 7,
+    "lower": 1,
+    "n": 8,
+    "largest": 0.19999999999999996
+   }
   },
   "plain+what_else": {
    "decisive": [
@@ -973,7 +1064,19 @@
     0.022499999999999992,
     0.12833333333333335,
     8
-   ]
+   ],
+   "decisive_signs": {
+    "higher": 5,
+    "lower": 0,
+    "n": 8,
+    "largest": 0.28
+   },
+   "asks_signs": {
+    "higher": 6,
+    "lower": 1,
+    "n": 8,
+    "largest": 0.22000000000000003
+   }
   }
  },
  "by_mean_shift": {

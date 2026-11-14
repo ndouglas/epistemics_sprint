@@ -118,6 +118,21 @@ def analyze(run_dir: Path, tasks, probes: list[dict], status_file: str = "probe_
                                "decisive_asks": paired_difference(decisive_counts(a, is_ask), decisive_counts("plain", is_ask))}
                            for a in arms if a != "plain"}
 
+    def signs(a: dict, b: dict) -> dict:
+        """In how many decision types the first rate is higher, lower or equal, and the largest single-type difference."""
+        diffs = [a[d][0] / a[d][1] - b[d][0] / b[d][1] for d in a if d in b and a[d][1] and b[d][1]]
+        return {"higher": sum(x > 1e-9 for x in diffs), "lower": sum(x < -1e-9 for x in diffs), "n": len(diffs),
+                "largest": max(diffs, key=abs) if diffs else None}
+
+    for a in out["arm_vs_plain"]:
+        out["arm_vs_plain"][a]["decisive_signs"] = signs(decisive_counts(a, is_hit), decisive_counts("plain", is_hit))
+        out["arm_vs_plain"][a]["asks_signs"] = signs(decisive_counts(a, is_ask), decisive_counts("plain", is_ask))
+
+    # the inert rate over only the types that also have a decisive probe (the ones the contrast is paired over)
+    dec_types = set(type_counts(rows, task_type, lambda r: plain(r) and cls.get(r["probe"]) == "decisive"))
+    ine_all = type_counts(rows, task_type, lambda r: plain(r) and cls.get(r["probe"]) == "inert")
+    out["plain_pooled"]["inert_paired_types"] = rate({d: v for d, v in ine_all.items() if d in dec_types})
+
     # does the hit rate rise with how far the fact moves the choice? (all probes, plain, pooled)
     shift = {pid: sum(m["shift"] for m in v["models"].values()) / len(v["models"]) for pid, v in status["probes"].items() if v.get("models")}
     bands = {"0 to 0.1": (0, 0.1), "0.1 to 0.5": (0.1, 0.5), "0.5 to 1": (0.5, 1.01)}

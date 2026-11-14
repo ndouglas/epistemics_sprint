@@ -20,8 +20,8 @@ from sprint.analyze import across, boot, load, samples, within
 from sprint.core import load_tasks
 
 LABEL = {
-    "plain": "Plain", "verbalized": "Verbalized sampling", "properties": "Properties (6a)",
-    "properties_nudged": "Properties + dice (6b)", "random_word": "Random word",
+    "plain": "Plain", "verbalized": "Verbalized sampling", "properties": "Property substitution",
+    "properties_nudged": "Same, + random dimensions", "random_word": "Random word",
     "think_diverse": "Think first, be diverse", "what_else": '"What else?" (2nd turn)',
 }
 OFFSET = {"properties": (-6, -12, "right"), "properties_nudged": (6, 8, "left"), "random_word": (-6, -12, "right"),
@@ -151,7 +151,7 @@ def main() -> int:
         a.legend(handles=[Patch(color=accent, label="decisive: says to find out"), Patch(color="#a9cbe0", label="decisive: mentions"),
                           Patch(color="#8a8a8a", label="inert: says to find out"), Patch(color="#d5d5d5", label="inert: mentions")],
                  frameon=False, fontsize=6.5, loc="lower center", bbox_to_anchor=(0.45, -0.36), ncol=2)
-        names = {**LABEL, "plain": "Plain (8 items)", "plain16": "Plain, 16 items", "plain+what_else": 'Plain + "What else?" (16)',
+        names = {**LABEL, "plain": "Plain (8 items)", "plain16": "Plain, 16 items", "plain+what_else": 'Plain, then "What else?" (16 items)',
                  "what_else": '"What else?" turn alone'}
         arms = sorted(q["by_arm"], key=lambda k: q["by_arm"][k]["decisive"][0])
         for y, arm in enumerate(arms):
