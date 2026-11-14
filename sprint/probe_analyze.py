@@ -119,13 +119,14 @@ def analyze(run_dir: Path, tasks, probes: list[dict], status_file: str = "probe_
                            for a in arms if a != "plain"}
 
     # does the hit rate rise with how far the fact moves the choice? (all probes, plain, pooled)
-    shift = {pid: sum(m["shift"] for m in v["models"].values()) / len(v["models"]) for pid, v in status["probes"].items()}
+    shift = {pid: sum(m["shift"] for m in v["models"].values()) / len(v["models"]) for pid, v in status["probes"].items() if v.get("models")}
     bands = {"0 to 0.1": (0, 0.1), "0.1 to 0.5": (0.1, 0.5), "0.5 to 1": (0.5, 1.01)}
     out["by_mean_shift"] = {}
     for name, (lo, hi) in bands.items():
         ids = {pid for pid, x in shift.items() if (lo <= x < hi if lo else x <= hi)}
         sel = [r for r in rows if plain(r) and r["probe"] in ids]
-        out["by_mean_shift"][name] = {"probes": len(ids), "hit": sum(is_hit(r) for r in sel) / len(sel), "asks": sum(is_ask(r) for r in sel) / len(sel)}
+        if sel:
+            out["by_mean_shift"][name] = {"probes": len(ids), "hit": sum(is_hit(r) for r in sel) / len(sel), "asks": sum(is_ask(r) for r in sel) / len(sel)}
 
     # which decisive facts does nobody raise?
     per_probe: dict[str, dict[str, list[int]]] = defaultdict(lambda: {"plain": [0, 0], "any": [0, 0]})
@@ -138,15 +139,15 @@ def analyze(run_dir: Path, tasks, probes: list[dict], status_file: str = "probe_
     out["per_probe"] = {pid: {"status": cls.get(pid), "about": about.get(pid), "question": question.get(pid),
                               "plain": v["plain"], "any": v["any"]} for pid, v in sorted(per_probe.items())}
     decisive = [pid for pid, s in cls.items() if s == "decisive" and pid in per_probe]
-    plain_rates = sorted(per_probe[pid]["plain"][0] / per_probe[pid]["plain"][1] for pid in decisive)
-    out["decisive_plain_rates"] = {"min": plain_rates[0], "below_half": sum(x < 0.5 for x in plain_rates),
+    plain_rates = sorted(per_probe[pid]["plain"][0] / per_probe[pid]["plain"][1] for pid in decisive if per_probe[pid]["plain"][1])
+    out["decisive_plain_rates"] = {"min": plain_rates[0] if plain_rates else None, "below_half": sum(x < 0.5 for x in plain_rates),
                                    "every_answer": sum(x == 1 for x in plain_rates), "n": len(plain_rates)}
     inert_ids = [pid for pid, s in cls.items() if s == "inert" and pid in per_probe]
-    inert_rates = [per_probe[pid]["plain"][0] / per_probe[pid]["plain"][1] for pid in inert_ids]
+    inert_rates = [per_probe[pid]["plain"][0] / per_probe[pid]["plain"][1] for pid in inert_ids if per_probe[pid]["plain"][1]]
     out["inert_plain_rates"] = {"never": sum(x == 0 for x in inert_rates), "below_half": sum(x < 0.5 for x in inert_rates),
                                 "every_answer": sum(x == 1 for x in inert_rates), "n": len(inert_rates)}
-    out["expected_vs_measured"] = {f"{e}|{st}": sum(1 for q in probes if q["expected"] == e and cls.get(q["id"]) == st)
-                                   for e in sorted({q["expected"] for q in probes}) for st in ("decisive", "middle", "inert")}
+    out["expected_vs_measured"] = {f"{e}|{st}": sum(1 for q in probes if q.get("expected") == e and cls.get(q["id"]) == st)
+                                   for e in sorted({q["expected"] for q in probes if q.get("expected")}) for st in ("decisive", "middle", "inert")}
     out["never_raised_plain"] = [{"probe": pid, "question": question.get(pid), "answers": per_probe[pid]["plain"][1]}
                                  for pid in decisive if per_probe[pid]["plain"][0] == 0]
     out["never_raised_any_arm"] = [{"probe": pid, "question": question.get(pid), "answers": per_probe[pid]["any"][1]}
