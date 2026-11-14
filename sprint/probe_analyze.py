@@ -110,6 +110,23 @@ def analyze(run_dir: Path, tasks, probes: list[dict], status_file: str = "probe_
     arms = [a for a in list(ARMS) + [COMBINED] if any(r["arm"] == a and r["model"] == FIX_MODEL for r in rows)]
     out["by_arm"] = {a: block(rows, task_type, cls, lambda r, a=a: r["arm"] == a and r["model"] == FIX_MODEL) for a in arms}
 
+    # each arm against plain on the same model: decisive probes raised, and asked about, paired by type
+    def decisive_counts(arm, hit):
+        return type_counts(rows, task_type, lambda r: r["arm"] == arm and r["model"] == FIX_MODEL and cls.get(r["probe"]) == "decisive", hit)
+
+    out["arm_vs_plain"] = {a: {"decisive": paired_difference(decisive_counts(a, is_hit), decisive_counts("plain", is_hit)),
+                               "decisive_asks": paired_difference(decisive_counts(a, is_ask), decisive_counts("plain", is_ask))}
+                           for a in arms if a != "plain"}
+
+    # does the hit rate rise with how far the fact moves the choice? (all probes, plain, pooled)
+    shift = {pid: sum(m["shift"] for m in v["models"].values()) / len(v["models"]) for pid, v in status["probes"].items()}
+    bands = {"0 to 0.1": (0, 0.1), "0.1 to 0.5": (0.1, 0.5), "0.5 to 1": (0.5, 1.01)}
+    out["by_mean_shift"] = {}
+    for name, (lo, hi) in bands.items():
+        ids = {pid for pid, x in shift.items() if (lo <= x < hi if lo else x <= hi)}
+        sel = [r for r in rows if plain(r) and r["probe"] in ids]
+        out["by_mean_shift"][name] = {"probes": len(ids), "hit": sum(is_hit(r) for r in sel) / len(sel), "asks": sum(is_ask(r) for r in sel) / len(sel)}
+
     # which decisive facts does nobody raise?
     per_probe: dict[str, dict[str, list[int]]] = defaultdict(lambda: {"plain": [0, 0], "any": [0, 0]})
     for r in rows:
@@ -121,6 +138,15 @@ def analyze(run_dir: Path, tasks, probes: list[dict], status_file: str = "probe_
     out["per_probe"] = {pid: {"status": cls.get(pid), "about": about.get(pid), "question": question.get(pid),
                               "plain": v["plain"], "any": v["any"]} for pid, v in sorted(per_probe.items())}
     decisive = [pid for pid, s in cls.items() if s == "decisive" and pid in per_probe]
+    plain_rates = sorted(per_probe[pid]["plain"][0] / per_probe[pid]["plain"][1] for pid in decisive)
+    out["decisive_plain_rates"] = {"min": plain_rates[0], "below_half": sum(x < 0.5 for x in plain_rates),
+                                   "every_answer": sum(x == 1 for x in plain_rates), "n": len(plain_rates)}
+    inert_ids = [pid for pid, s in cls.items() if s == "inert" and pid in per_probe]
+    inert_rates = [per_probe[pid]["plain"][0] / per_probe[pid]["plain"][1] for pid in inert_ids]
+    out["inert_plain_rates"] = {"never": sum(x == 0 for x in inert_rates), "below_half": sum(x < 0.5 for x in inert_rates),
+                                "every_answer": sum(x == 1 for x in inert_rates), "n": len(inert_rates)}
+    out["expected_vs_measured"] = {f"{e}|{st}": sum(1 for q in probes if q["expected"] == e and cls.get(q["id"]) == st)
+                                   for e in sorted({q["expected"] for q in probes}) for st in ("decisive", "middle", "inert")}
     out["never_raised_plain"] = [{"probe": pid, "question": question.get(pid), "answers": per_probe[pid]["plain"][1]}
                                  for pid in decisive if per_probe[pid]["plain"][0] == 0]
     out["never_raised_any_arm"] = [{"probe": pid, "question": question.get(pid), "answers": per_probe[pid]["any"][1]}
@@ -168,6 +194,13 @@ def main(argv: list[str] | None = None) -> int:
         show(f"plain, about {a[:12]}", b)
     for a, b in r["by_arm"].items():
         show(f"{FIX_MODEL} {a}", b)
+    for a, b in r["arm_vs_plain"].items():
+        print(f"{FIX_MODEL} {a:18} minus plain, decisive raised {fmt(b['decisive'])}  asked {fmt(b['decisive_asks'])}")
+    print("by mean shift", r["by_mean_shift"])
+    print("decisive probes, plain hit rates", r["decisive_plain_rates"], " inert", r["inert_plain_rates"])
+    print("drafter's guess against the check", r["expected_vs_measured"])
+    b = r["plain_pooled"]
+    print("middle probes, plain pooled:", fmt(b["middle"]), " asks", fmt(b["middle_asks"]))
     if "stated" in r:
         print("fact stated (positive control): decisive", fmt(r["stated"]["decisive"]), " inert", fmt(r["stated"]["inert"]))
     if "foreign" in r:

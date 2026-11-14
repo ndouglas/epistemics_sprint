@@ -1,151 +1,162 @@
 ---
-title: "Ask Again, Get the Same List: What LLM Decision Briefings Repeat, and What Widening Them Costs"
+title: "Does the Briefing Raise What Would Change the Decision? Missing Facts in LLM Decision Advice"
 author: |
   Nathan Douglas\
   Independent
 abstract: |
-  When someone asks a language model what to weigh in a personal decision, do they get the considerations that matter, or the ones the model always gives? We wrote 16 vignettes (8 kinds of decision, each faced by two different people), asked three models for exactly 8 considerations ten times each, and sorted the sentences under a codebook of distinct considerations per decision type. A person who asks the same model twice gets about 5 of the same 8 considerations. Asking a different model changes little: answers from two models share nearly as many as two answers from one. The models do tailor to the person, since two people facing the same kind of decision share only 1 or 2 of 8. We then tested six prompts for widening the list on one model, two of them based on naming a situation's properties and varying them. Every method raised the number of useful, non-obvious considerations per answer, and every method paid for them by dropping obvious ones, roughly one for one. The simplest methods moved furthest. A second-turn "What else?" added the most new material and kept the least of the core, and the property-based methods landed in the middle. Hand labels agreed only moderately with the automated coding, which splits considerations more finely than the labeler; the findings held under three separate codings, including a coarser one. With a fixed-length briefing, the question is less how to get variety than how many slots to spend on it.
+  The sprint asks whether an AI briefing for a personal decision surfaces "the considerations that actually matter," and how one would know. We propose one way to know. For 16 short decision vignettes we wrote 94 questions about facts the vignette leaves out, each with two possible answers, and measured which facts matter: three models made a forced choice between the person's two options under each answer, and a fact counts as decisive if the answer flips the choice and inert if it leaves the choice alone. We then checked whether briefings from the same three models, asked what the person should weigh, raise those facts. On a plain prompt, briefings raised decisive missing facts in 94% of cases and inert ones in 56%, and the gap held for each model and under a second definition of decisive. Briefings are less good at saying what to do about it: only 30% told the person to go and find the decisive fact out. Prompts written to make the list less obvious did not raise more decisive facts, and the one that changed the list most, a follow-up "What else?" read alone, lost half of them; asking for a longer list did better than any of them. Separately, a person who asks twice, or asks another vendor's model, gets most of the same list back, in nearly the same order. The main limit is that "decisive" here means "flips the models' recommendation," not the person's outcome.
 ---
 
 # 1. Introduction
 
-People now ask language models what to think about before accepting a job, signing a lease or lending money to a relative. The sprint's prompt for epistemic products asks whether such a briefing "surface[s] the considerations that actually matter." A briefing can fail that test in a quiet way: every consideration in it is sensible, and it is the same list everyone else got. Language models are known to return similar outputs across samples and across models on open-ended tasks (Jiang et al., 2025; Zhang et al., 2025). If decision advice behaves the same way, then the considerations outside the usual list are ones that a person will not hear by asking again, and that nobody else who asks will hear either.
+People now ask language models what to think about before accepting a job, signing a lease or lending money to a relative. The sprint's prompt for epistemic products asks whether such a briefing "surface[s] the considerations that actually matter," and adds: how would you know? The second question is the hard one. Nearly everything a current model writes about a decision is relevant, so relevance does not separate a good briefing from a poor one, and a list can be made more varied by leaving out what matters most.
 
-We measure this for personal decisions and then test ways to widen the list. Our contributions:
+This project began as a study of variety (do all askers get the same list, and can a prompt widen it?) and ran into that problem: we could count new considerations but not say whether they mattered. So we added a measurement with a ground truth. A short description of a decision leaves facts out, and some of them would change the answer. If the roof needs replacing this year for $28,000, do not make the offer; if it has five years left, do. A briefing that surfaces what matters should raise the missing facts that would change the decision, more often than it raises missing facts that would not. People are poor at noticing what a list leaves out (Fischhoff et al., 1978), so they are unlikely to supply these themselves.
 
-- **A measurement of the repetition.** On a plain prompt, a person who asks twice gets back about 5 of the 8 considerations from their earlier answer, on each of three models. Switching models helps little. The repetition is about the situation, not the kind of decision: a different person with the same kind of decision gets a mostly different list.
-- **A comparison of six ways to widen the list, with their cost.** All six surface more useful considerations from outside the obvious set, and all six do it by displacing obvious ones. We report both sides for each method, because a method that swaps the whole list for a fresh one would look best on novelty alone.
+Our contributions:
 
-The author uses a practice drawn from ideonomy (Gunkel; Kind) for exploring ideas: name the properties of a thing that matter in its present situation, and vary them one at a time. Two of the six methods are that practice written as a prompt. They were the methods the author expected to do best. They did not.
+- **A way to score a briefing against what matters:** missing-fact probes whose status, decisive or inert, is measured by forced choice, and one contrast named in advance.
+- **A result on three current models:** plain briefings raise decisive missing facts far more often than inert ones, but seldom tell the person to find them out.
+- **A check on prompts for variety:** six prompts that widen the list do not raise more decisive facts; a longer list does.
+- **A description of the repetition:** asking again, or asking another vendor's model, returns most of the same list in nearly the same order.
 
 # 2. Related Work
 
-**Homogeneous outputs.** Jiang et al. (2025) document that language models give similar answers to open-ended questions, within a model and across models. Doshi and Hauser (2024) and Anderson et al. (2024) find that people who write or brainstorm with a model produce work that is more alike across people. These concern creative text and ideas. We found no study that measures the considerations in decision advice or compares two askers with the same kind of decision.
+**Shared models, shared outcomes.** Kleinberg and Raghavan (2021) show that when many decision-makers rely on one algorithm, overall decision quality can fall even if it is more accurate for each of them, and Bommasani et al. (2022) that systems sharing components can fail the same individuals repeatedly. Goel et al. (2025) find that language models' mistakes grow more alike as capability grows; Jiang et al. (2025) that models give similar answers to open-ended questions, within and across models; Doshi and Hauser (2024) that stories written with model help are more alike across writers. Section 4.3 measures this sameness in decision advice.
 
-**Prompting for diversity.** Zhang et al. (2025) ask the model to verbalize a distribution over responses and sample from it. Meincke et al. (2024) compare prompting strategies for idea diversity and find chain-of-thought prompting the most effective. Troshin et al. (2025) find that asking for further responses given those already listed gives more diverse sets than independent samples. Misaki and Akiba (2025) inject randomness through a generated random string. Carichon et al. (2026) compare 25 prompts drawn from structured ideation methods such as TRIZ and SCAMPER and from simple divergence cues, and report that no single method wins on all of their measures; their measures do not include a rating of quality. Our arms are modeled on these, and we add a judgment of whether each consideration could bear on the person's choice.
+**Prompting for diversity.** Zhang et al. (2025) ask a model to verbalize a distribution over responses; Meincke et al. (2024) find chain-of-thought prompting best for idea variety. Such methods are scored on diversity. Section 4.2 scores six of them on whether they raise what matters.
+
+**Asking for what is missing.** QuestBench (Li et al., 2025) finds that models often cannot identify the one question needed to solve an underspecified reasoning problem, even when they can solve the fully specified version. ClarifyMT-Bench (Luo et al., 2025) reports that models in dialogue tend to answer before clarifying. Those tasks have a known missing variable and a correct answer. Ours has neither, so we measure which missing facts matter and ask whether an unprompted list reaches them.
 
 # 3. Methods
 
-**Decisions.** We wrote 16 vignettes of three or four sentences: 8 decision types (job offer, lease, first home, part-time graduate school, lending money to family, care for an aging parent, leaving a job to work independently, moving for a partner's job), each with two people who differ in age, money and dependents. Every prompt asks, "What should this person weigh in making this decision?" and requires exactly 8 considerations of one sentence each, returned as structured output. The vignettes and all prompts were committed before any treatment prompt was run (Appendix B).
+**Decisions.** Sixteen vignettes of three or four sentences: 8 decision types (job offer, lease, first home, part-time graduate school, lending money to family, care for an aging parent, going freelance, moving for a partner's job), each with two people who differ in age, money and dependents, and each posing a choice between two courses of action. Every prompt asks, "What should this person weigh in making this decision?" and requires a fixed number of one-sentence considerations.
 
-**Arms.** (1) *Plain*: the vignette and the question. (2) *Think first, be diverse*: ask for non-obvious considerations from different angles, after working it through in a notes field. (3) *Verbalized sampling*, in the wording of Zhang et al. (4) *"What else?"*: a plain answer, then a second turn asking for 8 more; the second turn is the answer we score. (5) *Random word*: arm 2 plus a randomly drawn noun for inspiration. (6a) *Properties*: say what the situation is to this person at this time, name a few properties that vary independently, change each and see what moves, then answer. (6b) *Properties + dice*: 6a plus three dimension names drawn at random from a list of 29 (such as scale, reversibility, rate) to steer which properties are chosen. Arms 2, 5, 6a and 6b form a two-by-two: free notes or property structure, with or without a random draw. Arms 2 and 5 tell the model to avoid the obvious; 6a and 6b do not, so a gap between those pairs cannot be assigned to structure alone.
+**Prompts.** *Plain*: the vignette and the question, 8 items. Six prompts meant to widen the list, also 8 items: *think first, be diverse* (non-obvious considerations from different angles, after working it through in a notes field); *verbalized sampling* (Zhang et al.); *"What else?"*, a second turn after a plain answer asking for 8 more; *random word*, think-first plus a random noun; a *property-substitution* prompt (name a few properties of the situation, change each, see what moves, then answer); and the same with three randomly drawn dimension names. Property substitution is one step of a practice the author uses, taken from ideonomy (Gunkel; Kind); this is not a test of that practice. We later added *plain, 16 items*. Appendix B gives the wording.
 
-**Models and samples.** All seven arms ran on Claude Haiku 5.5, ten samples per vignette. The plain arm also ran on Claude Sonnet 5.5 and GPT-5.5. Extended reasoning was off for all three and sampling settings were the API defaults. This gave 1,440 answers and 11,520 sentences; none was refused, and 11 answers needed a retry to return exactly 8 items. We had planned to run the arms on Sonnet 5.5, but it declined every prompt in arms 2 and 5 under a policy against requests to write out reasoning, so the arms moved to Haiku before the freeze (Section 5).
+**Models and samples.** All prompts ran on Claude Haiku 5.5, ten samples per vignette. The plain prompt also ran on Claude Sonnet 5.5 and GPT-5.5. Extended reasoning was off and sampling settings were the API defaults. This gave 1,600 answers and no refusals. The widening prompts ran on Haiku because Sonnet 5.5 declines prompts that ask for written-out reasoning, which we did not work around.
 
-**Coding.** For each decision type we pooled every sentence from every arm and model, shuffled them, and had Sonnet 5.5 (a) draft a codebook of distinct considerations from a sample of 500 sentences and (b) sort every sentence under one code, extending the codebook for sentences that fit none. The coder saw only sentence text, never the arm or model. The rule for "same" was that two sentences tell the person to weigh the same thing, even in different words; they differ if someone who had heard one would learn something new from the other. Codes are stated without naming either person, so that the two people's answers can be compared. The codebooks have 31 to 47 considerations each, and 15 of 11,520 sentences fit no code. Each answer then becomes a set of codes.
+**Missing-fact probes.** GPT-5.5 was shown each vignette alone and asked for six things it does not say that an adviser might want to know: a question and two plausible answers, each a sentence that could be added to the vignette as a fact. It was asked for some facts that would change the choice and some that would not, and for some about the shape of the decision (is there a third option, is the deadline fixed). The author edited the list without looking at any generated answer and dropped a few, leaving 94. The probes and the analysis plan were committed before any answer was scored (Appendix C).
 
-**Useful, obvious, good.** For each vignette, Sonnet 5.5 judged each consideration that appeared: could weighing it plausibly change what this person chooses, or how they go about choosing? A consideration is *obvious* for a vignette if it appears in at least half of that vignette's plain answers from Haiku (on average 7.6 considerations per vignette). We call a consideration *good* if it is useful and not obvious.
+**Which facts are decisive.** We did not take the drafter's word. For each probe, each of the three models made a forced choice between the vignette's two options with answer A added to the vignette, and again with answer B, ten times each, with the order of the options randomized (6,120 choices). A probe's shift for a model is the difference in the share choosing the first option under the two answers. A probe is *decisive* if the shift is at least 0.5 for at least two of the three models, *inert* if it is at most 0.1 for all three, and otherwise *middle*. This gave 22 decisive, 39 inert and 33 middle probes. The drafter's own guesses were weak: of 65 facts it expected to change the choice, 21 were decisive and 25 were inert.
 
-**Validation.** The author labeled two blind samples by hand (Appendix D). On 60 pairs of sentences, a third of them chosen to be the coder's hardest cases, he agreed with the coder's same-or-different call on 70% (Cohen's kappa 0.39, below the 0.7 we had set as the bar). The coder splits finer than he does: he called 13 pairs the same that the coder had split, against 5 the reverse. By his standard the overlaps in Section 4.1 are therefore understated, and Section 4.3 repeats the analysis under two other codebooks. On 40 usefulness ratings he accepted everything the judge accepted, rejected all 6 items planted from other decisions, and accepted 12 of 17 of the judge's rejections. The question sets a low bar, relevance to the decision, which nearly everything the models generate clears; it does not measure how much a consideration matters. In practice *good* means *relevant and not obvious*.
+**Does a briefing raise the fact?** A judge (Sonnet 5.5) saw the vignette, one answer's list and that vignette's probe questions, and marked each question *asks* (an item tells the person to find this out), *mentions* (an item raises the same matter without saying to find it out) or *absent*. It was told the item must concern the same specific unknown, not just the same topic. It never saw the prompt, the model, the probe's two answers or its status. A probe is *raised* if the label is asks or mentions. All 1,760 lists were judged (10,340 list-question pairs).
 
-**Statistics.** The unit is the decision type. Each measure is computed per vignette, averaged over a type's two vignettes, then averaged over the 8 types; brackets give 95% bootstrap intervals over types. Differences between arms are paired by type.
+**The contrast, named in advance.** The share of decisive probes raised minus the share of inert probes raised, on the plain prompt, pooled over the three models. Everything else in Section 4 is exploratory.
+
+**Controls.** (a) *Fact stated:* for each decisive or inert probe we added one of its answers to the vignette and collected plain answers from each model (732 answers); a judge that works should find the matter raised. (b) *Foreign probes:* the judge rated lists against probes written for a different decision type (1,800 pairs); it should find almost nothing. (c) *Hand labels:* the author labeled 80 list-question pairs blind to the judge (Appendix D).
+
+**Coding considerations.** For Section 4.3, Sonnet 5.5 built a codebook of distinct considerations for each decision type (31 to 47 codes) and sorted every sentence under one code without seeing the prompt or model. A consideration is *obvious* for a vignette if it appears in at least half of Haiku's plain answers to it (leaving out the answer being scored), and *new* if it is not obvious and a judge rated it relevant. A further judge marked each consideration as resting on a detail the vignette states or brought in from outside. Hand labels agreed only moderately with the coding (kappa 0.39 to 0.63 across three codebook builds, below our bar of 0.7); the overlap findings held in all three (Appendix E).
+
+**Statistics.** The unit is the decision type. Rates are computed per type and averaged over types; brackets are 95% bootstrap intervals over types. One type (parent care) has no decisive probe, so the contrast is paired over 7 types. With so few units the intervals are rough.
 
 # 4. Results
 
-## 4.1 Asking again returns most of the same list
+## 4.1 Briefings raise the missing facts that would change the choice
 
-![Left: considerations shared by two answers to the plain prompt, of 8. Right: distinct considerations accumulated as one person asks repeatedly. Bars and lines are means over 8 decision types; whiskers are 95% bootstrap intervals.](figures/collapse.png){width=100%}
+![Left: share of plain answers that raise a missing fact; the dark part of each bar is answers that tell the person to find it out. Right: the same for decisive facts under each prompt on Haiku 5.5. Whiskers are 95% bootstrap intervals over decision types for the full bar.](figures/probes.png){width=88%}
 
-Two plain answers to the same vignette from the same model share 5.3 of 8 considerations on Haiku [4.9 to 5.6], 5.4 on Sonnet [5.0 to 5.8] and 5.2 on GPT-5.5 [5.0 to 5.5] (Figure 1). Answers from two different models share between 4.6 and 4.8. A person who takes their question to a second vendor's model gets almost as much repetition as one who asks the first model again.
+On the plain prompt, a briefing raised a decisive missing fact 94% of the time [87% to 99%] and an inert one 56% of the time [46% to 67%]. The difference named in advance is 40 points [31 to 49]. It holds for each model (Figure 1): Haiku 88% against 47%, Sonnet 96% against 59%, GPT-5.5 97% against 63%.
 
-The repetition is not a generic list for the decision type. Two different people facing the same kind of decision share 1.5 of 8 on Sonnet [1.1 to 2.0], with the other models alike. The models read the vignette and answer for that person; what they repeat is their reading of it.
+The relation is a step, not a slope: probes in the middle group were raised 57% of the time, the same as inert ones. Of the 22 decisive probes, 16 were raised by all 30 plain answers to their vignette, and only 1 was raised by fewer than half. That one was raised by none of the 30: whether Maya, weighing a startup offer against her current job, has any other prospect in hand. (Told she has a final interview next week for a better-paid role, two of the three models switched from "accept" to "stay.") It was the only decisive probe about an option outside the two on the table.
 
-Repeated asking does reach further. After ten plain answers a person has seen 16.1 distinct considerations on Sonnet, and the tenth ask still adds 0.4 new ones on average. Roughly twice as many considerations are within reach of the plain prompt as one answer holds, and which of them a person sees beyond the common core is left to chance. Appendix C shows a typical pair of answers.
+**Controls.** With the fact stated in the vignette, briefings raised the matter 99% (decisive) and 95% (inert) of the time, so the judge finds a matter when it is there. Against probes from a different decision type it marked 63 of 1,800 as raised (3.5%), so it is not marking everything. HAND-LABELS-SENTENCE
 
-## 4.2 Every fix trades the obvious for the new
+**A second definition of decisive.** The forced choice above offers two options. We also ran it with a third, "something else," which the models chose in 59% of choices. Under that version 33 probes are decisive and 22 inert, with many changing group, and the contrast is 37 points [10 to 62]. The plan named the two-option version as primary before either was run on the real probes.
 
-| Arm | Good | Useful | Obvious kept | Shared | Good in 10 | Tokens |
-|:------------------------|---:|---:|---:|---:|---:|---:|
-| Plain | 1.8 | 7.7 | 80% | 5.3 | 8.2 | 462 |
-| Verbalized sampling | 2.5 | 7.7 | 69% | 5.2 | 9.0 | 494 |
-| Properties (6a) | 2.9 | 7.5 | 61% | 4.5 | 9.9 | 990 |
-| Properties + dice (6b) | 2.9 | 7.5 | 63% | 4.6 | 10.6 | 973 |
-| Random word | 3.6 | 7.3 | 49% | 4.0 | 11.2 | 876 |
-| Think first, be diverse | 3.8 | 7.4 | 48% | 4.2 | 11.8 | 840 |
-| "What else?" (2nd turn) | 5.0 | 6.5 | 19% | 3.5 | 13.6 | 896 |
+**Mentioning is not asking.** A briefing can raise a missing fact by weighing it ("the roof may be a major cost") or by telling the person to find it out ("get a roofer's estimate before Sunday"). Only the second gives the person something to do. Plain briefings told the person to find out a decisive fact 30% of the time [22% to 38%], against 11% for inert facts. The models differ here more than anywhere else: Sonnet 44%, Haiku 26%, GPT-5.5 20%.
 
-Table: The seven arms on Haiku 5.5, means over 8 decision types. *Good*: considerations per answer that are useful and not obvious (of 8). *Useful*: useful considerations per answer. *Obvious kept*: share of the vignette's obvious considerations that an answer includes. *Shared*: considerations two answers to the same vignette have in common. *Good in 10*: distinct good considerations across ten answers. *Tokens*: output tokens per answer; for "What else?" both turns are counted.
+Inert does not mean worthless: 8 of the 39 inert probes were raised by every plain answer, and some are matters a careful adviser would raise anyway.
 
-![Each arm's position: good considerations per answer against the share of obvious considerations kept. Whiskers are 95% bootstrap intervals over decision types.](figures/fixes.png){width=55%}
+## 4.2 Prompts that make the list less obvious do not raise more of what matters
 
-Every arm beats plain on good considerations per answer, from verbalized sampling (+0.7 [0.6 to 1.0]) to "What else?" (+3.2 [2.9 to 3.5]). Every arm also keeps fewer of the obvious considerations, and the two move together (Figure 2): an answer has 8 slots, nearly all of them are filled with something relevant in every arm, and a good consideration takes the slot of an obvious one. Our measures do not say whether the newcomer matters as much as the one it replaced. The arms differ mainly in how far along that line they go.
+| Prompt (Haiku 5.5) | New per answer | Decisive raised | Told to find out | Inert raised |
+|:------------------------|---:|---:|---:|---:|
+| Plain, 8 items | 2.3 | 88% | 26% | 47% |
+| Verbalized sampling | 2.8 | 87% | 15% | 40% |
+| Property substitution | 3.1 | 89% | 35% | 44% |
+| Same, + random dimensions | 3.1 | 87% | 27% | 46% |
+| Random word | 3.9 | 87% | 19% | 40% |
+| Think first, be diverse | 4.0 | 79% | 21% | 41% |
+| "What else?" turn, read alone | 5.2 | 45% | 8% | 31% |
+| Plain, then "What else?" (16) | | 96% | 33% | 61% |
+| Plain, 16 items | | 96% | 45% | 57% |
 
-"What else?" goes furthest. Its answers hold 5.0 good considerations and only 19% of the obvious ones, as expected of a second turn told not to repeat the first; it also has the fewest useful considerations per answer (6.5 of 8). Read on its own, such a list omits most of what the person most needs. Read after the first answer, it is the best supplement we tested. The comparison we named in advance, properties + dice against "What else?", went against the property method: its difference from "What else?" was -2.1 good considerations per answer [-2.5 to -1.8].
+Table: Each prompt on Haiku 5.5, means over decision types. *New per answer*: relevant considerations outside the vignette's obvious ones (of 8). *Told to find out*: share of decisive probes an answer tells the person to find out.
 
-**The property methods are a middling fix.** Arms 6a and 6b add about one good consideration per answer over plain (+1.1 [0.8 to 1.4] and +1.1 [0.7 to 1.4]) and keep about 61% of the obvious set. Free-form notes with an instruction to be non-obvious do more: think-first exceeds 6a by 0.9 [0.5 to 1.3]. As noted, that pair differs in two ways, so this does not show that property structure hurts. It does show that a one-line instruction to avoid the obvious moved the list further than the structured practice did, with fewer output tokens.
+Before the probes existed we had scored the six widening prompts by new considerations per answer, and on that score all beat plain, from verbalized sampling (+0.5) to the "What else?" turn (+2.8). The probes give a different picture (Table 1). No widening prompt raised more decisive facts than plain. Think-first raised fewer (-9 points [-20 to 0]), and a "What else?" turn read without the answer before it raised about half as many (45%). A count of new considerations rewards the list that leaves out the most of what matters.
 
-**The random draws did little.** Dimension names did not change good considerations per answer (6b minus 6a: 0.0 [-0.3 to 0.3]), and the random word did not help think-first (-0.2 [-0.5 to 0.1]).
+What did help was length. A plain list of 16 raised 96% of decisive facts (8 points over the 8-item list [1 to 19]) and told the person to find them out 45% of the time (19 points more [12 to 26]). It also raised more inert facts, so it is longer, not better aimed: the gap between decisive and inert stayed between 36 and 49 points for every prompt except the "What else?" turn alone.
 
-**The repetition moves up a level.** We predicted that in 6a the model would name the same properties each time, so that the sameness would shift from the considerations to the properties behind them. The property logs agree: an answer in 6a names 6.4 properties, and two answers to the same vignette share 4.8 of them (74%). With dice the share is 70%. Telling a model to choose where to look gives the same choice each time, and three random words do not move it much.
+The property-substitution prompt, which the author expected to do best on variety, was middling on it, though it did tell the person to find out decisive facts somewhat more often than plain (9 points [5 to 15]). Its property lists were themselves repetitive: two answers to a vignette named 74% of the same properties (70% with the random names). These comparisons are exploratory.
 
-**Two people stay different.** No arm made two different people's lists more alike: shared considerations between the two people of a decision type stayed between 1.1 and 1.6 of 8 in every arm.
+## 4.3 Asking again returns the same list
 
-## 4.3 The same answers under three codebooks
+![Left: considerations shared by two answers to the plain prompt, of 8. Right: distinct considerations accumulated as one person asks repeatedly. Bars and lines are means over 8 decision types; whiskers are 95% bootstrap intervals.](figures/collapse.png){width=72%}
 
-How finely to split considerations is a judgment, and the hand labels say our coder splits finer than the labeler would. We therefore coded the same answers twice more: once from a different random sample of sentences with the same instructions (*rebuilt*), and once with the instruction for doubtful cases reversed from "keep them separate" to "treat them as one" (*coarse*). The coarse build was made after seeing the hand labels. Each build has its own codebooks, obvious sets and usefulness ratings.
+**Across asks and across vendors.** Two plain answers to the same vignette from the same model share 5.3 of 8 considerations on Haiku, 5.4 on Sonnet and 5.2 on GPT-5.5 (Figure 2). Answers from two different models share 4.6 to 4.8. Taking the question to another vendor's model is close to asking the first one again, so their agreement is weak evidence that the list is complete. The lists are fitted to the person: two people facing the same kind of decision share only 1.5 of 8.
 
-| | Main | Rebuilt | Coarse |
-|:--------------------------------------|---:|---:|---:|
-| Considerations per decision type | 31 to 47 | 33 to 51 | 20 to 37 |
-| Kappa with the hand labels (60 pairs) | 0.39 | 0.63 | 0.56 |
-| Shared, same person, Sonnet twice | 5.4 | 5.4 | 5.8 |
-| Shared, same person, GPT-5.5 then Haiku | 4.6 | 4.6 | 5.0 |
-| Shared, two people, Sonnet | 1.5 | 1.8 | 2.2 |
-| Good per answer: plain | 1.8 | 1.8 | 1.2 |
-| Good per answer: properties (6a) | 2.9 | 2.7 | 1.9 |
-| Good per answer: think first, be diverse | 3.8 | 3.6 | 2.8 |
-| Good per answer: "What else?" | 5.0 | 5.0 | 4.0 |
-| Obvious kept: "What else?" | 19% | 20% | 29% |
-| 6b minus "What else?", good per answer | -2.1 | -2.2 | -2.0 |
+**The list is ranked.** On Haiku, 93% of first items are among the vignette's common considerations, falling to 48% of eighth items (Sonnet 91% to 51%, GPT-5.5 88% to 64%). Considerations that two answers share appear in the same relative order 87% of the time, and 85% of Haiku's answers to a vignette open with the same one. Variation between asks lives in the last few slots.
 
-Table: Headline numbers under three codings of the same 11,520 sentences. The pairs for the hand labels were drawn to stress the main build, so its kappa is not comparable with the other two.
+**Most of it restates the vignette.** About 6.2 of Haiku's 8 considerations rest on a detail the vignette states, and those reappear on a second ask 72% of the time. The 1.6 brought in from outside reappear 41% of the time. Sonnet and GPT-5.5 are alike. This fits Section 4.1: the decisive probes are mostly unknowns that hang off a stated detail (the roof's cost, the startup's runway), and the one no plain answer raised was not.
 
-The levels move as expected: a coarser codebook finds more overlap and fewer distinct considerations. The findings do not move. In all three builds a repeat ask returns between 5 and 6 of 8, a second model returns nearly as many, two people share between 1 and 3, the arms fall in the same order (6a and 6b are tied and change places), and each arm's gain in good considerations comes with a loss of obvious ones. No build reaches the agreement bar, so we rest the conclusions on what all three share and treat single values as approximate. Dropping the usefulness filter also leaves the order unchanged: non-obvious considerations per answer run from 1.9 for plain to 5.9 for "What else?" in the main build.
+**"What else?" is a longer list.** A plain answer followed by "What else?" holds 14.3 distinct considerations; one plain answer asked for 16 items holds 14.0. Three separate 8-item answers read together reach only 12.0. Length does not remove the repetition: two 16-item answers share 10.2 considerations.
 
 # 5. Discussion and Limitations
 
-**A fixed-length briefing has a budget.** We expected the arms to differ in how much variety they found. They differed mostly in how many of the 8 slots they gave to it. This suggests treating the split as a design choice instead of a side effect of prompt wording: keep most slots for the considerations nearly everyone in the situation should hear, and give a stated few to useful considerations from outside that set, varied from one ask to the next. The second-turn result suggests a simple version: a plain answer, then "What else?", shown as a core list and a supplement. We did not test whether people decide better with such a briefing.
+On these vignettes, plain briefings from three current models are aimed: they raise nearly all of the missing facts that would flip the models' own recommendation and about half of those that would not. We expected to find decisive facts going unraised and mostly did not. The weak points are that briefings usually note a decisive unknown without telling the person to resolve it, and that the one decisive fact about an option outside the stated pair went unraised: an anecdote, but the kind of miss the method exists to find.
 
-**Asking a second model is not a second opinion.** Three models from two vendors gave lists that overlap almost as much across models as within one.
+**Limits.**
 
-**What we did not show.** (1) *Whether the considerations matter.* "Useful" is a yes-or-no judgment of relevance that nearly every consideration passes, for the judge and for the hand labeler; "obvious" is defined by frequency in plain answers, which stands in for importance without measuring it. We can say an arm swaps obvious considerations for relevant new ones, not that the swap is a good one, and the obvious ones may be obvious because they matter most. A forced choice (which 8 of these 20 should this person hear?), made by people who have faced the decision, is the measurement we would add first. (2) *One model for the arms.* The fixes were tested on Haiku 5.5 only. Sonnet 5.5 refused the two arms that ask for written-out reasoning, which we did not work around; the ranking of arms may differ on larger models. (3) *Vignettes, not people.* Sixteen short invented situations and ten samples each; intervals are over 8 types. Real questions carry more context, which might reduce or increase repetition. (4) *Coding by a model, imperfectly validated.* One model built the codebooks and sorted the sentences. Agreement with one person's hand labels was moderate and below the bar we set, the labeler knew the hypotheses, and all three codebook builds share the same coder. The values in this report are approximate; the ordering and the trade-off are what held across builds. (5) *A confounded pair.* Arms 2 and 5 ask for non-obvious considerations and 6a and 6b do not. (6) *One prompt per method.* Each method is a single wording, and a different rendering of the property practice might do better. (7) *Exactly 8.* Fixing the list length builds in part of the trade-off; a longer list would relax it at the cost of the reader's attention.
+1. *Decisive means "flips the models' recommendation."* The same three models write the briefings and define what is decisive, so the result may show only that models raise what they themselves respond to. Facts that matter to a person but move no model are invisible here. The fix is the choices of people who have faced the decision, or outcomes.
+2. *The probes come from a model,* so facts no model would think of are not in the set. The author edited them but did not write them.
+3. *A two-option forced choice cannot see everything.* Facts about the shape of the decision (a third option, a soft deadline) rarely shift a choice between two fixed options: only 2 of the 30 such probes were decisive. They may matter most in practice.
+4. *Raised is a loose bar.* A briefing that walks through each stated detail will mention the unknowns attached to it, and most decisive probes extend a stated detail. Part of the headline rate may reflect that habit and not judgment about what matters. Telling the person to find out is the stricter measure.
+5. *Small and invented.* Sixteen vignettes written by a model, ten samples each, 22 decisive probes over 7 decision types. The judges are models, checked by one person who knew the hypotheses (Appendix D).
+6. *The prompt comparison is exploratory:* one small model, one wording per prompt, not named in advance. The missing-fact study itself was designed on the second day, after a review of the first analysis, and committed before it ran (Appendix C).
 
 # 6. Conclusion
 
-Three current models tailor their considerations to the person and then repeat themselves: ask again, or ask another model, and about 5 of the 8 come back. Simple prompts widen the list, each by giving up some of the obvious core. The property-variation practice we set out to test helps, but less than a one-line request to be non-obvious. Builders of decision briefings should decide on purpose how many slots go to the considerations everyone gets and how many to the ones only some askers see.
+Whether a briefing surfaces what matters can be scored by asking what the description leaves out, measuring which of those facts flip the choice, and checking whether the briefing raises them. On that test, plain briefings from three current models raise the decisive facts and under-ask about them; prompts for variety do not help, and a longer list does. The lists barely vary from one ask or vendor to the next. The step that would make the method trustworthy is replacing the models' forced choice with people's.
 
 <!-- appendices -->
 
 # Code and Data
 
-Code, prompts, vignettes, every generated answer, the codebooks, the judge's ratings, the hand labels and the claims register are at `REPO-URL`. `uv run python -m sprint.build_report` checks every number in this report against the data before rendering it.
+Code, prompts, vignettes, probes, every generated answer, forced choice, judge rating, hand label and the register of claims are at `REPO-URL`. `uv run python -m sprint.build_report` checks every number in this report against the data before rendering it.
 
 # References
 
-- Anderson, B. R., Shah, J. H., & Kreminski, M. (2024). Homogenization effects of large language models on human creative ideation. arXiv:2402.01536.
-- Carichon, F., et al. (2026). IDEAFix. arXiv:2606.00875.
-- Doshi, A. R., & Hauser, O. P. (2024). Generative AI enhances individual creativity but reduces the collective diversity of novel content. *Science Advances*, 10(28).
+- Bommasani, R., Creel, K. A., Kumar, A., Jurafsky, D., & Liang, P. (2022). Picking on the same person: Does algorithmic monoculture lead to outcome homogenization? *NeurIPS 2022*. arXiv:2211.13972.
+- Doshi, A. R., & Hauser, O. P. (2024). Generative AI enhances individual creativity but reduces the collective diversity of novel content. *Science Advances*, 10(28), eadn5290.
+- Fischhoff, B., Slovic, P., & Lichtenstein, S. (1978). Fault trees: Sensitivity of estimated failure probabilities to problem representation. *Journal of Experimental Psychology: Human Perception and Performance*, 4(2), 330–344.
+- Goel, S., Strüber, J., Auzina, I. A., Chandra, K. K., Kumaraguru, P., Kiela, D., Prabhu, A., Bethge, M., & Geiping, J. (2025). Great models think alike and this undermines AI oversight. *ICML 2025*, PMLR 267. arXiv:2502.04313.
 - Gunkel, P. *Ideonomy: The Science of Ideas.* Unpublished manuscripts.
 - Jiang, L., et al. (2025). Artificial Hivemind: The open-ended homogeneity of language models (and beyond). arXiv:2510.22954.
 - Kind, G. Ideonomy. https://gracekind.net/writing/ideonomy/intro
+- Kleinberg, J., & Raghavan, M. (2021). Algorithmic monoculture and social welfare. *PNAS*, 118(22), e2018340118.
+- Li, B. Z., Kim, B., & Wang, Z. (2025). QuestBench: Can LLMs ask the right question to acquire information in reasoning tasks? *NeurIPS 2025 Datasets and Benchmarks*. arXiv:2503.22674.
+- Luo, S., Huang, Y., Li, M., Meng, S., Liu, F., Hu, Z., Feng, J., & Liu, Q. (2025). ClarifyMT-Bench: Benchmarking and improving multi-turn clarification for conversational large language models. arXiv:2512.21120.
 - Meincke, L., Mollick, E. R., & Terwiesch, C. (2024). Prompting diverse ideas: Increasing AI idea variance. arXiv:2402.01727.
-- Misaki, K., & Akiba, T. (2025). String seed of thought. arXiv:2510.21150.
-- Troshin, S., et al. (2025). Asking a language model for diverse responses. arXiv:2509.17570.
-- Zhang, J., et al. (2025). Verbalized sampling: How to mitigate mode collapse and unlock LLM diversity. arXiv:2510.01171.
+- Zhang, J., Yu, S., Chong, D., Sicilia, A., Tomz, M. R., Manning, C. D., & Shi, W. (2025). Verbalized sampling: How to mitigate mode collapse and unlock LLM diversity. arXiv:2510.01171.
 
 # Appendix A. Limitations and Dual-Use / Ethical Considerations
 
-Limitations are listed in Section 5. Three further points concern use.
+Section 5 lists the limits of the evidence. This appendix covers how the work could mislead or be misused.
 
-**Variety has a cost to the people advised.** A briefing that varies across askers gives two people with the same question different advice. A shared list is common ground: people can compare notes on it and outsiders can audit it. A varied supplement weakens both, which is one reason to keep a stated core and to label the supplement as such.
+**The headline could be over-read as "AI decision advice is fine."** The result is that briefings raise the facts that flip the same models' forced choices on invented vignettes. It does not show that people who follow such briefings decide better, that the briefings are accurate, or that they cover what matters to a particular person. A product team should not cite it as validation.
 
-**Who chooses the supplement matters.** If the extra slots are filled at random, nobody can aim them. If they are filled by a system that tracks what has been shown to whom, that system decides which considerations reach which people, and it could steer decisions without any single briefing looking wrong. The methods in this report are prompts and random draws; we would want any targeted allocator to be logged and open to audit.
+**The method can be gamed.** A briefing could be tuned to score well on a known probe set, or padded to raise everything: the 16-item list raises more decisive facts and more inert ones. Any use of the score should report the inert rate beside the decisive rate and keep probes unseen by whoever tunes the prompt. A score built from a model's own sensitivities can also entrench that model's blind spots, since facts it does not respond to never count against it.
 
-**The measures can be gamed.** A prompt can raise "non-obvious considerations per answer" by leaving out what matters most, as the second-turn arm shows when read alone. Anyone adopting such a metric should report what was displaced, as we do.
+**Nudging people to ask more has costs.** Telling someone to "find out" a fact before deciding can be good advice or a way to delay and offload. We count asking as better than mentioning for decisive facts; for inert facts it sends people on errands that will not change anything.
 
-No human participants were involved; the vignettes are invented and describe no real person.
+**Sameness cuts both ways.** Section 4.3 treats repetition across asks and vendors as a risk, because a person cannot get an independent second view. It is also a virtue: the same question gets the same advice, and outsiders can audit a shared list. Deliberately varying which considerations reach which people would let whoever controls the variation steer decisions without any single briefing looking wrong. We would want any such system logged and open to audit.
 
-# Appendix B. Prompts and vignettes
+**Advice domains.** The vignettes touch money, housing, elder care and relationships. The briefings were generated for invented people and were not checked for correctness; nothing here is advice. No human participants were involved, and the vignettes describe no real person.
+
+**Dual use.** We see little direct misuse potential in a scoring method for advice lists. The probe-and-forced-choice step does show which single added facts flip a model's recommendation, which could help someone craft a description that steers a model's advice; that is already easy to do by hand.
+
+# Appendix B. Prompts
 
 The plain prompt is the vignette, the question, and "Give exactly 8 considerations, one sentence each." The other prompts add the text below to the same opening. All prompts, the 16 vignettes, the 29 dimension names and the 110 random words are in the repository as run.
 
@@ -155,44 +166,59 @@ The plain prompt is the vignette, the question, and "Give exactly 8 consideratio
 
 **"What else?"** Second turn: "What else? Give exactly 8 more considerations that you haven't mentioned yet, one sentence each."
 
-**Properties (6a).** "Before you answer, work through it this way, recording what you do in the `properties` field. First ask what this situation is, to this person, at this time. Not the kind of situation in general: this one, for them, now. Then name a few properties of the situation that matter from where they stand. Pick properties that can vary independently of each other. For each property, change its value to something else and see what happens to the rest of the situation: what else has to move, and what the change shows. Record each property's `name` and the `alternative` value you tried. Then give exactly 8 considerations, one sentence each, drawing on what the variations showed."
+**Property substitution.** "Before you answer, work through it this way, recording what you do in the `properties` field. First ask what this situation is, to this person, at this time. Not the kind of situation in general: this one, for them, now. Then name a few properties of the situation that matter from where they stand. Pick properties that can vary independently of each other. For each property, change its value to something else and see what happens to the rest of the situation: what else has to move, and what the change shows. Record each property's `name` and the `alternative` value you tried. Then give exactly 8 considerations, one sentence each, drawing on what the variations showed."
 
-**Properties + dice (6b).** 6a, then "As you choose which properties to look at, let these dimensions steer you: (three names)."
+**Property substitution + random dimensions.** The same, then "As you choose which properties to look at, let these dimensions steer you: (three names)." The names are drawn from a list of 29 such as scope, reversibility and rate.
 
 **Verbalized sampling** uses the standard wording from the authors' repository, with 8 responses.
 
-# Appendix C. A typical pair of plain answers
+**Forced choice.** The vignette, then one probe answer as a sentence, then "Which should this person do?" with the two options lettered A and B in random order and "Answer with the letter only."
 
-Two plain answers from Sonnet 5.5 to the same vignette, chosen as the first pair whose overlap equals the median over all pairs of that vignette's ten answers (6 of 8 shared). The italic label is the code each sentence was sorted under.
+**Judge.** "An adviser gave a person a short list of things to weigh in a decision. Separately, we have a list of questions about things the person's description leaves out. For each question, say whether the adviser's list raises it. *asks*: some item tells the person to find this out, check it, confirm it or ask about it. *mentions*: some item raises this same matter and weighs it, but does not tell the person to find it out. *absent*: no item raises it. The item must be about the same specific unknown as the question, not merely the same topic." An example about adopting a dog follows; the full text is in the repository.
 
-> Maya is 27 and works as a data analyst at a hospital system, earning $68,000. A 40-person logistics startup has offered her $82,000 plus stock options, fully remote. She has $31,000 in student loans, no dependents, and her current manager has hinted at a promotion next year. The startup wants an answer by Friday.
+# Appendix C. The missing-fact study: plan, probes and departures
 
-**Ask 1:**
+**What was fixed, and when.** The vignettes and the seven 8-item prompts were committed on the first day before any widening prompt was run. On the second day, after an adversarial review of the first analysis concluded that it measured novelty and not importance, we wrote the missing-fact plan into the repository's README and committed it with the scoring code while the probes were still being edited (commit `906ee4b`). The probes were committed after the author's edits and before any answer was judged against them (`845ad25`). The plan named: how probes are drafted and edited; the forced-choice check and its thresholds (0.5 in two of three models; 0.1 in all three); the two-option check as primary and the three-option check as a sensitivity analysis, chosen after a smoke test on invented inputs in which models picked "something else" in 26 of 30 choices; the judge's three labels; the one contrast; and the three controls.
 
-- [only here] *Student loan repayment situation.* The $14,000 salary increase (about 21%) would meaningfully accelerate paying down her $31,000 in student loans, but she should compare it to what the hinted promotion at her current job might actually pay.
-- **[shared]** *Equity option value.* Stock options at a 40-person startup are speculative, so she should ask about the strike price, vesting schedule, current valuation, and dilution risk and treat them as a lottery ticket rather than guaranteed compensation.
-- [only here] *Employer financial runway.* A small startup carries real risk of layoffs or shutdown, so she should ask about runway, funding stage, and profitability and make sure she has an emergency fund to cover a job search.
-- **[shared]** *Verifying the promotion hint.* A manager's hint of a promotion is not a commitment, so she could ask for specifics on timing and salary or use the competing offer as leverage to see what her current employer will put in writing.
-- **[shared]** *Total compensation beyond base pay.* She should weigh the stability, benefits, and retirement matching of a hospital system against the startup's benefits package, including health insurance quality, 401(k) match, and paid time off.
-- **[shared]** *Career growth and skill development.* Consider which role will build more valuable skills and career capital, such as broader responsibilities and faster growth at a startup versus domain expertise in healthcare data that may be harder to replicate elsewhere.
-- **[shared]** *Remote work trade-offs.* Fully remote work can improve flexibility and save commuting costs, but she should honestly assess whether she thrives with less in-person mentorship, structure, and social connection, especially early in her career.
-- **[shared]** *Deadline as pressure and information.* The Friday deadline is a pressure tactic she can push on, so she should ask for a short extension, negotiate the offer, and make sure her decision reflects her own priorities and risk tolerance rather than the clock.
+**Departures and things done after seeing data.** (1) The drafter put calendar dates in many answers, which read as being in the past. The drafting model rewrote 61 answer lines into relative time; the author checked them and repaired those that no longer fit the vignette. This was before the freeze. (2) The comparison of prompts in Section 4.2, the bands of shift, the per-probe counts and the comparison with "new per answer" were not named in advance. (3) The author discussed his eight unscored practice labels with Claude before labeling the scored pairs.
 
-**Ask 2:**
+**Examples of probes.**
 
-- **[shared]** *Total compensation beyond base pay.* The $14,000 salary increase (about 20%) could meaningfully accelerate paying down her $31,000 in student loans, but she should compare take-home pay after benefits like health insurance and retirement matching at each employer.
-- **[shared]** *Equity option value.* Stock options in a 40-person startup are speculative, so she should ask about the strike price, vesting schedule, current valuation, and dilution risk, and treat them as potentially worth zero rather than as guaranteed compensation.
-- [only here] *Job security comparison.* A hospital system offers far more job stability than a small startup, so she should consider the company's funding runway, revenue, and layoff risk, especially given her student debt obligations.
-- **[shared]** *Verifying the promotion hint.* Her manager's hint of a promotion is unconfirmed, so she should weigh how likely and how large that raise would be against a certain offer in hand, and consider asking her manager for clarity before Friday.
-- **[shared]** *Career growth and skill development.* The roles may differ in career growth, since a startup could offer broader responsibility and faster skill development while a hospital system offers structured advancement and deep healthcare-domain expertise.
-- **[shared]** *Remote work trade-offs.* Fully remote work changes daily life through flexibility and saved commuting costs, but she should consider whether she thrives without in-person mentorship, team culture, and social connection.
-- [only here] *Personal financial cushion.* Her financial cushion matters, so she should assess whether she has enough savings to absorb a sudden job loss, since her low risk exposure (no dependents) at 27 makes this a relatively good time to take a calculated risk.
-- **[shared]** *Deadline as pressure and information.* The Friday deadline is short, so she should try to negotiate more time, ask for the offer details in writing, and use the interim to research the startup's finances, leadership, and employee reviews.
+| Status | Vignette | Question | Answer A / Answer B |
+|:-----------|:---------|:----------------|:----------------------|
+| Decisive | First home | What would the roof replacement likely cost and how soon is it needed? | Must be replaced within 12 months at $28,000 / can last five more years, about $11,000 |
+| Decisive, never raised (plain) | Job offer | Is there a third active option besides staying and taking the startup offer? | A final interview next Tuesday for a $90,000 role at an insurer / no other applications or offers |
+| Inert, always raised | Moving for a partner | Has the boyfriend made a concrete commitment about their future together? | He has bought a ring and wants to marry within a year / he will not discuss engagement for two more years |
+| Inert, never raised | Parent care | What is the assisted living facility's pet policy? | One cat allowed with a deposit / no pets |
+
+The third row shows what inert does and does not mean: all three models recommended the same option under either answer, and every briefing raised the question anyway. A reader may well think the briefings were right to.
 
 # Appendix D. Hand labels
 
-The author labeled two blind samples by hand in a terminal tool that showed only text: no codes, arms, models or judge ratings. (a) *Same or different:* 60 pairs of sentences, 20 that the coder put under the same code, 20 under different codes chosen at random, and 20 under different codes but with the most similar wording (the top 2% by word overlap), a stratum built to find the coder's worst cases. He agreed with the coder on 15/20 of the same-code pairs, 19/20 of the random pairs and 8/20 of the similar-wording pairs: 70% overall, Cohen's kappa 0.39, below the 0.7 we had set as the bar. The disagreements lean one way: he called 13 pairs the same that the coder had split, against 5 the reverse. The coder splits finer than he does, so by his standard the overlaps in Section 4.1 are understated. (He discussed his first five pairs with Claude, which had not seen the codes; without those five, kappa is 0.36.) (b) *Useful:* 40 vignette-consideration pairs, 17 the judge had accepted, 17 it had rejected, and 6 planted from a different decision type. He accepted 17 of 17 of the judge's acceptances, rejected all 6 planted items, and accepted 12 of 17 of the judge's rejections. The judge is stricter than the labeler. The labeler counted a consideration as useful if any part of it could prompt a relevant thought, including considerations that do not apply literally but bear on the decision (the effect of a move on children, for a couple who have none yet); the judge tended to reject those. The question separates considerations that bear on the decision from those that belong to another one. It does not separate what matters a great deal from what could conceivably matter.
+HAND-LABELS-APPENDIX
+
+**Earlier labels, for the coding in Section 4.3.** The author labeled 60 pairs of sentences as the same consideration or different, blind to the codes, a third of them chosen to be the coder's hardest cases (different codes, most similar wording). He agreed with the main coding on 70% (Cohen's kappa 0.39; 0.63 and 0.56 for the two other builds), below the 0.7 we had set as the bar. The coder splits finer than he does: he called 13 pairs the same that the coder had split, against 5 the reverse. He discussed his first five pairs with Claude, which had not seen the codes; without them kappa is 0.36. On 40 relevance ratings he accepted 17 of 17 of the judge's acceptances, rejected all 6 items planted from other decisions, and accepted 12 of 17 of the judge's rejections. Relevance is a low bar that nearly every generated consideration clears, which is why Section 4.2 does not treat "new" as a measure of what matters.
+
+# Appendix E. The repetition findings under three codebooks
+
+How finely to split considerations is a judgment, so the same sentences were coded three times: the main build; a rebuild from a different random sample of sentences; and a coarse build with the instruction for doubtful cases reversed from "keep them separate" to "treat them as one," made after seeing the hand labels.
+
+| | Main | Rebuilt | Coarse |
+|:--------------------------------------|---:|---:|---:|
+| Considerations per decision type | 31 to 47 | 33 to 51 | 20 to 37 |
+| Kappa with the hand labels (60 pairs) | 0.39 | 0.63 | 0.56 |
+| Shared, same person, Sonnet twice | 5.4 | 5.4 | 5.8 |
+| Shared, same person, GPT-5.5 then Haiku | 4.6 | 4.6 | 5.0 |
+| Shared, two people, Sonnet | 1.5 | 1.8 | 2.2 |
+| New per answer: plain | 2.3 | 2.7 | 1.5 |
+| New per answer: property substitution | 3.1 | 3.1 | 2.1 |
+| New per answer: think first, be diverse | 4.0 | 4.0 | 2.9 |
+| New per answer: "What else?" turn | 5.2 | 5.3 | 4.1 |
+
+Table: The same sentences under three codings. The pairs for the hand labels were drawn to stress the main build, so its kappa is not comparable with the other two.
+
+A coarser codebook finds more overlap and fewer distinct considerations. The pattern does not move: a repeat ask returns 5 to 6 of 8, a second model nearly as many, two people 1 to 3, and the prompts keep their order. The slot, stated-detail and 16-item analyses were run on the main build only. The missing-fact study does not use the codebooks.
 
 # LLM Usage Statement
 
-This project was done in a weekend by one person working with Claude (Anthropic's Claude Code). The author chose the question, supplied the method under test (his own practice of naming and varying properties), approved the design, the vignettes and every prompt before they were frozen, and labeled the validation samples by hand. Claude wrote the vignettes and prompts for his approval, wrote the code, ran the experiments and the analysis, and wrote this report, which the author reviewed and edited. Claude Sonnet 5.5 is also the coder and judge, and Claude Haiku 5.5 and Sonnet 5.5 are among the models studied. Every number in the report is checked against the released data by the build. Errors are the author's.
+This project was done in a weekend by one person working with Claude (Anthropic's Claude Code). The author chose the question, supplied the property practice behind one of the prompts, approved the vignettes and every prompt before they were frozen, decided to add the missing-fact study and approved its plan, edited the probes, labeled the validation samples by hand, and read this report for overclaims. Claude wrote the vignettes and prompts for his approval, wrote the code, ran the experiments and the analysis, convened simulated reviewers (Claude instances) whose criticism led to the missing-fact study, and wrote this report. GPT-5.5 drafted the probes. Claude Sonnet 5.5 is the judge and coder, and Claude Haiku 5.5, Claude Sonnet 5.5 and GPT-5.5 are the models studied. Every number in the report is checked against the released data by the build. Errors are the author's.

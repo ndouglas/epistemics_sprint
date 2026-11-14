@@ -130,6 +130,48 @@ def main() -> int:
     fig.savefig(figs / "fixes.pdf")
     fig.savefig(figs / "fixes.png", dpi=200)
 
+    # Figure 3: the missing-fact study
+    probe_path = run_dir / "probe_results.json"
+    if probe_path.exists():
+        q = json.loads(probe_path.read_text())
+        fig, (a, b) = plt.subplots(1, 2, figsize=(7.2, 3.1), gridspec_kw={"width_ratios": [1, 1.2]})
+        groups = [("All three", q["plain_pooled"])] + [(MODEL[m].split()[0], q["plain_by_model"][m]) for m in ("haiku", "sonnet", "gpt")]
+        for i, (name, blk) in enumerate(groups):
+            for j, (kind, dark, light) in enumerate((("decisive", accent, "#a9cbe0"), ("inert", "#8a8a8a", "#d5d5d5"))):
+                x = i + (j - 0.5) * 0.38
+                total, asks = blk[kind], blk[kind + "_asks"]
+                a.bar(x, 100 * total[0], width=0.34, color=light)
+                a.bar(x, 100 * asks[0], width=0.34, color=dark)
+                a.plot([x, x], [100 * total[1], 100 * total[2]], color=ink, lw=1)
+        a.set_xticks(range(len(groups)), [n for n, _ in groups])
+        a.set_ylim(0, 105)
+        a.set_ylabel("Answers raising the fact (%)")
+        a.set_title("Plain prompt, by model", fontsize=9)
+        from matplotlib.patches import Patch
+        a.legend(handles=[Patch(color=accent, label="decisive: says to find out"), Patch(color="#a9cbe0", label="decisive: mentions"),
+                          Patch(color="#8a8a8a", label="inert: says to find out"), Patch(color="#d5d5d5", label="inert: mentions")],
+                 frameon=False, fontsize=6.5, loc="lower center", bbox_to_anchor=(0.45, -0.36), ncol=2)
+        names = {**LABEL, "plain": "Plain (8 items)", "plain16": "Plain, 16 items", "plain+what_else": 'Plain + "What else?" (16)',
+                 "what_else": '"What else?" turn alone'}
+        arms = sorted(q["by_arm"], key=lambda k: q["by_arm"][k]["decisive"][0])
+        for y, arm in enumerate(arms):
+            blk = q["by_arm"][arm]
+            b.barh(y, 100 * blk["decisive"][0], color="#a9cbe0", height=0.7)
+            b.barh(y, 100 * blk["decisive_asks"][0], color=accent, height=0.7)
+            b.plot([100 * blk["decisive"][1], 100 * blk["decisive"][2]], [y, y], color=ink, lw=1)
+        b.set_yticks(range(len(arms)), [names.get(k, k) for k in arms])
+        b.set_xlim(0, 105)
+        b.set_xlabel("Answers raising a decisive fact (%)")
+        b.set_title("Haiku 5.5, by prompt", fontsize=9)
+        fig.tight_layout()
+        fig.savefig(figs / "probes.pdf")
+        fig.savefig(figs / "probes.png", dpi=200)
+
+    import shutil
+    dest = Path(__file__).resolve().parent.parent / "report" / "figures"
+    for png in figs.glob("*.png"):
+        shutil.copy(png, dest / png.name)
+
     props = property_log(run_dir, tasks)
     (run_dir / "property_log.json").write_text(json.dumps(props, indent=1))
     for arm, row in props.items():
