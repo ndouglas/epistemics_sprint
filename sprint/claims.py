@@ -277,6 +277,43 @@ def add_probes(c: dict, run_dir: Path) -> None:
         if row:
             c["labels.probes.raised_agree"] = pct(row["raised_agreement"] * 100)
             c["labels.probes.raised_kappa"] = f"{row['raised_kappa']:.2f}"
+    add_probe_labels(c, run_dir, r)
+
+
+def add_probe_labels(c: dict, run_dir: Path, r: dict) -> None:
+    """The author's blind labels against the judge, and the plain-prompt rates restated by his standard.
+
+    For each judge label, the share of pairs the author called raised (or asks). Those shares,
+    applied to the judge's label mix on the plain prompt, give a rough hand-standard rate. It
+    assumes the judge errs alike on decisive and inert probes; the sample is too small to check."""
+    lab = run_dir / "labels"
+    if not (lab / "probes.jsonl").exists():
+        return
+    sample = json.loads((lab / "probes_sample.json").read_text())
+    hand = [json.loads(l) for l in (lab / "probes.jsonl").read_text().splitlines()]
+    got = [(sample[h["i"]]["machine"], h["label"], sample[h["i"]]["probe"]) for h in hand if not sample[h["i"]]["practice"]]
+    c["labels.probes.practice"] = str(sum(sample[h["i"]]["practice"] for h in hand))
+    raised, asks = {}, {}
+    for label in ("asks", "mentions", "absent"):
+        mine = [h for m, h, _ in got if m == label]
+        c[f"labels.probes.judge_{label}.n"] = str(len(mine))
+        c[f"labels.probes.judge_{label}.hand_raised"] = f"{sum(h != 'absent' for h in mine)} of {len(mine)}"
+        c[f"labels.probes.judge_{label}.hand_same"] = f"{sum(h == label for h in mine)} of {len(mine)}"
+        raised[label] = sum(h != "absent" for h in mine) / len(mine)
+        asks[label] = sum(h == "asks" for h in mine) / len(mine)
+    status = {pid: v["status"] for pid, v in json.loads((run_dir / "probe_status.json").read_text())["probes"].items()}
+    for st in ("decisive", "inert"):
+        mine = [(m, h) for m, h, pid in got if status.get(pid) == st and m != "absent"]
+        c[f"labels.probes.{st}.judge_raised_hand_absent"] = f"{sum(h == 'absent' for _, h in mine)} of {len(mine)}"
+    rows = [json.loads(l) for l in (run_dir / "probe_hits.jsonl").open()]
+    est = {}
+    for st in ("decisive", "inert"):
+        mix = Counter(x["label"] for x in rows if x["arm"] == "plain" and status.get(x["probe"]) == st)
+        n = sum(mix.values())
+        est[st] = sum(mix[l] / n * raised[l] for l in raised)
+        c[f"labels.probes.hand_standard.{st}"] = pct(100 * est[st])
+        c[f"labels.probes.hand_standard.{st}_asks"] = pct(100 * sum(mix[l] / n * asks[l] for l in asks))
+    c["labels.probes.hand_standard.gap"] = whole(100 * (est["decisive"] - est["inert"]))
 
 
 def main() -> int:

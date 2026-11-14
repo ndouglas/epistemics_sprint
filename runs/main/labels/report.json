@@ -18,5 +18,17 @@
    "planted from another decision": "6/6",
    "judge no": "5/17"
   }
+ },
+ "probes": {
+  "n": 80,
+  "agreement": 0.7125,
+  "kappa": 0.5673642134963555,
+  "raised_agreement": 0.7875,
+  "raised_kappa": 0.575,
+  "by_stratum": {
+   "judge absent": "25/27",
+   "judge asks": "22/27",
+   "judge mentions": "10/26"
+  }
  }
 }
