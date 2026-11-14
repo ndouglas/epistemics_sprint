@@ -88,9 +88,9 @@ def block(rows: list[dict], task_type: dict, cls: dict, keep) -> dict:
     return out
 
 
-def analyze(run_dir: Path, tasks, probes: list[dict]) -> dict:
+def analyze(run_dir: Path, tasks, probes: list[dict], status_file: str = "probe_status.json", out_file: str = "probe_results.json") -> dict:
     task_type = {t.id: t.type for t in tasks}
-    status = json.loads((run_dir / "probe_status.json").read_text())
+    status = json.loads((run_dir / status_file).read_text())
     cls = {pid: v["status"] for pid, v in status["probes"].items()}
     about = {p["id"]: p.get("about", "details") for p in probes}
     question = {p["id"]: p["question"] for p in probes}
@@ -139,7 +139,7 @@ def analyze(run_dir: Path, tasks, probes: list[dict]) -> dict:
         hits = sum(is_hit(r) for r in foreign)
         out["foreign"] = {"hits": hits, "n": len(foreign), "rate": hits / len(foreign),
                           "by_type": rate(type_counts(foreign, task_type, lambda r: True))}
-    (run_dir / "probe_results.json").write_text(json.dumps(out, indent=1))
+    (run_dir / out_file).write_text(json.dumps(out, indent=1))
     return out
 
 
@@ -156,8 +156,10 @@ def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(prog="sprint.probe_analyze")
     p.add_argument("run_dir", type=Path)
     p.add_argument("--tasks", type=Path, default=Path("tasks/decisions.toml"))
+    p.add_argument("--status", default="probe_status.json", help="which decisive/inert classification to use")
+    p.add_argument("--out", default="probe_results.json")
     args = p.parse_args(argv)
-    r = analyze(args.run_dir, load_tasks(args.tasks), load_probes())
+    r = analyze(args.run_dir, load_tasks(args.tasks), load_probes(), args.status, args.out)
     print("probes", r["n_probes"], "by about", r["n_probes_by_about"])
     show(f"plain, pooled (of {K})", r["plain_pooled"])
     for m, b in r["plain_by_model"].items():

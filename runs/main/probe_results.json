@@ -1,0 +1,2125 @@
+{
+ "n_probes": {
+  "decisive": 22,
+  "inert": 39,
+  "middle": 33
+ },
+ "n_probes_by_about": {
+  "details": {
+   "decisive": 20,
+   "inert": 26,
+   "middle": 18
+  },
+  "shape of the decision": {
+   "decisive": 2,
+   "inert": 13,
+   "middle": 15
+  }
+ },
+ "plain_pooled": {
+  "decisive": [
+   0.939047619047619,
+   0.8742857142857142,
+   0.9928571428571429,
+   7,
+   660
+  ],
+  "decisive_asks": [
+   0.29984126984126985,
+   0.21746031746031746,
+   0.38095238095238093,
+   7,
+   660
+  ],
+  "inert": [
+   0.5630555555555555,
+   0.4567361111111111,
+   0.6680555555555556,
+   8,
+   1170
+  ],
+  "inert_asks": [
+   0.1140625,
+   0.078125,
+   0.14947916666666666,
+   8,
+   1170
+  ],
+  "middle": [
+   0.5708333333333333,
+   0.50625,
+   0.6354166666666666,
+   8,
+   990
+  ],
+  "middle_asks": [
+   0.17797619047619048,
+   0.1314484126984127,
+   0.24394841269841272,
+   8,
+   990
+  ],
+  "decisive_minus_inert": [
+   0.3979365079365079,
+   0.3076984126984127,
+   0.4855555555555556,
+   7
+  ],
+  "decisive_minus_inert_asks": [
+   0.18198412698412697,
+   0.10634920634920635,
+   0.25761904761904764,
+   7
+  ]
+ },
+ "plain_by_model": {
+  "gpt": {
+   "decisive": [
+    0.9714285714285714,
+    0.9142857142857143,
+    1.0,
+    7,
+    220
+   ],
+   "decisive_asks": [
+    0.20142857142857143,
+    0.08571428571428572,
+    0.32642857142857146,
+    7,
+    220
+   ],
+   "inert": [
+    0.6328125,
+    0.5005208333333333,
+    0.7510416666666667,
+    8,
+    390
+   ],
+   "inert_asks": [
+    0.0790625,
+    0.04583333333333334,
+    0.11125,
+    8,
+    390
+   ],
+   "middle": [
+    0.5925595238095238,
+    0.5348214285714286,
+    0.6510416666666666,
+    8,
+    330
+   ],
+   "middle_asks": [
+    0.1261904761904762,
+    0.07931547619047619,
+    0.17604166666666665,
+    8,
+    330
+   ],
+   "decisive_minus_inert": [
+    0.36428571428571427,
+    0.2571428571428571,
+    0.4726190476190476,
+    7
+   ],
+   "decisive_minus_inert_asks": [
+    0.12000000000000001,
+    0.005952380952380959,
+    0.24380952380952384,
+    7
+   ]
+  },
+  "haiku": {
+   "decisive": [
+    0.8807142857142857,
+    0.7671428571428571,
+    0.9785714285714285,
+    7,
+    220
+   ],
+   "decisive_asks": [
+    0.25976190476190475,
+    0.16428571428571428,
+    0.3407142857142857,
+    7,
+    220
+   ],
+   "inert": [
+    0.4688541666666667,
+    0.35541666666666666,
+    0.5877083333333334,
+    8,
+    390
+   ],
+   "inert_asks": [
+    0.12354166666666667,
+    0.06833333333333333,
+    0.18541666666666667,
+    8,
+    390
+   ],
+   "middle": [
+    0.5444940476190476,
+    0.44285714285714284,
+    0.6572916666666667,
+    8,
+    330
+   ],
+   "middle_asks": [
+    0.19389880952380953,
+    0.12217261904761904,
+    0.27083333333333337,
+    8,
+    330
+   ],
+   "decisive_minus_inert": [
+    0.43238095238095237,
+    0.29214285714285715,
+    0.5745238095238095,
+    7
+   ],
+   "decisive_minus_inert_asks": [
+    0.12928571428571428,
+    0.02642857142857142,
+    0.2238095238095238,
+    7
+   ]
+  },
+  "sonnet": {
+   "decisive": [
+    0.965,
+    0.9021428571428571,
+    1.0,
+    7,
+    220
+   ],
+   "decisive_asks": [
+    0.43833333333333335,
+    0.3585714285714286,
+    0.5171428571428571,
+    7,
+    220
+   ],
+   "inert": [
+    0.5875,
+    0.46875,
+    0.696875,
+    8,
+    390
+   ],
+   "inert_asks": [
+    0.13958333333333334,
+    0.09375,
+    0.184375,
+    8,
+    390
+   ],
+   "middle": [
+    0.5754464285714286,
+    0.49375,
+    0.6598214285714286,
+    8,
+    330
+   ],
+   "middle_asks": [
+    0.2138392857142857,
+    0.14017857142857143,
+    0.3086309523809524,
+    8,
+    330
+   ],
+   "decisive_minus_inert": [
+    0.39714285714285713,
+    0.30357142857142855,
+    0.49357142857142855,
+    7
+   ],
+   "decisive_minus_inert_asks": [
+    0.2966666666666667,
+    0.19428571428571428,
+    0.38976190476190475,
+    7
+   ]
+  }
+ },
+ "by_about": {
+  "details": {
+   "decisive": [
+    0.9714285714285714,
+    0.9333333333333333,
+    0.9976190476190476,
+    7,
+    600
+   ],
+   "decisive_asks": [
+    0.3103174603174603,
+    0.21904761904761905,
+    0.40793650793650793,
+    7,
+    600
+   ],
+   "inert": [
+    0.6065972222222222,
+    0.4239583333333333,
+    0.7604166666666666,
+    8,
+    780
+   ],
+   "inert_asks": [
+    0.1361111111111111,
+    0.06944444444444445,
+    0.21944444444444444,
+    8,
+    780
+   ],
+   "middle": [
+    0.5961111111111111,
+    0.4515277777777778,
+    0.7558333333333334,
+    8,
+    540
+   ],
+   "middle_asks": [
+    0.1991666666666667,
+    0.1075,
+    0.29375,
+    8,
+    540
+   ],
+   "decisive_minus_inert": [
+    0.3876984126984127,
+    0.2222222222222222,
+    0.5952380952380952,
+    7
+   ],
+   "decisive_minus_inert_asks": [
+    0.16825396825396824,
+    0.05079365079365078,
+    0.30952380952380953,
+    7
+   ]
+  },
+  "shape of the decision": {
+   "decisive": [
+    0.43333333333333335,
+    0.43333333333333335,
+    0.43333333333333335,
+    1,
+    60
+   ],
+   "decisive_asks": [
+    0.35,
+    0.35,
+    0.35,
+    1,
+    60
+   ],
+   "inert": [
+    0.5270833333333333,
+    0.3958333333333333,
+    0.6895833333333333,
+    8,
+    390
+   ],
+   "inert_asks": [
+    0.11666666666666667,
+    0.027083333333333334,
+    0.25625,
+    8,
+    390
+   ],
+   "middle": [
+    0.5396825396825397,
+    0.44682539682539685,
+    0.6619047619047619,
+    7,
+    450
+   ],
+   "middle_asks": [
+    0.1388888888888889,
+    0.08174603174603175,
+    0.1976190476190476,
+    7,
+    450
+   ],
+   "decisive_minus_inert": [
+    -0.5666666666666667,
+    -0.5666666666666667,
+    -0.5666666666666667,
+    1
+   ],
+   "decisive_minus_inert_asks": [
+    -0.21666666666666667,
+    -0.21666666666666667,
+    -0.21666666666666667,
+    1
+   ]
+  }
+ },
+ "by_arm": {
+  "plain": {
+   "decisive": [
+    0.8807142857142857,
+    0.7671428571428571,
+    0.9785714285714285,
+    7,
+    220
+   ],
+   "decisive_asks": [
+    0.25976190476190475,
+    0.16428571428571428,
+    0.3407142857142857,
+    7,
+    220
+   ],
+   "inert": [
+    0.4688541666666667,
+    0.35541666666666666,
+    0.5877083333333334,
+    8,
+    390
+   ],
+   "inert_asks": [
+    0.12354166666666667,
+    0.06833333333333333,
+    0.18541666666666667,
+    8,
+    390
+   ],
+   "middle": [
+    0.5444940476190476,
+    0.44285714285714284,
+    0.6572916666666667,
+    8,
+    330
+   ],
+   "middle_asks": [
+    0.19389880952380953,
+    0.12217261904761904,
+    0.27083333333333337,
+    8,
+    330
+   ],
+   "decisive_minus_inert": [
+    0.43238095238095237,
+    0.29214285714285715,
+    0.5745238095238095,
+    7
+   ],
+   "decisive_minus_inert_asks": [
+    0.12928571428571428,
+    0.02642857142857142,
+    0.2238095238095238,
+    7
+   ]
+  },
+  "think_diverse": {
+   "decisive": [
+    0.789047619047619,
+    0.6833333333333333,
+    0.9019047619047619,
+    7,
+    220
+   ],
+   "decisive_asks": [
+    0.21095238095238095,
+    0.12380952380952381,
+    0.29666666666666663,
+    7,
+    220
+   ],
+   "inert": [
+    0.41083333333333333,
+    0.315,
+    0.5077083333333333,
+    8,
+    390
+   ],
+   "inert_asks": [
+    0.10104166666666667,
+    0.075,
+    0.12708333333333333,
+    8,
+    390
+   ],
+   "middle": [
+    0.47946428571428573,
+    0.3961309523809524,
+    0.5802083333333333,
+    8,
+    330
+   ],
+   "middle_asks": [
+    0.14389880952380954,
+    0.09270833333333334,
+    0.22321428571428573,
+    8,
+    330
+   ],
+   "decisive_minus_inert": [
+    0.3623809523809524,
+    0.24523809523809523,
+    0.47500000000000003,
+    7
+   ],
+   "decisive_minus_inert_asks": [
+    0.10261904761904761,
+    0.014285714285714282,
+    0.18023809523809523,
+    7
+   ]
+  },
+  "verbalized": {
+   "decisive": [
+    0.8685714285714285,
+    0.7871428571428571,
+    0.9471428571428572,
+    7,
+    220
+   ],
+   "decisive_asks": [
+    0.1457142857142857,
+    0.05,
+    0.24571428571428572,
+    7,
+    220
+   ],
+   "inert": [
+    0.4005208333333333,
+    0.26458333333333334,
+    0.540625,
+    8,
+    390
+   ],
+   "inert_asks": [
+    0.09260416666666667,
+    0.030104166666666664,
+    0.1665625,
+    8,
+    390
+   ],
+   "middle": [
+    0.5611607142857142,
+    0.44241071428571427,
+    0.6854166666666667,
+    8,
+    330
+   ],
+   "middle_asks": [
+    0.11696428571428572,
+    0.05654761904761905,
+    0.21800595238095238,
+    8,
+    330
+   ],
+   "decisive_minus_inert": [
+    0.4876190476190476,
+    0.3761904761904762,
+    0.6178571428571429,
+    7
+   ],
+   "decisive_minus_inert_asks": [
+    0.04166666666666667,
+    -0.059523809523809514,
+    0.1330952380952381,
+    7
+   ]
+  },
+  "what_else": {
+   "decisive": [
+    0.45404761904761903,
+    0.36,
+    0.5416666666666666,
+    7,
+    220
+   ],
+   "decisive_asks": [
+    0.07809523809523809,
+    0.05666666666666667,
+    0.10666666666666666,
+    7,
+    220
+   ],
+   "inert": [
+    0.3069791666666667,
+    0.22572916666666668,
+    0.37625000000000003,
+    8,
+    390
+   ],
+   "inert_asks": [
+    0.0421875,
+    0.014583333333333334,
+    0.07083333333333333,
+    8,
+    390
+   ],
+   "middle": [
+    0.43139880952380955,
+    0.3543154761904762,
+    0.5136904761904763,
+    8,
+    330
+   ],
+   "middle_asks": [
+    0.08169642857142857,
+    0.0337797619047619,
+    0.13958333333333334,
+    8,
+    330
+   ],
+   "decisive_minus_inert": [
+    0.15857142857142856,
+    0.08809523809523809,
+    0.21404761904761904,
+    7
+   ],
+   "decisive_minus_inert_asks": [
+    0.04595238095238095,
+    0.02023809523809524,
+    0.07285714285714286,
+    7
+   ]
+  },
+  "random_word": {
+   "decisive": [
+    0.8654761904761905,
+    0.7928571428571428,
+    0.9333333333333333,
+    7,
+    220
+   ],
+   "decisive_asks": [
+    0.1854761904761905,
+    0.08095238095238096,
+    0.2811904761904762,
+    7,
+    220
+   ],
+   "inert": [
+    0.40458333333333335,
+    0.31604166666666667,
+    0.486875,
+    8,
+    390
+   ],
+   "inert_asks": [
+    0.08458333333333333,
+    0.06583333333333334,
+    0.10416666666666667,
+    8,
+    390
+   ],
+   "middle": [
+    0.48467261904761905,
+    0.37351190476190477,
+    0.5992559523809524,
+    8,
+    330
+   ],
+   "middle_asks": [
+    0.14821428571428572,
+    0.0875,
+    0.21904761904761905,
+    8,
+    330
+   ],
+   "decisive_minus_inert": [
+    0.44595238095238093,
+    0.3488095238095238,
+    0.5402380952380952,
+    7
+   ],
+   "decisive_minus_inert_asks": [
+    0.09595238095238096,
+    -0.009761904761904762,
+    0.19666666666666666,
+    7
+   ]
+  },
+  "properties": {
+   "decisive": [
+    0.8907142857142857,
+    0.83,
+    0.9514285714285714,
+    7,
+    220
+   ],
+   "decisive_asks": [
+    0.3530952380952381,
+    0.3071428571428571,
+    0.4057142857142857,
+    7,
+    220
+   ],
+   "inert": [
+    0.43822916666666667,
+    0.32989583333333333,
+    0.54375,
+    8,
+    390
+   ],
+   "inert_asks": [
+    0.15333333333333332,
+    0.08979166666666666,
+    0.21666666666666667,
+    8,
+    390
+   ],
+   "middle": [
+    0.5101190476190476,
+    0.3869047619047619,
+    0.634077380952381,
+    8,
+    330
+   ],
+   "middle_asks": [
+    0.2086309523809524,
+    0.1294642857142857,
+    0.30029761904761904,
+    8,
+    330
+   ],
+   "decisive_minus_inert": [
+    0.45595238095238094,
+    0.3478571428571428,
+    0.5738095238095238,
+    7
+   ],
+   "decisive_minus_inert_asks": [
+    0.1957142857142857,
+    0.11166666666666668,
+    0.2652380952380952,
+    7
+   ]
+  },
+  "properties_nudged": {
+   "decisive": [
+    0.8721428571428571,
+    0.8042857142857143,
+    0.9428571428571428,
+    7,
+    220
+   ],
+   "decisive_asks": [
+    0.2733333333333333,
+    0.18095238095238095,
+    0.35928571428571426,
+    7,
+    220
+   ],
+   "inert": [
+    0.45916666666666667,
+    0.35375,
+    0.5625,
+    8,
+    390
+   ],
+   "inert_asks": [
+    0.14239583333333333,
+    0.08302083333333334,
+    0.199375,
+    8,
+    390
+   ],
+   "middle": [
+    0.5151785714285715,
+    0.40520833333333334,
+    0.6333333333333333,
+    8,
+    330
+   ],
+   "middle_asks": [
+    0.17842261904761905,
+    0.09404761904761905,
+    0.2857142857142857,
+    8,
+    330
+   ],
+   "decisive_minus_inert": [
+    0.41880952380952385,
+    0.32880952380952383,
+    0.5080952380952382,
+    7
+   ],
+   "decisive_minus_inert_asks": [
+    0.11595238095238095,
+    -0.01738095238095239,
+    0.24,
+    7
+   ]
+  },
+  "plain16": {
+   "decisive": [
+    0.9607142857142857,
+    0.9035714285714286,
+    1.0,
+    7,
+    220
+   ],
+   "decisive_asks": [
+    0.4461904761904762,
+    0.37238095238095237,
+    0.5164285714285715,
+    7,
+    220
+   ],
+   "inert": [
+    0.5680208333333333,
+    0.46958333333333335,
+    0.6654166666666667,
+    8,
+    390
+   ],
+   "inert_asks": [
+    0.16802083333333334,
+    0.126875,
+    0.20291666666666666,
+    8,
+    390
+   ],
+   "middle": [
+    0.7196428571428571,
+    0.6174107142857143,
+    0.81875,
+    8,
+    330
+   ],
+   "middle_asks": [
+    0.27172619047619045,
+    0.21666666666666667,
+    0.3375,
+    8,
+    330
+   ],
+   "decisive_minus_inert": [
+    0.41333333333333333,
+    0.33452380952380956,
+    0.4833333333333334,
+    7
+   ],
+   "decisive_minus_inert_asks": [
+    0.2845238095238095,
+    0.19642857142857142,
+    0.36904761904761907,
+    7
+   ]
+  },
+  "plain+what_else": {
+   "decisive": [
+    0.9628571428571429,
+    0.9171428571428571,
+    0.9928571428571429,
+    7,
+    220
+   ],
+   "decisive_asks": [
+    0.3342857142857143,
+    0.19999999999999998,
+    0.46714285714285714,
+    7,
+    220
+   ],
+   "inert": [
+    0.6098958333333333,
+    0.5,
+    0.7041666666666667,
+    8,
+    390
+   ],
+   "inert_asks": [
+    0.1715625,
+    0.12770833333333334,
+    0.2109375,
+    8,
+    390
+   ],
+   "middle": [
+    0.7273809523809524,
+    0.6238095238095238,
+    0.8322916666666667,
+    8,
+    330
+   ],
+   "middle_asks": [
+    0.25729166666666664,
+    0.17708333333333334,
+    0.3458333333333333,
+    8,
+    330
+   ],
+   "decisive_minus_inert": [
+    0.3783333333333333,
+    0.3059523809523809,
+    0.45571428571428574,
+    7
+   ],
+   "decisive_minus_inert_asks": [
+    0.16857142857142857,
+    0.019047619047619042,
+    0.3076190476190476,
+    7
+   ]
+  }
+ },
+ "per_probe": {
+  "family-loan-a-1": {
+   "status": "inert",
+   "about": "details",
+   "question": "Does Kevin have a written house purchase timeline with expected cash needs?",
+   "plain": [
+    13,
+    30
+   ],
+   "any": [
+    53,
+    110
+   ]
+  },
+  "family-loan-a-2": {
+   "status": "inert",
+   "about": "details",
+   "question": "What is the brother\u2019s current repayment capacity?",
+   "plain": [
+    29,
+    30
+   ],
+   "any": [
+    80,
+    110
+   ]
+  },
+  "family-loan-a-3": {
+   "status": "inert",
+   "about": "shape of the decision",
+   "question": "Is there a safer third option besides either giving the full $15,000 loan or refusing entirely?",
+   "plain": [
+    30,
+    30
+   ],
+   "any": [
+    97,
+    110
+   ]
+  },
+  "family-loan-a-4": {
+   "status": "inert",
+   "about": "details",
+   "question": "What interest rate is Kevin earning on his savings account?",
+   "plain": [
+    0,
+    30
+   ],
+   "any": [
+    4,
+    110
+   ]
+  },
+  "family-loan-a-5": {
+   "status": "inert",
+   "about": "details",
+   "question": "Did the parents explain why they have not offered an opinion?",
+   "plain": [
+    13,
+    30
+   ],
+   "any": [
+    41,
+    110
+   ]
+  },
+  "family-loan-a-6": {
+   "status": "inert",
+   "about": "shape of the decision",
+   "question": "Can Kevin take time to verify the debts before deciding?",
+   "plain": [
+    9,
+    30
+   ],
+   "any": [
+    28,
+    110
+   ]
+  },
+  "family-loan-b-1": {
+   "status": "middle",
+   "about": "details",
+   "question": "How much money does Ruth need to keep accessible for her own near-term security?",
+   "plain": [
+    30,
+    30
+   ],
+   "any": [
+    108,
+    110
+   ]
+  },
+  "family-loan-b-2": {
+   "status": "decisive",
+   "about": "details",
+   "question": "Would the $20,000 actually prevent the foreclosure, and for how long?",
+   "plain": [
+    23,
+    30
+   ],
+   "any": [
+    82,
+    110
+   ]
+  },
+  "family-loan-b-3": {
+   "status": "decisive",
+   "about": "details",
+   "question": "Does the daughter have a realistic repayment plan?",
+   "plain": [
+    29,
+    30
+   ],
+   "any": [
+    93,
+    110
+   ]
+  },
+  "family-loan-b-4": {
+   "status": "middle",
+   "about": "shape of the decision",
+   "question": "Is there a less risky third option besides giving the full $20,000 or refusing?",
+   "plain": [
+    30,
+    30
+   ],
+   "any": [
+    105,
+    110
+   ]
+  },
+  "family-loan-b-5": {
+   "status": "middle",
+   "about": "shape of the decision",
+   "question": "Is the foreclosure deadline firm enough that Ruth must decide immediately?",
+   "plain": [
+    4,
+    30
+   ],
+   "any": [
+    31,
+    110
+   ]
+  },
+  "family-loan-b-6": {
+   "status": "middle",
+   "about": "details",
+   "question": "What does Ruth's son know that makes him think it is a bad idea?",
+   "plain": [
+    22,
+    30
+   ],
+   "any": [
+    87,
+    110
+   ]
+  },
+  "first-home-a-1": {
+   "status": "middle",
+   "about": "details",
+   "question": "How much of the $60,000 savings are Priya and Sam willing and able to use after keeping an emergency fund and paying closing costs?",
+   "plain": [
+    30,
+    30
+   ],
+   "any": [
+    104,
+    110
+   ]
+  },
+  "first-home-a-2": {
+   "status": "decisive",
+   "about": "details",
+   "question": "What would the roof replacement likely cost and how soon is it needed?",
+   "plain": [
+    30,
+    30
+   ],
+   "any": [
+    104,
+    110
+   ]
+  },
+  "first-home-a-3": {
+   "status": "decisive",
+   "about": "details",
+   "question": "How secure and replaceable is Sam's income if the layoffs continue?",
+   "plain": [
+    30,
+    30
+   ],
+   "any": [
+    105,
+    110
+   ]
+  },
+  "first-home-a-4": {
+   "status": "inert",
+   "about": "shape of the decision",
+   "question": "Is making an offer by Sunday the only realistic way to buy this home, or is there another route?",
+   "plain": [
+    17,
+    30
+   ],
+   "any": [
+    66,
+    110
+   ]
+  },
+  "first-home-a-5": {
+   "status": "inert",
+   "about": "details",
+   "question": "What are Priya and Sam's current lease terms if they do not buy now?",
+   "plain": [
+    0,
+    30
+   ],
+   "any": [
+    0,
+    110
+   ]
+  },
+  "first-home-a-6": {
+   "status": "middle",
+   "about": "shape of the decision",
+   "question": "Can Priya and Sam back out after making an offer if inspections or financing create problems?",
+   "plain": [
+    20,
+    30
+   ],
+   "any": [
+    66,
+    110
+   ]
+  },
+  "first-home-b-1": {
+   "status": "inert",
+   "about": "details",
+   "question": "What would Gloria\u2019s total monthly housing cost be if she bought the condo, including mortgage, taxes, insurance, fees, and maintenance reserve?",
+   "plain": [
+    30,
+    30
+   ],
+   "any": [
+    98,
+    110
+   ]
+  },
+  "first-home-b-2": {
+   "status": "decisive",
+   "about": "details",
+   "question": "How likely is Gloria to stay in the same city for at least the next eight years?",
+   "plain": [
+    30,
+    30
+   ],
+   "any": [
+    104,
+    110
+   ]
+  },
+  "first-home-b-3": {
+   "status": "decisive",
+   "about": "details",
+   "question": "Are there major condo association costs or building problems expected soon?",
+   "plain": [
+    30,
+    30
+   ],
+   "any": [
+    93,
+    110
+   ]
+  },
+  "first-home-b-4": {
+   "status": "middle",
+   "about": "shape of the decision",
+   "question": "Is buying this condo the only realistic purchase option, or is there a third option?",
+   "plain": [
+    4,
+    30
+   ],
+   "any": [
+    18,
+    110
+   ]
+  },
+  "first-home-b-5": {
+   "status": "inert",
+   "about": "shape of the decision",
+   "question": "Is the seller\u2019s deadline fixed, or can Gloria take time to compare alternatives?",
+   "plain": [
+    0,
+    30
+   ],
+   "any": [
+    1,
+    110
+   ]
+  },
+  "first-home-b-6": {
+   "status": "inert",
+   "about": "details",
+   "question": "What are Gloria\u2019s health-care and long-term-care plans for retirement?",
+   "plain": [
+    12,
+    30
+   ],
+   "any": [
+    57,
+    110
+   ]
+  },
+  "go-freelance-a-1": {
+   "status": "middle",
+   "about": "shape of the decision",
+   "question": "Would Tessa's current agency offer an unpaid leave or contractor arrangement that lets her take the six-month contract without resigning permanently?",
+   "plain": [
+    19,
+    30
+   ],
+   "any": [
+    67,
+    110
+   ]
+  },
+  "go-freelance-a-2": {
+   "status": "middle",
+   "about": "shape of the decision",
+   "question": "Does the $60,000 contract have a firm deadline or exclusivity requirement that forces an immediate yes-or-no decision?",
+   "plain": [
+    5,
+    30
+   ],
+   "any": [
+    12,
+    110
+   ]
+  },
+  "go-freelance-a-3": {
+   "status": "decisive",
+   "about": "details",
+   "question": "What is the likelihood that the contract leads to enough follow-on work after the six months end?",
+   "plain": [
+    30,
+    30
+   ],
+   "any": [
+    107,
+    110
+   ]
+  },
+  "go-freelance-a-4": {
+   "status": "middle",
+   "about": "details",
+   "question": "What accounting and tax setup does Tessa currently have for freelance income?",
+   "plain": [
+    3,
+    30
+   ],
+   "any": [
+    19,
+    110
+   ]
+  },
+  "go-freelance-a-5": {
+   "status": "inert",
+   "about": "details",
+   "question": "What equipment and software would Tessa need to buy if she went independent?",
+   "plain": [
+    11,
+    30
+   ],
+   "any": [
+    37,
+    110
+   ]
+  },
+  "go-freelance-a-6": {
+   "status": "decisive",
+   "about": "details",
+   "question": "How comfortable is Tessa with business development and client management?",
+   "plain": [
+    24,
+    30
+   ],
+   "any": [
+    60,
+    110
+   ]
+  },
+  "go-freelance-b-1": {
+   "status": "decisive",
+   "about": "details",
+   "question": "How much cash reserve would the family have left after paying the $35,000 startup cost?",
+   "plain": [
+    30,
+    30
+   ],
+   "any": [
+    91,
+    110
+   ]
+  },
+  "go-freelance-b-2": {
+   "status": "inert",
+   "about": "details",
+   "question": "Can Omar obtain affordable replacement health insurance if he leaves his job?",
+   "plain": [
+    30,
+    30
+   ],
+   "any": [
+    98,
+    110
+   ]
+  },
+  "go-freelance-b-3": {
+   "status": "decisive",
+   "about": "details",
+   "question": "How firm is the customer demand if Omar starts his own business?",
+   "plain": [
+    30,
+    30
+   ],
+   "any": [
+    103,
+    110
+   ]
+  },
+  "go-freelance-b-4": {
+   "status": "inert",
+   "about": "shape of the decision",
+   "question": "Is there a lower-risk third option between staying employed and starting a full-time business?",
+   "plain": [
+    22,
+    30
+   ],
+   "any": [
+    62,
+    110
+   ]
+  },
+  "go-freelance-b-5": {
+   "status": "middle",
+   "about": "details",
+   "question": "Does Omar\u2019s state require a separate electrical contractor license beyond his current electrician license?",
+   "plain": [
+    27,
+    30
+   ],
+   "any": [
+    67,
+    110
+   ]
+  },
+  "go-freelance-b-6": {
+   "status": "inert",
+   "about": "shape of the decision",
+   "question": "Does Omar have to decide by a fixed date?",
+   "plain": [
+    0,
+    30
+   ],
+   "any": [
+    3,
+    110
+   ]
+  },
+  "grad-school-a-1": {
+   "status": "decisive",
+   "about": "details",
+   "question": "What salary increase, if any, is Jordan likely to receive within one year of completing this specific part-time evening MBA program?",
+   "plain": [
+    30,
+    30
+   ],
+   "any": [
+    103,
+    110
+   ]
+  },
+  "grad-school-a-2": {
+   "status": "decisive",
+   "about": "details",
+   "question": "How much liquid savings will Jordan and his partner have after paying the wedding deposit and keeping their normal emergency fund?",
+   "plain": [
+    29,
+    30
+   ],
+   "any": [
+    85,
+    110
+   ]
+  },
+  "grad-school-a-3": {
+   "status": "middle",
+   "about": "shape of the decision",
+   "question": "Is the deposit deadline actually fixed, or can Jordan defer admission without losing his place?",
+   "plain": [
+    29,
+    30
+   ],
+   "any": [
+    100,
+    110
+   ]
+  },
+  "grad-school-a-4": {
+   "status": "middle",
+   "about": "details",
+   "question": "What undergraduate major did Jordan complete?",
+   "plain": [
+    0,
+    30
+   ],
+   "any": [
+    0,
+    110
+   ]
+  },
+  "grad-school-a-5": {
+   "status": "middle",
+   "about": "details",
+   "question": "What is Jordan's ordinary weekly commuting time to his paralegal job?",
+   "plain": [
+    2,
+    30
+   ],
+   "any": [
+    3,
+    110
+   ]
+  },
+  "grad-school-b-1": {
+   "status": "middle",
+   "about": "details",
+   "question": "After tuition and required costs, can Helen cover household expenses during the two-year program without taking high-interest debt?",
+   "plain": [
+    30,
+    30
+   ],
+   "any": [
+    98,
+    110
+   ]
+  },
+  "grad-school-b-2": {
+   "status": "inert",
+   "about": "shape of the decision",
+   "question": "Is there a lower-risk way for Helen to move toward the same career goal without committing to this exact program now?",
+   "plain": [
+    13,
+    30
+   ],
+   "any": [
+    42,
+    110
+   ]
+  },
+  "grad-school-b-3": {
+   "status": "middle",
+   "about": "details",
+   "question": "How much practical child-care and household support would Helen have during clinical rotations and online coursework?",
+   "plain": [
+    30,
+    30
+   ],
+   "any": [
+    101,
+    110
+   ]
+  },
+  "grad-school-b-4": {
+   "status": "middle",
+   "about": "details",
+   "question": "Would completing the nurse practitioner program require Helen to stay with her current employer afterward?",
+   "plain": [
+    0,
+    30
+   ],
+   "any": [
+    10,
+    110
+   ]
+  },
+  "grad-school-b-5": {
+   "status": "middle",
+   "about": "shape of the decision",
+   "question": "Is Helen the only person whose consent is required to accept the program place?",
+   "plain": [
+    0,
+    30
+   ],
+   "any": [
+    0,
+    110
+   ]
+  },
+  "grad-school-b-6": {
+   "status": "inert",
+   "about": "details",
+   "question": "What clinical specialty does Helen most want to practice in after graduation?",
+   "plain": [
+    20,
+    30
+   ],
+   "any": [
+    37,
+    110
+   ]
+  },
+  "job-offer-a-1": {
+   "status": "decisive",
+   "about": "details",
+   "question": "What is the startup's current financial runway?",
+   "plain": [
+    30,
+    30
+   ],
+   "any": [
+    99,
+    110
+   ]
+  },
+  "job-offer-a-2": {
+   "status": "middle",
+   "about": "details",
+   "question": "How valuable and liquid are the stock options likely to be?",
+   "plain": [
+    30,
+    30
+   ],
+   "any": [
+    108,
+    110
+   ]
+  },
+  "job-offer-a-3": {
+   "status": "decisive",
+   "about": "shape of the decision",
+   "question": "Is Friday a hard deadline or can Maya get more time or negotiate?",
+   "plain": [
+    26,
+    30
+   ],
+   "any": [
+    92,
+    110
+   ]
+  },
+  "job-offer-a-4": {
+   "status": "middle",
+   "about": "details",
+   "question": "What is Maya's commute to her current hospital job?",
+   "plain": [
+    7,
+    30
+   ],
+   "any": [
+    27,
+    110
+   ]
+  },
+  "job-offer-a-5": {
+   "status": "inert",
+   "about": "details",
+   "question": "What title would Maya have at the startup?",
+   "plain": [
+    1,
+    30
+   ],
+   "any": [
+    5,
+    110
+   ]
+  },
+  "job-offer-a-6": {
+   "status": "decisive",
+   "about": "shape of the decision",
+   "question": "Is there a third active option besides staying and taking the startup offer?",
+   "plain": [
+    0,
+    30
+   ],
+   "any": [
+    5,
+    110
+   ]
+  },
+  "job-offer-b-1": {
+   "status": "decisive",
+   "about": "details",
+   "question": "What is the cash value and timing of the pension that vests at 20 years?",
+   "plain": [
+    30,
+    30
+   ],
+   "any": [
+    102,
+    110
+   ]
+  },
+  "job-offer-b-2": {
+   "status": "decisive",
+   "about": "details",
+   "question": "How would Robert's wife and child be affected by a move or long commute?",
+   "plain": [
+    30,
+    30
+   ],
+   "any": [
+    107,
+    110
+   ]
+  },
+  "job-offer-b-3": {
+   "status": "inert",
+   "about": "shape of the decision",
+   "question": "Can Robert extend or restructure the decision deadline?",
+   "plain": [
+    30,
+    30
+   ],
+   "any": [
+    83,
+    110
+   ]
+  },
+  "job-offer-b-4": {
+   "status": "inert",
+   "about": "details",
+   "question": "What is Robert's current commute?",
+   "plain": [
+    0,
+    30
+   ],
+   "any": [
+    0,
+    110
+   ]
+  },
+  "job-offer-b-5": {
+   "status": "inert",
+   "about": "details",
+   "question": "What title and reporting line would Robert have if he stayed in his current job?",
+   "plain": [
+    7,
+    30
+   ],
+   "any": [
+    22,
+    110
+   ]
+  },
+  "lease-a-1": {
+   "status": "inert",
+   "about": "details",
+   "question": "After taxes and required payroll deductions, how much will Dana take home each month?",
+   "plain": [
+    28,
+    30
+   ],
+   "any": [
+    75,
+    110
+   ]
+  },
+  "lease-a-2": {
+   "status": "inert",
+   "about": "details",
+   "question": "What are Dana's non-rent monthly obligations?",
+   "plain": [
+    23,
+    30
+   ],
+   "any": [
+    39,
+    110
+   ]
+  },
+  "lease-a-3": {
+   "status": "middle",
+   "about": "shape of the decision",
+   "question": "Is there a realistic third housing option available before Monday?",
+   "plain": [
+    11,
+    30
+   ],
+   "any": [
+    17,
+    110
+   ]
+  },
+  "lease-a-4": {
+   "status": "middle",
+   "about": "details",
+   "question": "Does Dana have furniture or moving costs already covered?",
+   "plain": [
+    22,
+    30
+   ],
+   "any": [
+    69,
+    110
+   ]
+  },
+  "lease-a-5": {
+   "status": "middle",
+   "about": "details",
+   "question": "What are the utility and internet costs for each housing option?",
+   "plain": [
+    19,
+    30
+   ],
+   "any": [
+    48,
+    110
+   ]
+  },
+  "lease-a-6": {
+   "status": "middle",
+   "about": "shape of the decision",
+   "question": "Is Monday's deposit deadline firm?",
+   "plain": [
+    27,
+    30
+   ],
+   "any": [
+    84,
+    110
+   ]
+  },
+  "lease-b-1": {
+   "status": "decisive",
+   "about": "details",
+   "question": "Will Carmen's mother still be able and willing to provide after-school care if they move to the similar house 20 minutes away?",
+   "plain": [
+    30,
+    30
+   ],
+   "any": [
+    102,
+    110
+   ]
+  },
+  "lease-b-2": {
+   "status": "decisive",
+   "about": "details",
+   "question": "How would the school change affect the children academically and socially?",
+   "plain": [
+    30,
+    30
+   ],
+   "any": [
+    103,
+    110
+   ]
+  },
+  "lease-b-3": {
+   "status": "middle",
+   "about": "shape of the decision",
+   "question": "Can they get a viable third housing option before the notice deadline?",
+   "plain": [
+    5,
+    30
+   ],
+   "any": [
+    21,
+    110
+   ]
+  },
+  "lease-b-4": {
+   "status": "inert",
+   "about": "details",
+   "question": "What are the moving costs and upfront lease costs for the house 20 minutes away?",
+   "plain": [
+    29,
+    30
+   ],
+   "any": [
+    98,
+    110
+   ]
+  },
+  "lease-b-5": {
+   "status": "inert",
+   "about": "shape of the decision",
+   "question": "Is the landlord's 30-day renewal deadline negotiable?",
+   "plain": [
+    17,
+    30
+   ],
+   "any": [
+    67,
+    110
+   ]
+  },
+  "lease-b-6": {
+   "status": "middle",
+   "about": "details",
+   "question": "How long do Luis and Carmen expect to stay in the area?",
+   "plain": [
+    9,
+    30
+   ],
+   "any": [
+    53,
+    110
+   ]
+  },
+  "parent-care-a-1": {
+   "status": "inert",
+   "about": "details",
+   "question": "Can Anita\u2019s father afford the assisted living facility beyond the first few years without Anita using her own retirement savings?",
+   "plain": [
+    30,
+    30
+   ],
+   "any": [
+    106,
+    110
+   ]
+  },
+  "parent-care-a-2": {
+   "status": "inert",
+   "about": "details",
+   "question": "How much hands-on supervision does Anita\u2019s father currently need during a normal day?",
+   "plain": [
+    29,
+    30
+   ],
+   "any": [
+    75,
+    110
+   ]
+  },
+  "parent-care-a-3": {
+   "status": "inert",
+   "about": "details",
+   "question": "How safe and suitable is Anita\u2019s spare room and home for his dementia and fall risk?",
+   "plain": [
+    23,
+    30
+   ],
+   "any": [
+    50,
+    110
+   ]
+  },
+  "parent-care-a-4": {
+   "status": "inert",
+   "about": "shape of the decision",
+   "question": "Is there a realistic third option between Anita\u2019s home and the assisted living facility?",
+   "plain": [
+    20,
+    30
+   ],
+   "any": [
+    61,
+    110
+   ]
+  },
+  "parent-care-a-5": {
+   "status": "inert",
+   "about": "shape of the decision",
+   "question": "Does anyone else have legal authority to make or block the placement decision?",
+   "plain": [
+    14,
+    30
+   ],
+   "any": [
+    31,
+    110
+   ]
+  },
+  "parent-care-a-6": {
+   "status": "inert",
+   "about": "details",
+   "question": "What is the assisted living facility\u2019s pet policy?",
+   "plain": [
+    0,
+    30
+   ],
+   "any": [
+    0,
+    110
+   ]
+  },
+  "parent-care-b-1": {
+   "status": "middle",
+   "about": "details",
+   "question": "Does Marcus have a realistic way to keep his job while providing substantial care from his mother's home?",
+   "plain": [
+    29,
+    30
+   ],
+   "any": [
+    90,
+    110
+   ]
+  },
+  "parent-care-b-2": {
+   "status": "inert",
+   "about": "details",
+   "question": "How much daily hands-on care does his mother actually need right now?",
+   "plain": [
+    26,
+    30
+   ],
+   "any": [
+    62,
+    110
+   ]
+  },
+  "parent-care-b-3": {
+   "status": "inert",
+   "about": "details",
+   "question": "What would Marcus's finances look like if he stopped earning wages for six months?",
+   "plain": [
+    30,
+    30
+   ],
+   "any": [
+    93,
+    110
+   ]
+  },
+  "parent-care-b-4": {
+   "status": "middle",
+   "about": "shape of the decision",
+   "question": "Is there a viable third arrangement besides Marcus moving in or hiring full-time aides?",
+   "plain": [
+    28,
+    30
+   ],
+   "any": [
+    99,
+    110
+   ]
+  },
+  "parent-care-b-5": {
+   "status": "middle",
+   "about": "details",
+   "question": "Does Marcus have a romantic partner whose plans would be affected by either option?",
+   "plain": [
+    4,
+    30
+   ],
+   "any": [
+    47,
+    110
+   ]
+  },
+  "parent-care-b-6": {
+   "status": "middle",
+   "about": "shape of the decision",
+   "question": "Is Marcus legally the only person allowed to make care arrangements for his mother?",
+   "plain": [
+    7,
+    30
+   ],
+   "any": [
+    27,
+    110
+   ]
+  },
+  "partner-move-a-1": {
+   "status": "inert",
+   "about": "details",
+   "question": "Has the boyfriend made a concrete commitment about their future together?",
+   "plain": [
+    30,
+    30
+   ],
+   "any": [
+    101,
+    110
+   ]
+  },
+  "partner-move-a-2": {
+   "status": "inert",
+   "about": "details",
+   "question": "Can Claire realistically keep or regain a comparable teaching position if she moves?",
+   "plain": [
+    30,
+    30
+   ],
+   "any": [
+    108,
+    110
+   ]
+  },
+  "partner-move-a-3": {
+   "status": "inert",
+   "about": "details",
+   "question": "Is there a serious reason for Claire to stay near her current family network?",
+   "plain": [
+    29,
+    30
+   ],
+   "any": [
+    103,
+    110
+   ]
+  },
+  "partner-move-a-4": {
+   "status": "inert",
+   "about": "shape of the decision",
+   "question": "Is there a viable third option besides Claire moving now or the relationship ending?",
+   "plain": [
+    20,
+    30
+   ],
+   "any": [
+    70,
+    110
+   ]
+  },
+  "partner-move-a-5": {
+   "status": "inert",
+   "about": "shape of the decision",
+   "question": "What is the exact deadline for deciding and moving?",
+   "plain": [
+    1,
+    30
+   ],
+   "any": [
+    1,
+    110
+   ]
+  },
+  "partner-move-a-6": {
+   "status": "inert",
+   "about": "details",
+   "question": "How does Claire feel about the climate and size of the new city?",
+   "plain": [
+    11,
+    30
+   ],
+   "any": [
+    36,
+    110
+   ]
+  },
+  "partner-move-b-1": {
+   "status": "decisive",
+   "about": "details",
+   "question": "Would David be legally able to relocate with his 15-year-old son or maintain the current custody schedule if he moved?",
+   "plain": [
+    30,
+    30
+   ],
+   "any": [
+    109,
+    110
+   ]
+  },
+  "partner-move-b-2": {
+   "status": "decisive",
+   "about": "details",
+   "question": "How much higher or lower would the household's after-tax income be if his wife accepts the leadership role?",
+   "plain": [
+    30,
+    30
+   ],
+   "any": [
+    98,
+    110
+   ]
+  },
+  "partner-move-b-3": {
+   "status": "decisive",
+   "about": "details",
+   "question": "How would the move affect the two younger children's schooling and support needs?",
+   "plain": [
+    30,
+    30
+   ],
+   "any": [
+    102,
+    110
+   ]
+  },
+  "partner-move-b-4": {
+   "status": "middle",
+   "about": "shape of the decision",
+   "question": "Is there a workable third option besides accepting the move now or declining the job?",
+   "plain": [
+    25,
+    30
+   ],
+   "any": [
+    82,
+    110
+   ]
+  },
+  "partner-move-b-5": {
+   "status": "middle",
+   "about": "details",
+   "question": "What is the exact housing situation in their current home?",
+   "plain": [
+    8,
+    30
+   ],
+   "any": [
+    26,
+    110
+   ]
+  },
+  "partner-move-b-6": {
+   "status": "middle",
+   "about": "shape of the decision",
+   "question": "Is the one-month deadline flexible enough to allow more investigation before deciding?",
+   "plain": [
+    27,
+    30
+   ],
+   "any": [
+    86,
+    110
+   ]
+  }
+ },
+ "never_raised_plain": [
+  {
+   "probe": "job-offer-a-6",
+   "question": "Is there a third active option besides staying and taking the startup offer?",
+   "answers": 30
+  }
+ ],
+ "never_raised_any_arm": [],
+ "stated": {
+  "decisive": [
+   0.9898809523809524,
+   0.9755952380952381,
+   1.0,
+   7,
+   264
+  ],
+  "inert": [
+   0.9498263888888889,
+   0.9223958333333333,
+   0.9723958333333333,
+   8,
+   468
+  ]
+ },
+ "foreign": {
+  "hits": 63,
+  "n": 1800,
+  "rate": 0.035,
+  "by_type": [
+   0.033437383314441,
+   0.01590837160690102,
+   0.052505287589388626,
+   8,
+   1800
+  ]
+ }
+}

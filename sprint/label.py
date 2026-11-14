@@ -112,6 +112,8 @@ def probes_make(run_dir: Path, seed: int) -> None:
     rng = random.Random(f"{seed}:probe-labels")
     answers = {answer_key(a): a for a in load_answers(run_dir)}
     question = {p["id"]: p["question"] for p in load_probes()}
+    from sprint.core import load_tasks
+    vignette = {t.id: t.vignette for t in load_tasks(Path("tasks/decisions.toml"))}
     rows = [r for r in read_jsonl(run_dir / "probe_hits.jsonl")
             if (r["model"], r["task"], r["arm"], r["sample"]) in answers and r["probe"] in question]
     rng.shuffle(rows)
@@ -133,7 +135,7 @@ def probes_make(run_dir: Path, seed: int) -> None:
 
     def entry(r: dict, is_practice: bool) -> dict:
         key = (r["model"], r["task"], r["arm"], r["sample"])
-        return {"practice": is_practice, "items": answers[key]["items"], "question": question[r["probe"]],
+        return {"practice": is_practice, "vignette": vignette[r["task"]], "items": answers[key]["items"], "question": question[r["probe"]],
                 "machine": r["label"], "probe": r["probe"], "answer": list(key)}
 
     sample = [entry(r, True) for r in practice] + [entry(r, False) for r in scored]
@@ -146,6 +148,7 @@ def probes_make(run_dir: Path, seed: int) -> None:
 def show_probe(s: dict) -> None:
     if s["practice"]:
         print("PRACTICE (not scored; talk these over before the scored ones start)")
+    print(f"The situation (the judge saw this too):\n{wrap(s['vignette'])}\n\nThe briefing:")
     for i, item in enumerate(s["items"], 1):
         print(textwrap.fill(f"{i}. {item}", 88, initial_indent="   ", subsequent_indent="      "))
     print(f"\nQuestion:\n{wrap(s['question'])}")
