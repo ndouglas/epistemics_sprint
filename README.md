@@ -1,4 +1,4 @@
-# Does the briefing raise what would change the decision?
+# Did You Get the Roof Checked? Missing-fact probes for LLM decision briefings
 
 Code, data and report for a project done at the Apart Research AI x Epistemics sprint,
 November 13 to 15, 2026. The report is [`report/build/report.pdf`](report/build/report.pdf).
