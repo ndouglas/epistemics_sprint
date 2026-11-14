@@ -52,7 +52,8 @@ def load_models(path: Path | None = None) -> dict:
 
 
 def load_env_file(path: Path | None = None) -> None:
-    """Read KEY=value lines from a git-ignored .env, without overriding the shell."""
+    """Read KEY=value lines from the git-ignored .env. The project's file wins over
+    the shell, so a stale key exported elsewhere can't shadow it."""
     path = path or ROOT / ".env"
     if not path.exists():
         return
@@ -60,7 +61,7 @@ def load_env_file(path: Path | None = None) -> None:
         line = line.strip()
         if line and not line.startswith("#") and "=" in line:
             key, value = line.split("=", 1)
-            os.environ.setdefault(key.strip(), value.strip().strip("\"'"))
+            os.environ[key.strip()] = value.strip().strip("\"'")
 
 
 class AnthropicProvider:
@@ -93,6 +94,38 @@ class AnthropicProvider:
             output_tokens=response.usage.output_tokens,
             served_by=response.model,
         )
+
+
+class OpenAIProvider:
+    """The same contract for an OpenAI model: one call, a JSON answer in the arm's
+    schema, reasoning held off so no arm gets hidden reasoning."""
+
+    def __init__(self) -> None:
+        import openai
+
+        self.client = openai.AsyncOpenAI(max_retries=5)
+
+    async def ask(self, model: dict, messages: list[dict], schema: dict) -> Reply:
+        response = await self.client.chat.completions.create(
+            model=model["id"],
+            messages=messages,
+            max_completion_tokens=MAX_TOKENS,
+            reasoning_effort=model["effort"],
+            response_format={"type": "json_schema", "json_schema": {"name": "answer", "strict": True, "schema": schema}},
+        )
+        choice = response.choices[0]
+        refused = bool(choice.message.refusal)
+        stop = "refusal" if refused else {"stop": "end_turn", "length": "max_tokens"}.get(choice.finish_reason, choice.finish_reason)
+        return Reply(
+            text=choice.message.content or "",
+            stop_reason=stop,
+            input_tokens=response.usage.prompt_tokens,
+            output_tokens=response.usage.completion_tokens,
+            served_by=response.model,
+        )
+
+
+PROVIDERS = {"anthropic": AnthropicProvider, "openai": OpenAIProvider}
 
 
 async def one_sample(
@@ -280,7 +313,7 @@ def main(argv: list[str] | None = None) -> int:
         out = ROOT / "runs" / args.run / "generations.jsonl"
         summary = asyncio.run(
             generate(
-                AnthropicProvider(),
+                PROVIDERS[models[args.model].get("provider", "anthropic")](),
                 args.model,
                 models[args.model],
                 tasks,

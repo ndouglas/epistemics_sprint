@@ -1,0 +1,522 @@
+[
+ {
+  "type": "first-home",
+  "a": "Her $140,000 savings is the key constraint: a purchase at $210,000 requires a mortgage, and she should compare the true monthly cost of a mortgage plus $420 fees against her current $1,300 rent before deciding.",
+  "b": "Opportunity cost of savings: the money used for a down payment could otherwise be invested, so she should compare the expected return on that money against the expected appreciation and savings from owning.",
+  "a_id": "haiku|first-home-b|properties|9|0",
+  "b_id": "haiku|first-home-b|what_else|6|7",
+  "sim": 0.16129032258064516,
+  "stratum": "different code, similar wording"
+ },
+ {
+  "type": "family-loan",
+  "a": "Kevin should consider whether his parents might step in to help or whether lending could create an expectation that he is the family's financial backstop for future emergencies.",
+  "b": "Parents being aware but silent means Kevin is the decision-maker, and he may want to consider whether they would be drawn in if repayment fails.",
+  "a_id": "sonnet|family-loan-a|plain|7|7",
+  "b_id": "haiku|family-loan-a|properties_nudged|2|6",
+  "sim": 0.13333333333333333,
+  "stratum": "different code, similar wording"
+ },
+ {
+  "type": "parent-care",
+  "a": "He should plan beyond the first six months by considering whether her needs may become permanent, what funding will be available after a year, and whether assisted living or other long-term options may be needed.",
+  "b": "Four years of his savings at $5,200 a month would be spent by roughly age 85, so she should consider whether his assets, and any Medicaid or long-term-care planning rules, would shape what options remain available later.",
+  "a_id": "gpt|parent-care-b|plain|1|7",
+  "b_id": "haiku|parent-care-a|think_diverse|0|2",
+  "sim": 0.1794871794871795,
+  "stratum": "different code, similar wording"
+ },
+ {
+  "type": "job-offer",
+  "a": "Telling his current employer about the offer may trigger a counteroffer, and he should decide in advance whether he would actually stay for a raise, since many people who accept counteroffers leave within a year anyway.",
+  "b": "He should consider whether his current employer would counteroffer or offer internal growth, since his 19 years of loyalty may give him leverage to negotiate.",
+  "a_id": "haiku|job-offer-b|think_diverse|5|4",
+  "b_id": "haiku|job-offer-b|verbalized|6|7",
+  "stratum": "same code"
+ },
+ {
+  "type": "go-freelance",
+  "a": "Her current agency role may give her access to a professional network, portfolio-building projects, and referrals that she would need to rebuild on her own.",
+  "b": "Her career growth, retirement contributions, and benefits at the agency should be compared against the flexibility and upside of independence.",
+  "a_id": "haiku|go-freelance-a|what_else|6|3",
+  "b_id": "haiku|go-freelance-a|verbalized|9|6",
+  "stratum": "same code"
+ },
+ {
+  "type": "parent-care",
+  "a": "Commuting and remote work options: he could ask whether his physical therapy work can be done partly through telehealth or a local position near his mother, which would change the calculation.",
+  "b": "Whether the arrangement is temporary or could extend beyond the expected six months, and what the plan is once the aide funding runs out after about a year.",
+  "a_id": "haiku|parent-care-b|what_else|2|4",
+  "b_id": "haiku|parent-care-b|verbalized|0|5",
+  "sim": 0.05714285714285714,
+  "stratum": "different code, random"
+ },
+ {
+  "type": "job-offer",
+  "a": "The $27,000 salary increase is meaningful, but he should compare total compensation including bonus, equity, retirement contributions, and health benefits rather than base pay alone.",
+  "b": "Use the two-week window as leverage: he can ask his current employer for a counteroffer or a retention raise, and the competitor may accept a longer timeline or a remote arrangement if he signals serious interest.",
+  "a_id": "haiku|job-offer-b|plain|5|1",
+  "b_id": "haiku|job-offer-b|random_word|2|5",
+  "sim": 0.0,
+  "stratum": "different code, random"
+ },
+ {
+  "type": "go-freelance",
+  "a": "She could explore middle paths like negotiating a leave of absence, a reduced-hours arrangement, or a longer contract with a retainer, and she should have the safety net of her savings plus the ability to return to agency work if independence doesn't pan out.",
+  "b": "Depending on the jurisdiction, a license may require a bonded business, a qualifying supervising electrician, or specific insurance thresholds, so he should verify the regulatory path before committing the $35,000.",
+  "a_id": "sonnet|go-freelance-a|plain|5|7",
+  "b_id": "haiku|go-freelance-b|think_diverse|1|6",
+  "sim": 0.023255813953488372,
+  "stratum": "different code, random"
+ },
+ {
+  "type": "go-freelance",
+  "a": "Build a financial runway of six to twelve months of family expenses beyond the $35,000 startup cost, since a one-person business often takes that long to become steady.",
+  "b": "Weigh the non-financial factors too: his satisfaction with the work, the independence and control he would gain, and the stress and long hours that running a one-person business typically requires.",
+  "a_id": "haiku|go-freelance-b|properties_nudged|0|2",
+  "b_id": "haiku|go-freelance-b|properties|3|7",
+  "sim": 0.15151515151515152,
+  "stratum": "different code, similar wording"
+ },
+ {
+  "type": "partner-move",
+  "a": "Because the decision deadline is one month, they should explore whether the offer has room for negotiation, such as a delayed start date, relocation assistance, or a trial period, to reduce the pressure and risk.",
+  "b": "Whether there are alternatives to a permanent move, such as delayed relocation, commuting, a trial period, hybrid arrangements, or negotiating the offer terms.",
+  "a_id": "sonnet|partner-move-b|plain|9|7",
+  "b_id": "gpt|partner-move-b|plain|9|6",
+  "sim": 0.22580645161290322,
+  "stratum": "different code, similar wording"
+ },
+ {
+  "type": "family-loan",
+  "a": "Lending $20,000 to a child is often a rescue of the immediate crisis rather than a fix for its cause, so Ruth should ask whether the divorce-related debt will recur or whether the money simply postpones a reckoning.",
+  "b": "A two-year repayment promise from someone whose business just closed carries real uncertainty, so Kevin should consider whether he could afford never being repaid.",
+  "a_id": "haiku|family-loan-b|random_word|8|0",
+  "b_id": "haiku|family-loan-a|verbalized|7|2",
+  "sim": 0.05,
+  "stratum": "different code, random"
+ },
+ {
+  "type": "first-home",
+  "a": "Monthly payments including taxes, insurance, and maintenance will likely exceed their current $1,900 rent by a meaningful margin.",
+  "b": "Compare the total monthly cost of owning (mortgage, property tax, insurance, maintenance) against the current $1,900 rent, not just the mortgage payment alone.",
+  "a_id": "haiku|first-home-a|properties_nudged|7|4",
+  "b_id": "haiku|first-home-a|properties|9|4",
+  "stratum": "same code"
+ },
+ {
+  "type": "family-loan",
+  "a": "Ruth should clarify whether the money would be a gift or a loan, and if a loan, what repayment terms are realistic given the daughter's post-divorce income and expenses.",
+  "b": "Weigh the emotional and relational stakes, including the grandchildren's wellbeing, the daughter's first request for money, and the risk that refusing or lending could strain family relationships either way.",
+  "a_id": "haiku|family-loan-b|plain|7|3",
+  "b_id": "haiku|family-loan-b|properties|4|6",
+  "sim": 0.05555555555555555,
+  "stratum": "different code, random"
+ },
+ {
+  "type": "job-offer",
+  "a": "Compare total compensation rather than base salary alone, including retirement contributions, health insurance, bonuses, equity, and the cost of any relocation or commute, so the $27,000 difference is measured against the full package.",
+  "b": "His wife's teaching job is local, so relocating would require her to find a new position, which could affect household income and her own retirement benefits.",
+  "a_id": "haiku|job-offer-b|properties|0|1",
+  "b_id": "haiku|job-offer-b|verbalized|8|3",
+  "sim": 0.02702702702702703,
+  "stratum": "different code, random"
+ },
+ {
+  "type": "family-loan",
+  "a": "Kevin should consider how lending money might affect the relationship with his brother and the family dynamic, especially since the parents are aware but silent.",
+  "b": "Kevin may feel resentment if repayment stalls, and that quiet resentment can damage the relationship more than the money itself, so he should ask whether he could stay warm toward his brother if the money never returns.",
+  "a_id": "haiku|family-loan-a|plain|5|7",
+  "b_id": "haiku|family-loan-a|think_diverse|0|4",
+  "sim": 0.14705882352941177,
+  "stratum": "different code, similar wording"
+ },
+ {
+  "type": "parent-care",
+  "a": "Her husband's willingness and ability to share caregiving, and the strain on their marriage and privacy, are as important as the logistics of the spare room.",
+  "b": "Consider the emotional weight of being the only child, including the possibility of later regret either way, and talk through how he would feel in a year if he chose each option.",
+  "a_id": "haiku|parent-care-a|properties|1|6",
+  "b_id": "haiku|parent-care-b|properties|4|6",
+  "sim": 0.0,
+  "stratum": "different code, random"
+ },
+ {
+  "type": "grad-school",
+  "a": "The three-week deadline itself, and whether he can ask the program for an extension, a deferral to a later intake, or time to make a more deliberate decision before paying the deposit.",
+  "b": "The three-week deposit deadline creates pressure, so he should check whether the program's enrollment timing allows more time to decide without losing his spot.",
+  "a_id": "haiku|grad-school-a|plain|7|7",
+  "b_id": "haiku|grad-school-a|verbalized|3|3",
+  "stratum": "same code"
+ },
+ {
+  "type": "job-offer",
+  "a": "His wife's local teaching job means relocating would disrupt her career and household income, making a two-hour commute or a move a major family decision that needs joint agreement.",
+  "b": "His wife's local teaching job means a relocation would require her to find a new position, which could affect household income and career stability.",
+  "a_id": "haiku|job-offer-b|verbalized|9|2",
+  "b_id": "haiku|job-offer-b|verbalized|6|2",
+  "stratum": "same code"
+ },
+ {
+  "type": "first-home",
+  "a": "Her retirement income timing matters: a mortgage payment that continues past 66 would compete with Social Security and any savings drawdown, which the purchase price alone doesn't reveal.",
+  "b": "Her retirement at 66 and any Social Security claiming strategy determine whether she can still afford a mortgage-free but fee-bearing condo, so she should test whether the purchase fits her income in the years right after she stops working.",
+  "a_id": "haiku|first-home-b|random_word|2|6",
+  "b_id": "haiku|first-home-b|think_diverse|5|7",
+  "sim": 0.15384615384615385,
+  "stratum": "different code, similar wording"
+ },
+ {
+  "type": "partner-move",
+  "a": "The emotional impact of moving 1,200 miles from her family, friends, support network, and familiar community.",
+  "b": "David should consider the personal cost of leaving his established support network, including friends, extended family, and community ties, and whether he is prepared to rebuild them.",
+  "a_id": "gpt|partner-move-a|plain|8|4",
+  "b_id": "sonnet|partner-move-b|plain|3|5",
+  "sim": 0.2,
+  "stratum": "different code, similar wording"
+ },
+ {
+  "type": "family-loan",
+  "a": "Lending $20,000 may be a loss rather than a loan, since a divorcing 40-year-old with two children may have limited ability to repay, so Ruth should assume she may never get the money back.",
+  "b": "Ruth should consider whether a gift of part of the money, rather than a loan, would be more realistic and less damaging to the relationship if repayment fails.",
+  "a_id": "haiku|family-loan-b|properties|8|1",
+  "b_id": "haiku|family-loan-b|plain|8|4",
+  "sim": 0.1875,
+  "stratum": "different code, similar wording"
+ },
+ {
+  "type": "family-loan",
+  "a": "The emergency-fund and healthcare costs Ruth may face in retirement, which a $20,000 outflow could make harder to cover.",
+  "b": "The emotional value of helping her daughter and grandchildren avoid losing their home versus the risk to Ruth's own stability.",
+  "a_id": "haiku|family-loan-b|verbalized|3|3",
+  "b_id": "haiku|family-loan-b|verbalized|8|3",
+  "sim": 0.0,
+  "stratum": "different code, random"
+ },
+ {
+  "type": "grad-school",
+  "a": "The net cost of the MBA is roughly $57,000 after three years of $5,000 annual employer reimbursement, so he should confirm whether the reimbursement is taxable, has repayment clauses if he leaves, and is guaranteed for the full program.",
+  "b": "The employer reimbursement may be conditional on continued employment, grades, or a repayment clause if he leaves early, so he should read the terms carefully to understand his real obligation.",
+  "a_id": "haiku|grad-school-a|plain|1|0",
+  "b_id": "haiku|grad-school-a|plain|9|5",
+  "stratum": "same code"
+ },
+ {
+  "type": "lease",
+  "a": "The two-year lease at the new house offers rent stability, whereas the current renewal may lock in only a short term, so they should ask whether the landlord will offer a longer lease at a smaller increase.",
+  "b": "Weigh the two-year lease at the new house as price stability against the risk of being locked in if the family's needs change.",
+  "a_id": "haiku|lease-b|plain|1|2",
+  "b_id": "haiku|lease-b|properties|1|1",
+  "stratum": "same code"
+ },
+ {
+  "type": "first-home",
+  "a": "Pre-approval for $380,000 is a lender's ceiling, not a recommendation, so they should compare the full monthly cost (mortgage, taxes, insurance, maintenance) to their current $1,900 rent and to what they can sustain comfortably if income drops.",
+  "b": "A lender's pre-approval reflects the maximum they will lend under ideal assumptions, not the payment that stays comfortable through layoffs, a child, and a roof bill, so set a personal ceiling well below $380,000.",
+  "a_id": "sonnet|first-home-a|plain|2|3",
+  "b_id": "haiku|first-home-a|think_diverse|6|7",
+  "stratum": "same code"
+ },
+ {
+  "type": "parent-care",
+  "a": "The quality of his mother's medical prognosis and rehabilitation needs should guide the decision, since his own physical therapy expertise may let him provide valuable recovery support that paid aides might not.",
+  "b": "He should consider whether his mother's care needs are truly best met by a family member versus professional aides, including the quality and consistency of care each option provides.",
+  "a_id": "haiku|parent-care-b|verbalized|3|5",
+  "b_id": "haiku|parent-care-b|verbalized|9|1",
+  "sim": 0.14285714285714285,
+  "stratum": "different code, similar wording"
+ },
+ {
+  "type": "parent-care",
+  "a": "Imagine himself at 45 looking back: ask which choice he could live with if his mother declines, recovers fully, or dies during the period, since the regret he is most likely to carry may not be the one he is currently worried about.",
+  "b": "Consider what he would want to be true in five years when looking back: whether he would regret being absent, or regret sacrificing his own life, and whether the decision is one he can later explain to himself as reflecting his values rather than guilt or obligation.",
+  "a_id": "haiku|parent-care-b|think_diverse|8|7",
+  "b_id": "haiku|parent-care-b|random_word|6|7",
+  "stratum": "same code"
+ },
+ {
+  "type": "family-loan",
+  "a": "Kevin's $40,000 down payment fund would be reduced by $15,000, potentially delaying or shrinking his home purchase plans.",
+  "b": "Before deciding, Ruth could consult a fee-only financial advisor to test whether lending $20,000 leaves her secure through her expected lifespan, including possible long-term care or medical expenses.",
+  "a_id": "haiku|family-loan-a|verbalized|7|0",
+  "b_id": "haiku|family-loan-b|properties_nudged|8|7",
+  "sim": 0.0,
+  "stratum": "different code, random"
+ },
+ {
+  "type": "family-loan",
+  "a": "Whatever she decides, Ruth should only lend an amount she could live with never being repaid, so that her own security and dignity in retirement are protected.",
+  "b": "Her daughter's repayment capacity after a divorce is uncertain, so Ruth should realistically consider whether the money could be repaid or whether it should be treated as a gift.",
+  "a_id": "haiku|family-loan-b|properties_nudged|0|7",
+  "b_id": "haiku|family-loan-b|plain|2|2",
+  "sim": 0.13333333333333333,
+  "stratum": "different code, similar wording"
+ },
+ {
+  "type": "partner-move",
+  "a": "The wife's leadership role is a significant career step, so the family should weigh what she gives up in her current position and whether she could return if the job doesn't fit.",
+  "b": "She should consider what would happen if the relationship ended after the move, including whether she could return to her district, rebuild her career, and afford the transition without her family's nearby support.",
+  "a_id": "haiku|partner-move-b|properties_nudged|5|3",
+  "b_id": "haiku|partner-move-a|what_else|9|7",
+  "sim": 0.18181818181818182,
+  "stratum": "different code, similar wording"
+ },
+ {
+  "type": "first-home",
+  "a": "Model the budget on one income for a year, since a child plus Sam's layoff risk could mean childcare costs and a lost paycheck at the same time, and check whether the mortgage plus property taxes, insurance, and maintenance still work.",
+  "b": "Whether buying now at $365,000 leaves enough cushion below their $380,000 approval to avoid becoming house-poor or overleveraged.",
+  "a_id": "haiku|first-home-a|think_diverse|1|0",
+  "b_id": "gpt|first-home-a|plain|4|5",
+  "sim": 0.02564102564102564,
+  "stratum": "different code, random"
+ },
+ {
+  "type": "lease",
+  "a": "Think about whether a 12-month lease creates an obligation she can meet even if her job or finances change unexpectedly.",
+  "b": "A 12-month lease is a hook that can cost far more than the rent if she needs to leave early, since break fees or re-letting obligations can run to a month or more of rent, so she should price the exit option before signing.",
+  "a_id": "haiku|lease-a|properties_nudged|4|5",
+  "b_id": "haiku|lease-a|random_word|3|0",
+  "stratum": "same code"
+ },
+ {
+  "type": "first-home",
+  "a": "Affordability: buying the $210,000 condo would consume most of her $140,000 savings, so she must assess whether the down payment, closing costs, and mortgage payments fit her budget without depleting her emergency reserves.",
+  "b": "Down payment and reserves: with $60,000 saved, they must check how much goes to the down payment and closing costs, and whether enough cash remains for emergencies, especially given Sam's job insecurity.",
+  "a_id": "haiku|first-home-b|plain|1|0",
+  "b_id": "haiku|first-home-a|plain|2|1",
+  "stratum": "same code"
+ },
+ {
+  "type": "job-offer",
+  "a": "The youngest child's final high school years are a limited window, and moving during that time affects the child's stability and college planning.",
+  "b": "Stock options in a 40-person startup are often worth little if the company fails or is acquired below the strike price, so treat them as a lottery ticket rather than compensation.",
+  "a_id": "haiku|job-offer-b|properties|9|4",
+  "b_id": "haiku|job-offer-a|properties|4|1",
+  "sim": 0.0,
+  "stratum": "different code, random"
+ },
+ {
+  "type": "grad-school",
+  "a": "Her employer may offer tuition reimbursement, a service commitment, or flexible scheduling for clinical hours, so she should investigate whether her current facility can reduce the net cost or help her arrange hours.",
+  "b": "Examine support systems such as family help, childcare backup, employer flexibility, tuition reimbursement, scholarships, preceptor availability, and clinical placement assistance.",
+  "a_id": "haiku|grad-school-b|random_word|4|5",
+  "b_id": "gpt|grad-school-b|plain|1|6",
+  "sim": 0.15625,
+  "stratum": "different code, similar wording"
+ },
+ {
+  "type": "go-freelance",
+  "a": "Going independent means losing employer-paid health insurance, so she should price a replacement plan and factor its monthly cost into any comparison.",
+  "b": "She should estimate the full cost of going independent, including health insurance, self-employment taxes, retirement contributions, software, equipment, accounting, and unpaid time off.",
+  "a_id": "haiku|go-freelance-a|properties_nudged|0|4",
+  "b_id": "gpt|go-freelance-a|plain|3|2",
+  "sim": 0.2,
+  "stratum": "different code, similar wording"
+ },
+ {
+  "type": "family-loan",
+  "a": "Decide whether you could emotionally afford to never see the $15,000 again, because a loan you privately expect to lose is really a gift, and resentment often damages a sibling relationship more than the money itself.",
+  "b": "Because the daughter has no clear repayment source, Ruth should assume the money may be a gift and decide accordingly.",
+  "a_id": "haiku|family-loan-a|think_diverse|7|0",
+  "b_id": "haiku|family-loan-b|properties|1|2",
+  "stratum": "same code"
+ },
+ {
+  "type": "family-loan",
+  "a": "Her son's private objection is information about the family's unspoken dynamics, and it may reflect concerns about fairness among siblings or past patterns that Ruth has not been fully told about.",
+  "b": "Whether a smaller amount, a structured repayment plan, or alternatives such as a referral to housing counseling or legal aid could address the daughter's need.",
+  "a_id": "haiku|family-loan-b|think_diverse|4|3",
+  "b_id": "haiku|family-loan-b|verbalized|9|4",
+  "sim": 0.0,
+  "stratum": "different code, random"
+ },
+ {
+  "type": "go-freelance",
+  "a": "Model the business's income under pessimistic assumptions, including months with little work, vehicle breakdowns, and unpaid invoices, to see whether it can cover his current $78,000 take-home needs.",
+  "b": "He should compare the realistic take-home income from self-employment with his current $78,000 salary after deducting materials, vehicle costs, insurance, taxes, licenses, bookkeeping, marketing, and unpaid time.",
+  "a_id": "haiku|go-freelance-b|properties|2|3",
+  "b_id": "gpt|go-freelance-b|plain|6|0",
+  "sim": 0.18421052631578946,
+  "stratum": "different code, similar wording"
+ },
+ {
+  "type": "lease",
+  "a": "Factor in the two-year lease commitment at the new house, which reduces flexibility if their jobs, finances, or family needs change.",
+  "b": "With only 30 days to decide, they should quickly verify the new landlord, lease terms, and the house's condition, and consider a backup plan such as a short extension or month-to-month option at the current home if the timeline is tight.",
+  "a_id": "haiku|lease-b|properties_nudged|0|3",
+  "b_id": "sonnet|lease-b|plain|5|7",
+  "sim": 0.02631578947368421,
+  "stratum": "different code, random"
+ },
+ {
+  "type": "grad-school",
+  "a": "Her children's timeline: the program will overlap the years when her 13- and 16-year-old most need stable parental presence, supervision, and driving or emotional support, which may be harder to provide than the cost figures suggest.",
+  "b": "As a single parent of a 13-year-old and a 16-year-old, she should consider how study time, clinical placements, and reduced availability would affect her children's routines, supervision, and emotional needs.",
+  "a_id": "haiku|grad-school-b|think_diverse|9|1",
+  "b_id": "haiku|grad-school-b|plain|8|3",
+  "stratum": "same code"
+ },
+ {
+  "type": "grad-school",
+  "a": "The income gap of roughly $37,000 per year between her current nursing salary and the expected nurse practitioner salary, and how long it would take to recoup the program cost.",
+  "b": "Her financial payback looks strong: the roughly $37,000 annual raise recovers the $48,000 tuition in about 1.3 years of practice, assuming she can actually land an NP role at that pay.",
+  "a_id": "haiku|grad-school-b|verbalized|3|1",
+  "b_id": "haiku|grad-school-b|properties|2|0",
+  "stratum": "same code"
+ },
+ {
+  "type": "first-home",
+  "a": "Map out how the purchase and any relocation would change her working years and retirement start at 66, including whether a cheaper or more affordable home would let her retire earlier or reduce the risk of depleting savings if markets fall early in retirement.",
+  "b": "How buying the condo would affect her retirement timeline at age 66, including whether her savings and expected income can sustain her into later life.",
+  "a_id": "haiku|first-home-b|random_word|5|7",
+  "b_id": "haiku|first-home-b|plain|0|2",
+  "sim": 0.15151515151515152,
+  "stratum": "different code, similar wording"
+ },
+ {
+  "type": "partner-move",
+  "a": "Her health insurance, retirement contributions, and other benefits tied to her current district could be costly to replace, and these should be compared against the new city's offerings.",
+  "b": "Changing state residency could affect the family's tax filings, including state income tax rates, property tax obligations, and eligibility for any state-level credits or deductions.",
+  "a_id": "haiku|partner-move-a|what_else|9|3",
+  "b_id": "haiku|partner-move-b|what_else|4|0",
+  "sim": 0.030303030303030304,
+  "stratum": "different code, random"
+ },
+ {
+  "type": "lease",
+  "a": "Evaluate lease flexibility, because month-to-month housing gives her time to learn the city and adjust, while the one-bedroom locks her into higher costs for a year.",
+  "b": "The $400 monthly increase ($4,800 per year) is a large share of their roughly $8,000 gross monthly income and should be compared against their total take-home budget, not just the base rent.",
+  "a_id": "gpt|lease-a|plain|3|6",
+  "b_id": "haiku|lease-b|plain|0|0",
+  "sim": 0.027777777777777776,
+  "stratum": "different code, random"
+ },
+ {
+  "type": "parent-care",
+  "a": "Moving him into her home may quietly convert her household into a care system with no defined end date, and she should consider whether she could reverse that decision without it damaging her marriage or her father's trust.",
+  "b": "Financial sustainability: the facility's $5,200 monthly cost would be covered by his savings for about four years, so she should consider what happens after that and whether home care would be cheaper or costlier over time.",
+  "a_id": "haiku|parent-care-a|random_word|2|1",
+  "b_id": "haiku|parent-care-a|plain|7|2",
+  "sim": 0.14634146341463414,
+  "stratum": "different code, similar wording"
+ },
+ {
+  "type": "parent-care",
+  "a": "The practical logistics of each option, such as transportation to appointments, home modifications, emergency response systems, respite care, and proximity to medical providers.",
+  "b": "Being 90 minutes away is no longer sustainable given two falls, and having him nearby, in either arrangement, would make monitoring, visits, and emergency response far easier.",
+  "a_id": "gpt|parent-care-a|plain|5|6",
+  "b_id": "sonnet|parent-care-a|plain|6|6",
+  "stratum": "same code"
+ },
+ {
+  "type": "parent-care",
+  "a": "Sustainability of his mother's funds: aides at $4,000 a month last only about a year, so he should plan for what happens if her recovery takes longer than six months or her needs become permanent.",
+  "b": "Check how long his mother's savings will actually cover aides, because the one-year estimate determines whether hiring is a bridge or a dead end.",
+  "a_id": "sonnet|parent-care-b|plain|3|1",
+  "b_id": "haiku|parent-care-b|properties_nudged|3|1",
+  "stratum": "same code"
+ },
+ {
+  "type": "partner-move",
+  "a": "She should consider how she would build a new social life and friendships in an unfamiliar city, since her current support network is tied to her location.",
+  "b": "She should consider whether the new city offers the lifestyle, climate, safety, and cultural amenities she values, since she would be living there regardless of the job.",
+  "a_id": "haiku|partner-move-a|what_else|6|0",
+  "b_id": "haiku|partner-move-a|what_else|8|4",
+  "sim": 0.19230769230769232,
+  "stratum": "different code, similar wording"
+ },
+ {
+  "type": "go-freelance",
+  "a": "The agency's moonlighting rule could block the contract entirely, so she should read the policy precisely and consider whether a sanctioned arrangement or a clean resignation is possible.",
+  "b": "A six-month $60,000 contract is a limited-duration income stream, so she should weigh what happens to her earnings after it ends.",
+  "a_id": "haiku|go-freelance-a|properties_nudged|6|2",
+  "b_id": "haiku|go-freelance-a|verbalized|4|1",
+  "sim": 0.06896551724137931,
+  "stratum": "different code, random"
+ },
+ {
+  "type": "go-freelance",
+  "a": "Eight months of expenses is a meaningful cushion, but it is thinner than it looks once health insurance, taxes, and business costs are added to her living expenses.",
+  "b": "Building a cash reserve of several months of household expenses beyond the $35,000 startup cost would protect the family through slow early months.",
+  "a_id": "haiku|go-freelance-a|properties|0|1",
+  "b_id": "haiku|go-freelance-b|properties|1|4",
+  "stratum": "same code"
+ },
+ {
+  "type": "family-loan",
+  "a": "Kevin should consider whether he would be comfortable if the money were never repaid, since that outcome is a real possibility given the prior loan's history.",
+  "b": "Handing over money once can quietly set a precedent that future requests will be measured against, so Ruth should consider whether she is willing to say yes again in two or three years if the daughter's finances remain strained.",
+  "a_id": "haiku|family-loan-a|properties_nudged|3|6",
+  "b_id": "haiku|family-loan-b|random_word|5|2",
+  "sim": 0.13157894736842105,
+  "stratum": "different code, similar wording"
+ },
+ {
+  "type": "go-freelance",
+  "a": "Family finances and college costs: with the oldest starting college in two years, he should plan for tuition or loans while his income may be volatile, and consider how his wife's part-time earnings fit into the budget.",
+  "b": "The oldest child's college start in two years makes cash flow timing critical, so he should model the first 12 to 24 months of income against tuition and household costs.",
+  "a_id": "haiku|go-freelance-b|plain|1|5",
+  "b_id": "haiku|go-freelance-b|properties_nudged|2|2",
+  "stratum": "same code"
+ },
+ {
+  "type": "first-home",
+  "a": "Compare the true monthly cost of owning (mortgage payment, $420 fees, property taxes, insurance, and maintenance reserves) against her current $1,300 rent, since fees alone eat a third of her rent before any financing.",
+  "b": "Sellers listing a home with a known roof issue may be signaling they want out before a larger expense surfaces, so the timing of the sale can be informative about what the house is actually worth.",
+  "a_id": "sonnet|first-home-b|plain|9|0",
+  "b_id": "haiku|first-home-a|random_word|1|6",
+  "sim": 0.023809523809523808,
+  "stratum": "different code, random"
+ },
+ {
+  "type": "go-freelance",
+  "a": "The six-month $60,000 contract is a fixed, time-limited offer, so its real value depends on whether it can be renewed or whether it leads to a steady pipeline of clients after it ends.",
+  "b": "Recognize that the contract is a single-client concentration risk: if that one client delays payment or ends the work early, her eight-month cushion shrinks faster than a diversified freelancer's would.",
+  "a_id": "haiku|go-freelance-a|plain|9|0",
+  "b_id": "haiku|go-freelance-a|think_diverse|2|2",
+  "sim": 0.08571428571428572,
+  "stratum": "different code, random"
+ },
+ {
+  "type": "job-offer",
+  "a": "A director title at a competitor may come with a different scope of authority, reporting lines, and political exposure than his current role, so he should compare actual decision rights rather than headline pay.",
+  "b": "He should compare total compensation, not just salary, including bonus potential, retirement contributions, health insurance, paid time off, relocation support, and job security.",
+  "a_id": "haiku|job-offer-b|think_diverse|0|2",
+  "b_id": "gpt|job-offer-b|plain|3|1",
+  "sim": 0.05263157894736842,
+  "stratum": "different code, random"
+ },
+ {
+  "type": "grad-school",
+  "a": "Jordan should check whether the MBA's accreditation and reputation are recognized in the legal field and by employers he might target, since a degree that does not carry weight would not justify the cost.",
+  "b": "Check whether a less expensive or part-time-compatible option, such as a certificate, a cheaper MBA, or a delayed start, achieves the same career goal.",
+  "a_id": "haiku|grad-school-a|what_else|7|0",
+  "b_id": "haiku|grad-school-a|properties|7|6",
+  "sim": 0.05405405405405406,
+  "stratum": "different code, random"
+ },
+ {
+  "type": "grad-school",
+  "a": "As a single parent of a 13-year-old and a 16-year-old, she should consider how study time, clinical placements, and reduced availability would affect her children's routines, supervision, and emotional needs.",
+  "b": "Her 16-year-old will be leaving home within a few years, so the two-year program's timing may either coincide with a window when she can be more present for the 13-year-old or compete directly with the family needs that are most intense right now.",
+  "a_id": "haiku|grad-school-b|plain|8|3",
+  "b_id": "haiku|grad-school-b|think_diverse|7|2",
+  "stratum": "same code"
+ },
+ {
+  "type": "go-freelance",
+  "a": "Depending on a single client for a large share of her income concentrates risk on that client's budget, priorities, and goodwill, so she should seek at least one or two additional clients before treating the contract as a stable base.",
+  "b": "Relying on a single client creates concentration risk, so she should weigh how many other prospects she can realistically land during the contract.",
+  "a_id": "haiku|go-freelance-a|random_word|6|7",
+  "b_id": "haiku|go-freelance-a|properties_nudged|8|4",
+  "stratum": "same code"
+ },
+ {
+  "type": "partner-move",
+  "a": "Custody and distance: moving out of state would likely require renegotiating or court-approving the shared custody arrangement for his 15-year-old, and it may mean far less time with his son during his remaining teen years.",
+  "b": "The custody arrangement for David's 15-year-old son is the biggest constraint, since moving out of state would require a legal modification, his ex-wife's agreement or a court's approval, and a workable plan for visits during a critical stage of his adolescence.",
+  "a_id": "sonnet|partner-move-b|plain|2|0",
+  "b_id": "sonnet|partner-move-b|plain|3|0",
+  "sim": 0.21621621621621623,
+  "stratum": "different code, similar wording"
+ }
+]

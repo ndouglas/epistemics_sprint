@@ -1,0 +1,23 @@
+Maya is 27 and works as a data analyst at a hospital system, earning $68,000. A 40-person logistics startup has offered her $82,000 plus stock options, fully remote. She has $31,000 in student loans, no dependents, and her current manager has hinted at a promotion next year. The startup wants an answer by Friday.
+
+Ask 1:
+  [only here] Student loan repayment situation :: The $14,000 salary increase (about 21%) would meaningfully accelerate paying down her $31,000 in student loans, but she should compare it to what the hinted promotion at her current job might actually pay.
+  [shared] Equity option value :: Stock options at a 40-person startup are speculative, so she should ask about the strike price, vesting schedule, current valuation, and dilution risk and treat them as a lottery ticket rather than guaranteed compensation.
+  [only here] Employer financial runway :: A small startup carries real risk of layoffs or shutdown, so she should ask about runway, funding stage, and profitability and make sure she has an emergency fund to cover a job search.
+  [shared] Verifying the promotion hint :: A manager's hint of a promotion is not a commitment, so she could ask for specifics on timing and salary or use the competing offer as leverage to see what her current employer will put in writing.
+  [shared] Total compensation beyond base pay :: She should weigh the stability, benefits, and retirement matching of a hospital system against the startup's benefits package, including health insurance quality, 401(k) match, and paid time off.
+  [shared] Career growth and skill development :: Consider which role will build more valuable skills and career capital, such as broader responsibilities and faster growth at a startup versus domain expertise in healthcare data that may be harder to replicate elsewhere.
+  [shared] Remote work trade-offs :: Fully remote work can improve flexibility and save commuting costs, but she should honestly assess whether she thrives with less in-person mentorship, structure, and social connection, especially early in her career.
+  [shared] Deadline as pressure and information :: The Friday deadline is a pressure tactic she can push on, so she should ask for a short extension, negotiate the offer, and make sure her decision reflects her own priorities and risk tolerance rather than the clock.
+
+Ask 2:
+  [shared] Total compensation beyond base pay :: The $14,000 salary increase (about 20%) could meaningfully accelerate paying down her $31,000 in student loans, but she should compare take-home pay after benefits like health insurance and retirement matching at each employer.
+  [shared] Equity option value :: Stock options in a 40-person startup are speculative, so she should ask about the strike price, vesting schedule, current valuation, and dilution risk, and treat them as potentially worth zero rather than as guaranteed compensation.
+  [only here] Job security comparison :: A hospital system offers far more job stability than a small startup, so she should consider the company's funding runway, revenue, and layoff risk, especially given her student debt obligations.
+  [shared] Verifying the promotion hint :: Her manager's hint of a promotion is unconfirmed, so she should weigh how likely and how large that raise would be against a certain offer in hand, and consider asking her manager for clarity before Friday.
+  [shared] Career growth and skill development :: The roles may differ in career growth, since a startup could offer broader responsibility and faster skill development while a hospital system offers structured advancement and deep healthcare-domain expertise.
+  [shared] Remote work trade-offs :: Fully remote work changes daily life through flexibility and saved commuting costs, but she should consider whether she thrives without in-person mentorship, team culture, and social connection.
+  [only here] Personal financial cushion :: Her financial cushion matters, so she should assess whether she has enough savings to absorb a sudden job loss, since her low risk exposure (no dependents) at 27 makes this a relatively good time to take a calculated risk.
+  [shared] Deadline as pressure and information :: The Friday deadline is short, so she should try to negotiate more time, ask for the offer details in writing, and use the interim to research the startup's finances, leadership, and employee reviews.
+
+shared considerations: 6

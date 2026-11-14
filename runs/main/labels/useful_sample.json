@@ -1,0 +1,242 @@
+[
+ {
+  "task": "first-home-a",
+  "text": "Home inspection and condition beyond the roof: A thorough inspection and review of disclosures can reveal foundation, plumbing, electrical, HVAC or code problems that change the price or the decision.",
+  "machine": true,
+  "stratum": "judge yes"
+ },
+ {
+  "task": "go-freelance-a",
+  "text": "Regret and values reflection: Imagining years ahead which choice could be explained without guilt or resentment helps clarify what kind of caregiver one wants to be and separates values from obligation.",
+  "machine": null,
+  "stratum": "planted from another decision"
+ },
+ {
+  "task": "parent-care-b",
+  "text": "Caregiver burnout and personal wellbeing: Sustained hands-on caregiving risks exhaustion, isolation, and health and mental-health costs for the caregiver, which can eventually undermine the care the parent receives.",
+  "machine": true,
+  "stratum": "judge yes"
+ },
+ {
+  "task": "job-offer-a",
+  "text": "Job security comparison: How stable the established current employer is versus the new employer or role, including layoff, restructuring and acquisition risk.",
+  "machine": true,
+  "stratum": "judge yes"
+ },
+ {
+  "task": "lease-b",
+  "text": "Early-termination exposure: The money owed (remaining rent, forfeited deposit, fees) if the person must leave a lease early because the job, city or circumstances change.",
+  "machine": true,
+  "stratum": "judge yes"
+ },
+ {
+  "task": "partner-move-a",
+  "text": "Marriage dynamics and joint decision-making: Whether both spouses feel heard, share decision-making fairly, and agree openly on priorities, sacrifices, and how to revisit the decision if it goes badly.",
+  "machine": false,
+  "stratum": "judge no"
+ },
+ {
+  "task": "parent-care-b",
+  "text": "Direct payment or conditioned help: Whether paying a creditor or lender directly, or tying funds to a plan or milestones, keeps the money used as intended and limits risk.",
+  "machine": null,
+  "stratum": "planted from another decision"
+ },
+ {
+  "task": "job-offer-a",
+  "text": "Identity, loyalty and local capital: After nineteen years, his professional reputation, relationships and sense of identity are concentrated locally, so he should ask whether he is moving toward something or away from restlessness.",
+  "machine": false,
+  "stratum": "judge no"
+ },
+ {
+  "task": "parent-care-b",
+  "text": "Familiar surroundings and disruption: Moving someone with dementia or a stroke survivor away from familiar surroundings can increase confusion and loss of identity, so each option's disorientation and effect on routine and social ties should be compared.",
+  "machine": false,
+  "stratum": "judge no"
+ },
+ {
+  "task": "family-loan-b",
+  "text": "Creditor-debtor power shift: How becoming a lender changes the relationship dynamic, making honest conversations, boundaries, or future refusals harder.",
+  "machine": false,
+  "stratum": "judge no"
+ },
+ {
+  "task": "partner-move-a",
+  "text": "Future children and life-stage timing: How the move affects plans for starting a family, buying a home, or further education, including childcare access and parental support.",
+  "machine": true,
+  "stratum": "judge yes"
+ },
+ {
+  "task": "family-loan-b",
+  "text": "Smaller or partial amount: Whether lending or giving less than the full request would meet the need while limiting the lender's exposure.",
+  "machine": true,
+  "stratum": "judge yes"
+ },
+ {
+  "task": "partner-move-b",
+  "text": "Relationship durability under distance or disruption: How well the relationship would hold up under long-distance or major upheaval, and what each arrangement would require of the couple.",
+  "machine": false,
+  "stratum": "judge no"
+ },
+ {
+  "task": "grad-school-b",
+  "text": "Time cost of evening study: The evenings, weekends, rest, and leisure given up over the program and what else that time could have been used for.",
+  "machine": false,
+  "stratum": "judge no"
+ },
+ {
+  "task": "family-loan-b",
+  "text": "Deciding the response to missed payments in advance: Whether to decide before lending how to respond to late or missed payments, since deciding under emotional pressure later is harder.",
+  "machine": false,
+  "stratum": "judge no"
+ },
+ {
+  "task": "parent-care-b",
+  "text": "Parent-child relationship and role shift: Becoming a caregiver can turn a child into a nurse or supervisor, strain the bond, and revive old family dynamics, so the ability to remain a son or daughter and preserve the relationship matters.",
+  "machine": true,
+  "stratum": "judge yes"
+ },
+ {
+  "task": "parent-care-b",
+  "text": "Community and caregiver support networks: Local caregiver support groups, stroke or dementia survivor resources, and respite programs can lighten the load and make either option more sustainable.",
+  "machine": false,
+  "stratum": "judge no"
+ },
+ {
+  "task": "partner-move-a",
+  "text": "Support network and childcare infrastructure for the household: The local relatives, friends, and informal help the family relies on for daily life with children and demanding jobs, which are costly to replace after a move.",
+  "machine": false,
+  "stratum": "judge no"
+ },
+ {
+  "task": "first-home-a",
+  "text": "Pre-approval is a ceiling, not a comfortable budget: A lender's maximum reflects capacity at a single income snapshot, not what the household can sustainably carry, so a personal lower limit and payment stress-test are needed.",
+  "machine": true,
+  "stratum": "judge yes"
+ },
+ {
+  "task": "parent-care-b",
+  "text": "Professional guidance and elder-law advice: Consulting doctors, geriatric care managers, social workers, or elder-law and financial professionals can test assumptions and clarify options before committing.",
+  "machine": true,
+  "stratum": "judge yes"
+ },
+ {
+  "task": "grad-school-a",
+  "text": "Healthcare costs and coverage before Medicare: Planning for health insurance costs and possible coverage gaps before Medicare eligibility affects the housing budget.",
+  "machine": null,
+  "stratum": "planted from another decision"
+ },
+ {
+  "task": "family-loan-b",
+  "text": "Genuine motivation and fit: Whether the move is pulled by real interest in the new role and its responsibilities rather than pushed by exhaustion or a desire for a credential.",
+  "machine": null,
+  "stratum": "planted from another decision"
+ },
+ {
+  "task": "go-freelance-a",
+  "text": "Anchoring on the old rent: The risk that the prior rent makes a large percentage increase feel acceptable, when each option should be judged on its own merits.",
+  "machine": null,
+  "stratum": "planted from another decision"
+ },
+ {
+  "task": "go-freelance-b",
+  "text": "Career capital and trajectory at current employer: Leaving a senior role means giving up title, mentorship, brand-name projects, network, promotion path and seniority benefits, and may complicate returning to salaried work later.",
+  "machine": false,
+  "stratum": "judge no"
+ },
+ {
+  "task": "first-home-a",
+  "text": "Tax implications: Mortgage interest and property tax deductions versus the standard deduction, and capital gains treatment on a future sale, affect the net cost of owning.",
+  "machine": false,
+  "stratum": "judge no"
+ },
+ {
+  "task": "partner-move-a",
+  "text": "Rarity of the opportunity and cost of declining: Whether the offer is a rare, time-limited chance that shapes long-term career trajectory, and the regret or resentment declining could cause.",
+  "machine": true,
+  "stratum": "judge yes"
+ },
+ {
+  "task": "job-offer-a",
+  "text": "Physical sustainability and injury risk: Solo trade work is physically demanding, and his body is the business's only asset, so long-term capacity to keep working and the cost of an injury stopping all revenue must be weighed.",
+  "machine": null,
+  "stratum": "planted from another decision"
+ },
+ {
+  "task": "family-loan-b",
+  "text": "Borrower's repayment track record: What the borrower's past behavior with money, such as a partly repaid earlier loan, says about the likelihood of repayment this time.",
+  "machine": false,
+  "stratum": "judge no"
+ },
+ {
+  "task": "lease-a",
+  "text": "Commute time and fatigue: The daily time, energy, sleep and free-time cost of a longer commute versus a short one, which compounds over a year beyond what a dollar comparison shows.",
+  "machine": true,
+  "stratum": "judge yes"
+ },
+ {
+  "task": "parent-care-a",
+  "text": "Housing and logistics costs of relocating: Breaking or subletting a lease, storing belongings, maintaining or selling the parent's home, and running two households add expenses and hassles that should be budgeted.",
+  "machine": false,
+  "stratum": "judge no"
+ },
+ {
+  "task": "parent-care-b",
+  "text": "Hybrid and middle-path options: Alternatives such as part-time aides, adult day programs, respite stays, a phased plan, or partial leave can soften an all-or-nothing choice and let the family test assumptions.",
+  "machine": true,
+  "stratum": "judge yes"
+ },
+ {
+  "task": "parent-care-a",
+  "text": "Long-term planning beyond the immediate decision: The crisis is a chance to plan for where the parent will live and be cared for in the years ahead, including exit triggers, so the choice does not drift into an open-ended commitment.",
+  "machine": true,
+  "stratum": "judge yes"
+ },
+ {
+  "task": "partner-move-b",
+  "text": "Younger children's adjustment: How the loss of friends, schools, routines, and activities would affect younger children, and how their ages and the timing of the move change the difficulty.",
+  "machine": true,
+  "stratum": "judge yes"
+ },
+ {
+  "task": "partner-move-b",
+  "text": "Asymmetric risk and vulnerability: How the move shifts financial, legal, and emotional risk unevenly onto her through dependence on his income, lack of spousal protections, and loss of her own footing.",
+  "machine": false,
+  "stratum": "judge no"
+ },
+ {
+  "task": "grad-school-b",
+  "text": "Career-path alternatives: Whether cheaper or shorter options, such as certificates, targeted credentials, a different degree, or internal advancement, would achieve similar goals.",
+  "machine": true,
+  "stratum": "judge yes"
+ },
+ {
+  "task": "first-home-b",
+  "text": "Long-term care funding: How she would pay for potential long-term care is a major expense that could strain both a home purchase and her savings, so it should be planned for before committing.",
+  "machine": false,
+  "stratum": "judge no"
+ },
+ {
+  "task": "parent-care-b",
+  "text": "Regret and values reflection: Imagining years ahead which choice could be explained without guilt or resentment helps clarify what kind of caregiver one wants to be and separates values from obligation.",
+  "machine": true,
+  "stratum": "judge yes"
+ },
+ {
+  "task": "first-home-a",
+  "text": "Stress on the relationship and risk tolerance: A large commitment under job insecurity can strain a couple, so they should discuss how each would respond if income drops and whether risk tolerances differ.",
+  "machine": true,
+  "stratum": "judge yes"
+ },
+ {
+  "task": "first-home-b",
+  "text": "Down payment assistance and buyer programs: Eligibility for first-time, senior or other homebuyer programs and lower-rate loans could reduce upfront and monthly costs.",
+  "machine": false,
+  "stratum": "judge no"
+ },
+ {
+  "task": "partner-move-a",
+  "text": "Health insurance and healthcare continuity: Whether coverage transfers, what the new state's healthcare access and costs look like, and whether family members have ongoing medical needs.",
+  "machine": false,
+  "stratum": "judge no"
+ }
+]

@@ -3,7 +3,11 @@ name = "epistemics-sprint"
 version = "0.1.0"
 description = "Do askers all get the same considerations? Apart AI x Epistemics sprint, Nov 2026."
 requires-python = ">=3.11"
-dependencies = ["anthropic>=2.8"]
+dependencies = [
+    "anthropic>=2.8",
+    "matplotlib>=3.11.2",
+    "openai>=3.51.0",
+]
 
 [dependency-groups]
 dev = ["pytest>=8"]

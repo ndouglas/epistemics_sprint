@@ -16,3 +16,10 @@ thinking = { type = "between_tools" }
 effort = "medium"
 price_in = 2.00
 price_out = 10.00
+
+[gpt]
+provider = "openai"
+id = "gpt-5.5-2026-04-23"
+effort = "none"      # reasoning off, to match the others
+price_in = 0.0       # not looked up; token counts are logged
+price_out = 0.0

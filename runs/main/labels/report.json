@@ -1,0 +1,22 @@
+{
+ "pairs": {
+  "n": 60,
+  "agreement": 0.7,
+  "kappa": 0.3863636363636363,
+  "by_stratum": {
+   "different code, similar wording": "8/20",
+   "same code": "15/20",
+   "different code, random": "19/20"
+  }
+ },
+ "useful": {
+  "n": 34,
+  "agreement": 0.6470588235294118,
+  "kappa": 0.2941176470588236,
+  "by_stratum": {
+   "judge yes": "17/17",
+   "planted from another decision": "6/6",
+   "judge no": "5/17"
+  }
+ }
+}
