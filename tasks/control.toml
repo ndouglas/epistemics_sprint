@@ -1,0 +1,17 @@
+# Positive control: idea tasks, where the property practice should clearly
+# widen what comes back. If it doesn't here, a null on decisions says the
+# prompt is broken, not that decisions resist it. Draft wording; edit freely.
+
+[[task]]
+id = "dragon-monster"
+vignette = "A game master wants a new monster for a tabletop fantasy RPG, based on a dragon."
+ask = "What could this monster be?"
+item = "monster concept"
+item_plural = "monster concepts"
+
+[[task]]
+id = "rain-haiku"
+vignette = "A poet is writing a haiku about rain."
+ask = "What image could the haiku turn on?"
+item = "image"
+item_plural = "images"

@@ -1,0 +1,120 @@
+# 8 decision types, two different people each: 16 vignettes.
+# Frozen before any treatment prompt runs.
+# Two people with the same `type` share a codebook. The ask and the item noun
+# are shared by every decision.
+
+ask = "What should this person weigh in making this decision?"
+item = "consideration"
+item_plural = "considerations"
+
+[[task]]
+id = "job-offer-a"
+type = "job-offer"
+vignette = """
+Maya is 27 and works as a data analyst at a hospital system, earning $68,000. A 40-person logistics startup has offered her $82,000 plus stock options, fully remote. She has $31,000 in student loans, no dependents, and her current manager has hinted at a promotion next year. The startup wants an answer by Friday.
+"""
+
+[[task]]
+id = "job-offer-b"
+type = "job-offer"
+vignette = """
+Robert is 52 and has been a plant operations manager at the same manufacturer for 19 years, earning $118,000 with a pension that fully vests at 20. A competitor two hours away has offered him a director role at $145,000, which would mean moving or a long commute. His wife teaches locally and their youngest is a high school junior. The offer is open for two weeks.
+"""
+
+[[task]]
+id = "lease-a"
+type = "lease"
+vignette = """
+Dana is 24 and starting her first full-time job in a new city next month at $54,000. She has found a one-bedroom for $1,450 on a 12-month lease, a 15-minute walk from work, and a room in a shared house for $800 month to month, 40 minutes away by bus. She has $4,000 saved and no car. The one-bedroom's landlord wants a deposit by Monday.
+"""
+
+[[task]]
+id = "lease-b"
+type = "lease"
+vignette = """
+Luis and Carmen are in their late 30s with two children, ages 6 and 9, and their landlord is raising the rent on their three-bedroom from $2,100 to $2,500 at renewal. A similar house 20 minutes away rents for $2,150 on a two-year lease, in a different school district. Their combined income is $96,000 and Carmen's mother, who watches the kids after school, lives four blocks from the current house. They have 30 days to renew or give notice.
+"""
+
+[[task]]
+id = "first-home-a"
+type = "first-home"
+vignette = """
+Priya and Sam are both 31, rent for $1,900 a month, and have saved $60,000. They are pre-approved for a $380,000 mortgage and have found a three-bedroom at $365,000 that needs a new roof within a few years. They plan to try for a child in the next two years, and Sam's company has had two rounds of layoffs this year. The sellers are reviewing offers on Sunday.
+"""
+
+[[task]]
+id = "first-home-b"
+type = "first-home"
+vignette = """
+Gloria is 58, divorced, and has rented the same apartment for 11 years at $1,300 a month. She has $140,000 in savings and a $74,000 salary as a school administrator, and plans to retire at 66. A two-bedroom condo in her building is for sale at $210,000 with $420 monthly fees. Her daughter lives across the country and has asked her to consider moving closer someday.
+"""
+
+[[task]]
+id = "grad-school-a"
+type = "grad-school"
+vignette = """
+Jordan is 29 and works as a paralegal earning $58,000. He has been admitted to a part-time evening MBA program that takes three years and costs $72,000, and his employer would reimburse $5,000 a year. He and his partner are getting married next summer and are saving for the wedding. The deposit is due in three weeks.
+"""
+
+[[task]]
+id = "grad-school-b"
+type = "grad-school"
+vignette = """
+Helen is 44 and has been a registered nurse for 18 years, earning $88,000 on night shifts. She has been admitted to a two-year online nurse practitioner program costing $48,000, which requires 600 clinical hours she would have to fit around work. She is a single parent of a 13-year-old and a 16-year-old. Nurse practitioners in her area earn about $125,000.
+"""
+
+[[task]]
+id = "family-loan-a"
+type = "family-loan"
+vignette = """
+Kevin is 35 and earns $105,000 as a software engineer, with $40,000 in savings set aside for a house down payment. His younger brother has asked to borrow $15,000 to cover debts from a restaurant that closed, and says he can repay it within two years. The brother borrowed $3,000 four years ago and paid back about half. Their parents know about the request and have not offered an opinion.
+"""
+
+[[task]]
+id = "family-loan-b"
+type = "family-loan"
+vignette = """
+Ruth is 67, retired, and lives on $3,400 a month from Social Security and a small pension, with $90,000 in savings. Her 40-year-old daughter has asked to borrow $20,000 to avoid foreclosure after a divorce. The daughter has two children and has never asked for money before. Ruth's son has told her privately that he thinks it is a bad idea.
+"""
+
+[[task]]
+id = "parent-care-a"
+type = "parent-care"
+vignette = """
+Anita is 49 and works full time as an accountant; her husband travels for work most weeks. Her 81-year-old father, a widower with early-stage dementia, lives alone 90 minutes away and has fallen twice this year. She is deciding between moving him into their spare room and an assisted living facility near her that costs $5,200 a month, which his savings would cover for about four years. Her brother lives abroad and says he will support whatever she decides.
+"""
+
+[[task]]
+id = "parent-care-b"
+type = "parent-care"
+vignette = """
+Marcus is 33, single, and rents a one-bedroom apartment in the city where he works as a physical therapist. His 70-year-old mother, who lives three hours away in the house he grew up in, has had a stroke and will need help with daily tasks for at least six months. He is deciding between taking unpaid family leave to move back in with her and hiring in-home aides at about $4,000 a month, which she can afford for roughly a year. He is her only child.
+"""
+
+[[task]]
+id = "go-freelance-a"
+type = "go-freelance"
+vignette = """
+Tessa is 34 and a senior graphic designer at an agency, earning $92,000 with health insurance. She already makes about $2,000 a month from freelance clients on the side, and one of them has offered a six-month contract worth $60,000 if she goes independent. She has eight months of expenses saved and no dependents. Her agency has a rule against moonlighting for clients in the same industry as this one.
+"""
+
+[[task]]
+id = "go-freelance-b"
+type = "go-freelance"
+vignette = """
+Omar is 46 and a licensed electrician who has worked for the same contractor for 15 years, earning $78,000. He is considering starting his own one-person business; he would need about $35,000 for a van, tools and insurance. His wife works part time and the family's health insurance comes through his job. They have three children, the oldest starting college in two years, and several of his employer's customers have said they would follow him.
+"""
+
+[[task]]
+id = "partner-move-a"
+type = "partner-move"
+vignette = """
+Claire is 30 and a middle school teacher with tenure in her district. Her boyfriend of three years has been offered a job in a city 1,200 miles away that would nearly double his salary, and he wants her to come. They are not engaged. Her teaching license would not transfer without additional coursework, and her family lives within an hour of where she is now.
+"""
+
+[[task]]
+id = "partner-move-b"
+type = "partner-move"
+vignette = """
+David is 41 and works remotely as a technical writer, earning $85,000. His wife, a physician, has been offered a department leadership position at a hospital in another state. They have a 7-year-old and a 10-year-old, and David shares custody of a 15-year-old son from his first marriage, who lives nearby with his mother every other week. His wife has to answer within a month.
+"""

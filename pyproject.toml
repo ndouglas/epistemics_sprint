@@ -1,0 +1,16 @@
+[project]
+name = "epistemics-sprint"
+version = "0.1.0"
+description = "Do askers all get the same considerations? Apart AI x Epistemics sprint, Nov 2026."
+requires-python = ">=3.11"
+dependencies = ["anthropic>=2.8"]
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.uv]
+package = false

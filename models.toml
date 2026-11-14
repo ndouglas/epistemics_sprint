@@ -1,0 +1,18 @@
+# One entry per generating model. Prices are dollars per million tokens.
+# Thinking is held off on both so no arm gets hidden reasoning; effort is set
+# outright because the two models have different defaults. Neither model
+# accepts a non-default temperature, so every arm runs at the API default.
+
+[haiku]
+id = "claude-haiku-5-5"
+thinking = { type = "disabled" }
+effort = "medium"
+price_in = 0.10
+price_out = 0.50
+
+[sonnet]
+id = "claude-sonnet-5-5"
+thinking = { type = "between_tools" }
+effort = "medium"
+price_in = 2.00
+price_out = 10.00
