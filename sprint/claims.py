@@ -235,6 +235,20 @@ def add_probes(c: dict, run_dir: Path) -> None:
         c["probe.foreign.hits"], c["probe.foreign.n"] = str(r["foreign"]["hits"]), f"{r['foreign']['n']:,}"
         c["probe.foreign.rate"] = f"{100 * r['foreign']['rate']:.1f}%"
 
+    rb = r.get("robust")
+    if rb:
+        block("probe.expected", rb["expected_to_change"])
+        if rb["expected_not_to_change"].get("inert"):
+            put(c, "probe.filler.inert", rb["expected_not_to_change"]["inert"], 100, pct)
+        for m, b in rb["leave_one_out"].items():
+            put(c, f"probe.loo.{m}.gap", b["decisive_minus_inert"], 100, whole)
+            c[f"probe.loo.{m}.n_decisive"] = str(b["n_decisive"])
+        c["probe.types.positive"] = f"{rb['by_type']['positive']} of {rb['by_type']['n']}"
+        c["probe.types.min_gap"] = whole(100 * rb["by_type"]["min"])
+        if "thresholds" in rb:
+            c["probe.thresholds.min"] = whole(100 * rb["thresholds"]["min"])
+            c["probe.thresholds.max"] = whole(100 * rb["thresholds"]["max"])
+
     alt = run_dir / "probe_results3.json"  # the same analysis with the three-option check deciding decisive and inert
     if alt.exists():
         q = json.loads(alt.read_text())

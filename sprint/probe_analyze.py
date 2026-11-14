@@ -128,6 +128,43 @@ def analyze(run_dir: Path, tasks, probes: list[dict], status_file: str = "probe_
         if sel:
             out["by_mean_shift"][name] = {"probes": len(ids), "hit": sum(is_hit(r) for r in sel) / len(sel), "asks": sum(is_ask(r) for r in sel) / len(sel)}
 
+    # ---- checks on the named contrast (all exploratory, added after a review of the first draft) ----
+    robust: dict = {}
+    # (a) the drafter was asked for some facts it expected not to matter; drop those fillers
+    expected = {q["id"]: q.get("expected") for q in probes}
+    for label, want in (("expected_to_change", "changes the choice"), ("expected_not_to_change", "does not change the choice")):
+        robust[label] = block(rows, task_type, cls, lambda r, want=want: plain(r) and expected.get(r["probe"]) == want)
+    # (b) leave one model out: the other two models decide decisive and inert, the third's briefings are scored
+    shifts = {pid: {m: x["shift"] for m, x in v["models"].items()} for pid, v in status["probes"].items() if v.get("models")}
+    th = status.get("thresholds", {"decisive_shift": 0.5, "inert_shift": 0.1})
+    robust["leave_one_out"] = {}
+    for m in models:
+        others = {pid: [x for mm, x in sh.items() if mm != m] for pid, sh in shifts.items()}
+        cls_m = {pid: "decisive" if all(x >= th["decisive_shift"] for x in xs) else "inert" if all(x <= th["inert_shift"] for x in xs) else "middle"
+                 for pid, xs in others.items() if xs}
+        b = block(rows, task_type, cls_m, lambda r, m=m: plain(r) and r["model"] == m)
+        b["n_decisive"] = sum(v == "decisive" for v in cls_m.values())
+        b["n_inert"] = sum(v == "inert" for v in cls_m.values())
+        robust["leave_one_out"][m] = b
+    # (c) the gap in each decision type
+    dec = type_counts(rows, task_type, lambda r: plain(r) and cls.get(r["probe"]) == "decisive")
+    ine = type_counts(rows, task_type, lambda r: plain(r) and cls.get(r["probe"]) == "inert")
+    gaps = {d: dec[d][0] / dec[d][1] - ine[d][0] / ine[d][1] for d in dec if d in ine}
+    robust["by_type"] = {"gaps": gaps, "positive": sum(g > 0 for g in gaps.values()), "n": len(gaps), "min": min(gaps.values()) if gaps else None}
+    # (d) other thresholds for decisive (two of three models) and inert (all three)
+    grid = {}
+    for hi in (0.3, 0.5, 0.7, 0.8):
+        for lo in (0.0, 0.1, 0.2):
+            c2 = {pid: "decisive" if sum(x >= hi for x in sh.values()) >= 2 else "inert" if all(x <= lo for x in sh.values()) else "middle"
+                  for pid, sh in shifts.items()}
+            d = paired_difference(type_counts(rows, task_type, lambda r: plain(r) and c2.get(r["probe"]) == "decisive"),
+                                  type_counts(rows, task_type, lambda r: plain(r) and c2.get(r["probe"]) == "inert"))
+            if d:
+                grid[f"{hi}|{lo}"] = d[0]
+    if grid:
+        robust["thresholds"] = {"min": min(grid.values()), "max": max(grid.values()), "grid": grid}
+    out["robust"] = robust
+
     # which decisive facts does nobody raise?
     per_probe: dict[str, dict[str, list[int]]] = defaultdict(lambda: {"plain": [0, 0], "any": [0, 0]})
     for r in rows:
@@ -197,6 +234,12 @@ def main(argv: list[str] | None = None) -> int:
         show(f"{FIX_MODEL} {a}", b)
     for a, b in r["arm_vs_plain"].items():
         print(f"{FIX_MODEL} {a:18} minus plain, decisive raised {fmt(b['decisive'])}  asked {fmt(b['decisive_asks'])}")
+    for k in ("expected_to_change", "expected_not_to_change"):
+        show(k, r["robust"][k])
+    for m, b in r["robust"]["leave_one_out"].items():
+        show(f"others decide, {m}", b)
+        print("   probes", b["n_decisive"], b["n_inert"])
+    print("by type", {k: round(v, 2) for k, v in r["robust"]["by_type"]["gaps"].items()}, "thresholds", r["robust"].get("thresholds"))
     print("by mean shift", r["by_mean_shift"])
     print("decisive probes, plain hit rates", r["decisive_plain_rates"], " inert", r["inert_plain_rates"])
     print("drafter's guess against the check", r["expected_vs_measured"])
