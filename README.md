@@ -1,53 +1,58 @@
-# Do askers all get the same considerations?
+# Does the briefing raise what would change the decision?
 
-Apart AI x Epistemics sprint, Nov 13–15, 2026. The design is in
+Code, data and report for a project done at the Apart Research AI x Epistemics sprint,
+November 13 to 15, 2026. The report is [`report/build/report.pdf`](report/build/report.pdf).
+
+Sixteen short vignettes describe a person facing a decision. Three models (Claude Haiku 5.5,
+Claude Sonnet 5.5, GPT-5.5) are asked what the person should weigh. The project asks whether
+those briefings raise the facts the vignette leaves out that would change the choice, more
+often than the ones that would not, and how much the lists repeat from one ask to the next.
 
 ## Layout
 
-- `tasks/decisions.toml`: 8 decision types, two people each, 16 vignettes (frozen before any treatment run).
-- `tasks/control.toml`: idea tasks (a dragon monster, a rain haiku) as the positive control.
-- `arms/*.md`: one prompt per arm. `properties.md` is the treatment, in Nathan's words.
-- `data/`: the 29 dimension names and the seed-word list.
-- `models.toml`: model ids, thinking and effort settings, prices.
-- `sprint/core.py`: tasks, arms, seeded draws, prompts, parsing.
-- `sprint/run.py`: the runner.
-- `runs/<name>/generations.jsonl`: one row per sample, with the full prompt, the draw, the raw answer, the items and the token counts.
+- `tasks/decisions.toml`: 8 decision types, two people each, 16 vignettes. `tasks/options.toml`: the two options each vignette poses.
+- `tasks/probes.toml`: 94 missing-fact probes, each a question with two possible answers.
+- `arms/*.md`: one prompt per arm. `data/`: the 29 dimension names and the random-word list.
+- `models.toml`: model ids and settings.
+- `sprint/`: the code. `run.py` generates answers; `score.py` builds codebooks and judges relevance; `analyze.py` and `extra.py` compute the repetition numbers; `probes.py` drafts probes, runs the forced-choice check and the judge; `probe_analyze.py` computes the missing-fact numbers; `label.py` is the blind labeling tool; `claims.py` gathers every number the report states; `build_report.py` checks the report against them and renders it.
+- `runs/main/`: every generated answer, forced choice, judge rating and hand label. `runs/rep` and `runs/coarse` are the two other codebook builds.
+- `results/claims.md`: every number in the report, by id.
+- `report/report.md`: the report's source. A number is written `[claim.id=value]`, and the build fails if it differs from the data.
 
-## Arms
-
-| Name | Design # | Answer shape |
-|------|----------|--------------|
-| `plain` | 1 | items |
-| `think_diverse` | 2 | notes, items |
-| `verbalized` | 3 | responses with probabilities |
-| `what_else` | 4 | items (second turn, after a fresh plain answer) |
-| `random_word` | 5 | notes, items |
-| `properties` | 6a | properties, items |
-| `properties_nudged` | 6b | properties, items |
-
-Every arm returns exactly 8 items. A sample with the wrong count is retried twice, then recorded as `bad_count`.
-
-## Use
+## Reproduce the numbers (no API calls)
 
 ```sh
 uv sync
-cp .env.example .env        # then put the API key in it
-
-uv run pytest -q                                             # no network
-uv run python -m sprint.run show --tasks tasks/control.toml  # print every arm's prompt, no API calls
-uv run python -m sprint.run generate --model haiku --tasks tasks/control.toml --samples 2 --run smoke
-uv run python -m sprint.run cost runs/smoke
+uv run pytest -q
+uv run python -m sprint.analyze runs/main
+uv run python -m sprint.extra runs/main
+uv run python -m sprint.probes decide runs/main --check-file probe_check2.jsonl
+uv run python -m sprint.probe_analyze runs/main
+uv run python -m sprint.figures runs/main
+uv run python -m sprint.label report runs/main
+uv run python -m sprint.claims runs/main
+uv run python -m sprint.build_report        # needs pandoc and xelatex
 ```
 
-`generate` is resumable: rerun the same command and it skips samples that already have an `ok` row.
-Useful flags: `--arms plain,properties`, `--limit-tasks 2`, `--samples 10`, `--seed 0`, `--concurrency 8`.
+## Rerun from scratch (API calls)
+
+```sh
+cp .env.example .env        # then add ANTHROPIC_API_KEY and OPENAI_API_KEY
+uv run python -m sprint.run show --tasks tasks/decisions.toml     # print every prompt, no calls
+uv run python -m sprint.run generate --model haiku --samples 10 --run main
+uv run python -m sprint.run generate --model sonnet --arms plain --samples 10 --run main
+uv run python -m sprint.run generate --model gpt --arms plain --samples 10 --run main
+```
+
+`generate` is resumable. The scoring commands are listed at the top of `sprint/score.py`
+and `sprint/probes.py`.
 
 ## Notes
 
-- No fallback model. If the named model declines, the row is recorded as a refusal.
-- Thinking is off on both models and effort is set to `medium` outright, so no arm gets hidden reasoning. Output tokens are logged per sample.
-- All seven arms run on Sonnet. Haiku and one non-Anthropic model run `--arms plain` only, for the cross-model overlap.
-- These models reject a non-default temperature, so there is no temperature arm.
+- No fallback model. If a model declines, the row is recorded as a refusal.
+- Extended reasoning is off for every model, so no arm gets hidden reasoning.
+- The arms other than `plain` ran on Haiku 5.5 only. In a pilot, Sonnet 5.5 refused the arms that ask it to write out its reasoning, and that was not worked around.
+- Each arm returns a fixed number of items. A sample with the wrong count is retried twice, then recorded as `bad_count`.
 
 ## Missing-fact study: fixed before it ran (Nov 14)
 
