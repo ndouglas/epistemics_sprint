@@ -57,7 +57,8 @@ deadline is really fixed, whether the choice can be undone, or whether it is thi
 person's decision alone.
 
 Do not repeat anything the description already states. Keep each answer concrete: \
-figures, dates, named terms."""
+figures and named terms. Use no calendar dates or years; give every time relative to now \
+("in three weeks", "four years ago"), as the description does."""
 
 
 def _obj(props: dict) -> dict:

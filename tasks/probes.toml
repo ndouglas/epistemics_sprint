@@ -1,0 +1,992 @@
+# Missing-fact probes. Drafted by GPT-5.5 from the vignette alone (it saw no answers),
+# then edited by Nathan. Committed before any answer is scored against it.
+# Edit freely: reword, delete a [[probe]] block, or add your own. `expected` and `about`
+# are the drafter's guesses and are not used in scoring; decisiveness is measured.
+
+# ---- job-offer-a
+# Maya is 27 and works as a data analyst at a hospital system, earning $68,000. A 40-person logistics startup has offered her $82,000 plus stock options, fully remote. She has $31,000 in student loans, no dependents, and her current manager has hinted at a promotion next year. The startup wants an answer by Friday.
+
+[[probe]]
+id = "job-offer-a-1"
+task = "job-offer-a"
+question = "What is the startup's current financial runway?"
+answer_a = "The startup has $9.6 million in cash, burns $400,000 per month, and has 24 months of runway without new funding."
+answer_b = "The startup has $1.2 million in cash, burns $600,000 per month, and has 2 months of runway without new funding."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "job-offer-a-2"
+task = "job-offer-a"
+question = "How valuable and liquid are the stock options likely to be?"
+answer_a = "The offer includes 25,000 options at a $0.40 strike price, the company’s last 409A valuation was $1.20, and the options vest over four years with a one-year cliff."
+answer_b = "The offer includes 2,000 options at a $5.00 strike price, the company’s last 409A valuation was $4.80, and the options expire 90 days after leaving."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "job-offer-a-3"
+task = "job-offer-a"
+question = "Is Friday a hard deadline or can Maya get more time or negotiate?"
+answer_a = "The startup will extend the decision deadline to the following Wednesday and is open to discussing salary, loan repayment, and severance terms."
+answer_b = "The startup says Friday at 5 p.m. is final because its backup candidate must be released by then and no terms are negotiable."
+expected = "does not change the choice"
+about = "shape of the decision"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "job-offer-a-4"
+task = "job-offer-a"
+question = "What is Maya's commute to her current hospital job?"
+answer_a = "Maya’s commute to the hospital office is a 22-minute subway ride costing $96 per month."
+answer_b = "Maya’s commute to the hospital office is a 55-minute drive each way costing about $240 per month in gas, parking, and tolls."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "job-offer-a-5"
+task = "job-offer-a"
+question = "What title would Maya have at the startup?"
+answer_a = "The startup role title is Senior Data Analyst."
+answer_b = "The startup role title is Analytics Specialist."
+expected = "does not change the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "job-offer-a-6"
+task = "job-offer-a"
+question = "Is there a third active option besides staying and taking the startup offer?"
+answer_a = "Maya has a final interview next Tuesday for a $90,000 healthcare analytics role at a 2,000-person insurer."
+answer_b = "Maya has no other active applications, interviews, or written offers as of this week."
+expected = "changes the choice"
+about = "shape of the decision"
+source = "gpt-5.5 draft"
+
+# ---- job-offer-b
+# Robert is 52 and has been a plant operations manager at the same manufacturer for 19 years, earning $118,000 with a pension that fully vests at 20. A competitor two hours away has offered him a director role at $145,000, which would mean moving or a long commute. His wife teaches locally and their youngest is a high school junior. The offer is open for two weeks.
+
+[[probe]]
+id = "job-offer-b-1"
+task = "job-offer-b"
+question = "What is the cash value and timing of the pension that vests at 20 years?"
+answer_a = "If Robert stays for less than a year, the pension will pay $3,200 per month starting at age 62, but leaving before then reduces it to $900 per month."
+answer_b = "The 20-year vesting milestone adds only a one-time $7,500 employer contribution, and Robert keeps nearly all accrued pension value if he leaves now."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "job-offer-b-2"
+task = "job-offer-b"
+question = "How would Robert's wife and child be affected by a move or long commute?"
+answer_a = "Robert's wife is unwilling to leave her current teaching job in the next two years, and their youngest has a 504 plan and college recommendations tied to the current high school."
+answer_b = "Robert's wife has already qualified for a teaching license in the competitor's state, and their youngest wants to transfer to a magnet school 15 minutes from the new office."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "job-offer-b-3"
+task = "job-offer-b"
+question = "Can Robert extend or restructure the decision deadline?"
+answer_a = "The competitor says the two-week deadline is firm because the board must approve the hire at its meeting in two weeks."
+answer_b = "The competitor says Robert can have four weeks to decide and can spend four paid Fridays shadowing the role before signing."
+expected = "changes the choice"
+about = "shape of the decision"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "job-offer-b-4"
+task = "job-offer-b"
+question = "What is Robert's current commute?"
+answer_a = "Robert currently drives 12 minutes each way to the plant on County Road 6."
+answer_b = "Robert currently drives 58 minutes each way through downtown traffic to the plant."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "job-offer-b-5"
+task = "job-offer-b"
+question = "What title and reporting line would Robert have if he stayed in his current job?"
+answer_a = "If Robert stays, his title remains Plant Operations Manager and he continues reporting to the Vice President of Manufacturing."
+answer_b = "If Robert stays, his title changes to Senior Plant Operations Manager next quarter but he still reports to the Vice President of Manufacturing with the same authority."
+expected = "does not change the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+# ---- lease-a
+# Dana is 24 and starting her first full-time job in a new city next month at $54,000. She has found a one-bedroom for $1,450 on a 12-month lease, a 15-minute walk from work, and a room in a shared house for $800 month to month, 40 minutes away by bus. She has $4,000 saved and no car. The one-bedroom's landlord wants a deposit by Monday.
+
+[[probe]]
+id = "lease-a-1"
+task = "lease-a"
+question = "After taxes and required payroll deductions, how much will Dana take home each month?"
+answer_a = "Dana's expected take-home pay after federal, state, Social Security, Medicare, and a 5% required retirement contribution is $3,050 per month."
+answer_b = "Dana's expected take-home pay after federal, state, Social Security, and Medicare with no required retirement contribution is $3,650 per month."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "lease-a-2"
+task = "lease-a"
+question = "What are Dana's non-rent monthly obligations?"
+answer_a = "Dana must pay $650 per month on student loans, $180 for health insurance, and $90 for a phone plan."
+answer_b = "Dana has no debt payments, her employer covers health insurance in full, and her phone is on a family plan for the next two years."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "lease-a-3"
+task = "lease-a"
+question = "Is there a realistic third housing option available before Monday?"
+answer_a = "Dana has been offered a studio apartment for $1,050 per month on a 6-month lease, 25 minutes from work by train, with a $1,050 deposit due Sunday."
+answer_b = "Dana has contacted 12 listings under $1,200, and none have availability before her start date except the shared house."
+expected = "changes the choice"
+about = "shape of the decision"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "lease-a-4"
+task = "lease-a"
+question = "Does Dana have furniture or moving costs already covered?"
+answer_a = "Dana's family will give her a bed, desk, sofa, and kitchen basics and will drive them to the new city for free later this month."
+answer_b = "Dana owns no furniture and has received a $2,200 quote to buy basic furniture and move it into the one-bedroom."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "lease-a-5"
+task = "lease-a"
+question = "What are the utility and internet costs for each housing option?"
+answer_a = "The one-bedroom's average electric, heat, water, trash, and internet costs are $210 per month, and the shared house includes all utilities and internet in the $800 rent."
+answer_b = "The one-bedroom includes water, trash, heat, and internet, with average electric costs of $55 per month, and the shared house charges $75 per month for utilities and internet."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "lease-a-6"
+task = "lease-a"
+question = "Is Monday's deposit deadline firm?"
+answer_a = "The landlord will hold the one-bedroom until Friday at 5 p.m. if Dana emails a pay stub and pays a $100 refundable application fee by Monday."
+answer_b = "The landlord will rent the one-bedroom to the next approved applicant if Dana has not paid the full deposit by Monday at noon."
+expected = "does not change the choice"
+about = "shape of the decision"
+source = "gpt-5.5 draft"
+
+# ---- lease-b
+# Luis and Carmen are in their late 30s with two children, ages 6 and 9, and their landlord is raising the rent on their three-bedroom from $2,100 to $2,500 at renewal. A similar house 20 minutes away rents for $2,150 on a two-year lease, in a different school district. Their combined income is $96,000 and Carmen's mother, who watches the kids after school, lives four blocks from the current house. They have 30 days to renew or give notice.
+
+[[probe]]
+id = "lease-b-1"
+task = "lease-b"
+question = "Will Carmen's mother still be able and willing to provide after-school care if they move to the similar house 20 minutes away?"
+answer_a = "Carmen's mother can no longer drive after her surgery earlier this year and would not be able to provide after-school care at the new house."
+answer_b = "Carmen's mother is willing to pick up the children at the new school and stay with them until 6:00 p.m. every weekday."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "lease-b-2"
+task = "lease-b"
+question = "How would the school change affect the children academically and socially?"
+answer_a = "The assigned elementary school for the new house has a 4 out of 10 state rating, no gifted program, and no after-school art club."
+answer_b = "The assigned elementary school for the new house has a 9 out of 10 state rating and offers the same gifted math program both children use now."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "lease-b-3"
+task = "lease-b"
+question = "Can they get a viable third housing option before the notice deadline?"
+answer_a = "A three-bedroom duplex in their current school zone is available for $2,250 per month with a move-in date in 30 days."
+answer_b = "There are no three-bedroom rentals under $2,500 in their current school zone with move-in dates in the next 60 days."
+expected = "changes the choice"
+about = "shape of the decision"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "lease-b-4"
+task = "lease-b"
+question = "What are the moving costs and upfront lease costs for the house 20 minutes away?"
+answer_a = "The new landlord requires a $2,150 security deposit, first month's rent, and a $300 pet fee at signing, and movers quoted $1,200."
+answer_b = "The new landlord requires a $2,150 security deposit and first month's rent at signing, and Luis's employer will reimburse up to $2,000 in moving costs."
+expected = "does not change the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "lease-b-5"
+task = "lease-b"
+question = "Is the landlord's 30-day renewal deadline negotiable?"
+answer_a = "The landlord will extend the renewal deadline by 14 days if they give a written answer within two weeks."
+answer_b = "The landlord will not extend the renewal deadline and will list the house in 30 days if they have not renewed."
+expected = "does not change the choice"
+about = "shape of the decision"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "lease-b-6"
+task = "lease-b"
+question = "How long do Luis and Carmen expect to stay in the area?"
+answer_a = "Luis's job contract runs through about two years from now and both parents expect to stay in the area for at least three more school years."
+answer_b = "Carmen has applied for a transfer to Phoenix that, if approved, would start in about a year."
+expected = "does not change the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+# ---- first-home-a
+# Priya and Sam are both 31, rent for $1,900 a month, and have saved $60,000. They are pre-approved for a $380,000 mortgage and have found a three-bedroom at $365,000 that needs a new roof within a few years. They plan to try for a child in the next two years, and Sam's company has had two rounds of layoffs this year. The sellers are reviewing offers on Sunday.
+
+[[probe]]
+id = "first-home-a-1"
+task = "first-home-a"
+question = "How much of the $60,000 savings are Priya and Sam willing and able to use after keeping an emergency fund and paying closing costs?"
+answer_a = "Priya and Sam want to keep $35,000 untouched as an emergency fund and estimate $12,000 in closing costs, leaving only $13,000 available for the purchase."
+answer_b = "Priya and Sam are comfortable putting $45,000 toward the purchase and still keeping $15,000 in cash after estimated closing costs."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "first-home-a-2"
+task = "first-home-a"
+question = "What would the roof replacement likely cost and how soon is it needed?"
+answer_a = "A licensed roofer inspected the house on Friday and estimated the roof must be replaced within 12 months at a cost of $28,000."
+answer_b = "A licensed roofer inspected the house on Friday and estimated the roof can last at least five more years and will cost about $11,000 to replace."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "first-home-a-3"
+task = "first-home-a"
+question = "How secure and replaceable is Sam's income if the layoffs continue?"
+answer_a = "Sam earns $110,000 of their $155,000 combined annual income, works in a shrinking team, and has been told their role may be eliminated within the next few months."
+answer_b = "Sam earns $70,000 of their $155,000 combined annual income, has a signed retention agreement through about one year from now, and could likely find comparable local work within two months."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "first-home-a-4"
+task = "first-home-a"
+question = "Is making an offer by Sunday the only realistic way to buy this home, or is there another route?"
+answer_a = "The listing agent said the sellers will consider only offers received by 6 p.m. Sunday and already have four offers at or above list price."
+answer_b = "The listing agent said the sellers would accept a 30-day lease-purchase agreement with a $5,000 option fee if Priya and Sam need more time before committing."
+expected = "changes the choice"
+about = "shape of the decision"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "first-home-a-5"
+task = "first-home-a"
+question = "What are Priya and Sam's current lease terms if they do not buy now?"
+answer_a = "Their current lease runs through about ten months from now, and breaking it would cost two months' rent."
+answer_b = "Their current lease is month-to-month and requires 30 days' notice to leave."
+expected = "does not change the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "first-home-a-6"
+task = "first-home-a"
+question = "Can Priya and Sam back out after making an offer if inspections or financing create problems?"
+answer_a = "Their agent plans to include a 10-day inspection contingency and a 21-day financing contingency in any offer."
+answer_b = "Their agent says a competitive offer would need to waive the inspection contingency and limit financing protection to seven days."
+expected = "does not change the choice"
+about = "shape of the decision"
+source = "gpt-5.5 draft"
+
+# ---- first-home-b
+# Gloria is 58, divorced, and has rented the same apartment for 11 years at $1,300 a month. She has $140,000 in savings and a $74,000 salary as a school administrator, and plans to retire at 66. A two-bedroom condo in her building is for sale at $210,000 with $420 monthly fees. Her daughter lives across the country and has asked her to consider moving closer someday.
+
+[[probe]]
+id = "first-home-b-1"
+task = "first-home-b"
+question = "What would Gloria’s total monthly housing cost be if she bought the condo, including mortgage, taxes, insurance, fees, and maintenance reserve?"
+answer_a = "With a $60,000 down payment, the condo would cost about $2,150 a month including mortgage, property tax, insurance, the $420 fee, and a $200 maintenance reserve."
+answer_b = "With a $120,000 down payment, the condo would cost about $1,290 a month including mortgage, property tax, insurance, the $420 fee, and a $200 maintenance reserve."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "first-home-b-2"
+task = "first-home-b"
+question = "How likely is Gloria to stay in the same city for at least the next eight years?"
+answer_a = "Gloria has decided she wants to remain in the same city until at least eight years from now because her job, doctors, and close friends are all nearby."
+answer_b = "Gloria expects to move to her daughter’s city in about two years if she can find work or retire early."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "first-home-b-3"
+task = "first-home-b"
+question = "Are there major condo association costs or building problems expected soon?"
+answer_a = "The condo association has approved a $38,000 special assessment per unit for roof, elevator, and plumbing work due in two years."
+answer_b = "The condo association’s reserve study from eight months ago shows $1.1 million in reserves and no special assessment expected before five years from now."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "first-home-b-4"
+task = "first-home-b"
+question = "Is buying this condo the only realistic purchase option, or is there a third option?"
+answer_a = "Gloria can also buy a one-bedroom condo three blocks away for $165,000 with $310 monthly fees and no age or rental restrictions."
+answer_b = "There are no other condos under $260,000 within a 30-minute commute that allow owner-occupants to move in before about ten months from now."
+expected = "changes the choice"
+about = "shape of the decision"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "first-home-b-5"
+task = "first-home-b"
+question = "Is the seller’s deadline fixed, or can Gloria take time to compare alternatives?"
+answer_a = "The seller will accept offers until 5 p.m. the following Friday and will not grant an extension because a backup buyer is already in place."
+answer_b = "The seller is willing to give Gloria a 45-day inspection and financing period ending in 45 days."
+expected = "does not change the choice"
+about = "shape of the decision"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "first-home-b-6"
+task = "first-home-b"
+question = "What are Gloria’s health-care and long-term-care plans for retirement?"
+answer_a = "Gloria has a long-term-care insurance policy with a $180 daily benefit, 3 percent inflation protection, and premiums of $190 a month."
+answer_b = "Gloria has no long-term-care insurance and estimates she would need to self-fund at least $90,000 for future care costs."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+# ---- grad-school-a
+# Jordan is 29 and works as a paralegal earning $58,000. He has been admitted to a part-time evening MBA program that takes three years and costs $72,000, and his employer would reimburse $5,000 a year. He and his partner are getting married next summer and are saving for the wedding. The deposit is due in three weeks.
+
+[[probe]]
+id = "grad-school-a-1"
+task = "grad-school-a"
+question = "What salary increase, if any, is Jordan likely to receive within one year of completing this specific part-time evening MBA program?"
+answer_a = "Graduates from this program in Jordan's intended track report a median salary increase to $95,000 within one year of graduation."
+answer_b = "Graduates from this program in Jordan's intended track report a median salary increase to $62,000 within one year of graduation."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "grad-school-a-2"
+task = "grad-school-a"
+question = "How much liquid savings will Jordan and his partner have after paying the wedding deposit and keeping their normal emergency fund?"
+answer_a = "After the wedding deposit, Jordan and his partner would still have $28,000 in liquid savings outside a three-month emergency fund."
+answer_b = "After the wedding deposit, Jordan and his partner would have $1,200 in liquid savings and no separate emergency fund."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "grad-school-a-3"
+task = "grad-school-a"
+question = "Is the deposit deadline actually fixed, or can Jordan defer admission without losing his place?"
+answer_a = "The program allows admitted students to defer enrollment for one year by paying a $500 administrative fee in three weeks."
+answer_b = "The program cancels admission if the full $3,000 deposit is not paid in three weeks, and reapplicants must start over next cycle."
+expected = "changes the choice"
+about = "shape of the decision"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "grad-school-a-4"
+task = "grad-school-a"
+question = "What undergraduate major did Jordan complete?"
+answer_a = "Jordan earned a bachelor's degree in political science from Rutgers University eight years ago."
+answer_b = "Jordan earned a bachelor's degree in communications from Temple University nine years ago."
+expected = "does not change the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "grad-school-a-5"
+task = "grad-school-a"
+question = "What is Jordan's ordinary weekly commuting time to his paralegal job?"
+answer_a = "Jordan's round-trip commute to work is 35 minutes by subway on weekdays."
+answer_b = "Jordan's round-trip commute to work is 55 minutes by car on weekdays."
+expected = "does not change the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+# ---- grad-school-b
+# Helen is 44 and has been a registered nurse for 18 years, earning $88,000 on night shifts. She has been admitted to a two-year online nurse practitioner program costing $48,000, which requires 600 clinical hours she would have to fit around work. She is a single parent of a 13-year-old and a 16-year-old. Nurse practitioners in her area earn about $125,000.
+
+[[probe]]
+id = "grad-school-b-1"
+task = "grad-school-b"
+question = "After tuition and required costs, can Helen cover household expenses during the two-year program without taking high-interest debt?"
+answer_a = "Helen has $62,000 in savings and her monthly household expenses are $5,100, so she can pay the $48,000 tuition without credit-card or private-loan borrowing."
+answer_b = "Helen has $4,000 in savings and would need to borrow about $38,000 on a 14.5% private loan to cover tuition and fees."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "grad-school-b-2"
+task = "grad-school-b"
+question = "Is there a lower-risk way for Helen to move toward the same career goal without committing to this exact program now?"
+answer_a = "Helen can defer admission for one year and complete the first two required courses at a community college for $3,200 while keeping her place in the program."
+answer_b = "The school does not allow deferral or transfer credits, and declining now means she would have to reapply in a new applicant pool next year."
+expected = "changes the choice"
+about = "shape of the decision"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "grad-school-b-3"
+task = "grad-school-b"
+question = "How much practical child-care and household support would Helen have during clinical rotations and online coursework?"
+answer_a = "Helen’s sister lives 10 minutes away and has agreed to handle school pickup, evening meals, and overnight coverage up to three nights a week for the next two years."
+answer_b = "Helen has no local family help, and both children’s other parent is unavailable for transportation, overnight supervision, or emergency backup."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "grad-school-b-4"
+task = "grad-school-b"
+question = "Would completing the nurse practitioner program require Helen to stay with her current employer afterward?"
+answer_a = "Helen’s employer will reimburse $20,000 of tuition but requires a two-year employment commitment after graduation."
+answer_b = "Helen’s employer offers no tuition reimbursement and no post-graduation service commitment."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "grad-school-b-5"
+task = "grad-school-b"
+question = "Is Helen the only person whose consent is required to accept the program place?"
+answer_a = "Helen is the sole legal decision-maker for her finances and education, and no court order or family agreement gives anyone else veto power."
+answer_b = "Helen and her ex-spouse have a written co-parenting agreement requiring 30 days’ notice before any schedule change that affects weeknight supervision."
+expected = "does not change the choice"
+about = "shape of the decision"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "grad-school-b-6"
+task = "grad-school-b"
+question = "What clinical specialty does Helen most want to practice in after graduation?"
+answer_a = "Helen wants to become a family nurse practitioner in primary care at a community clinic."
+answer_b = "Helen wants to become a psychiatric-mental health nurse practitioner working in outpatient medication management."
+expected = "does not change the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+# ---- family-loan-a
+# Kevin is 35 and earns $105,000 as a software engineer, with $40,000 in savings set aside for a house down payment. His younger brother has asked to borrow $15,000 to cover debts from a restaurant that closed, and says he can repay it within two years. The brother borrowed $3,000 four years ago and paid back about half. Their parents know about the request and have not offered an opinion.
+
+[[probe]]
+id = "family-loan-a-1"
+task = "family-loan-a"
+question = "Does Kevin have a written house purchase timeline with expected cash needs?"
+answer_a = "Kevin has signed a purchase contract on a $420,000 condo with a $35,000 down payment due four months from now."
+answer_b = "Kevin has not toured any homes and does not plan to buy for about two and a half years."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "family-loan-a-2"
+task = "family-loan-a"
+question = "What is the brother’s current repayment capacity?"
+answer_a = "Kevin’s brother started a salaried job at $72,000 per year about three months ago, and has budgeted $650 per month for debt repayment."
+answer_b = "Kevin’s brother has no current income and is already 60 days late on two credit-card accounts totaling $18,400."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "family-loan-a-3"
+task = "family-loan-a"
+question = "Is there a safer third option besides either giving the full $15,000 loan or refusing entirely?"
+answer_a = "The brother’s creditors will accept a $6,000 lump-sum settlement by next year, and Kevin could pay the creditor directly."
+answer_b = "The brother’s creditors require the full $15,000 in cash from him personally and will not accept partial settlements or third-party payment."
+expected = "changes the choice"
+about = "shape of the decision"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "family-loan-a-4"
+task = "family-loan-a"
+question = "What interest rate is Kevin earning on his savings account?"
+answer_a = "Kevin’s $40,000 down-payment fund is in a high-yield savings account earning 4.35% APY."
+answer_b = "Kevin’s $40,000 down-payment fund is in a checking account earning 0.01% APY."
+expected = "does not change the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "family-loan-a-5"
+task = "family-loan-a"
+question = "Did the parents explain why they have not offered an opinion?"
+answer_a = "Kevin’s parents have a written family rule that they do not advise adult children on loans between siblings."
+answer_b = "Kevin’s parents have been traveling without reliable phone service since eleven days ago, and have not discussed the request with either son."
+expected = "does not change the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "family-loan-a-6"
+task = "family-loan-a"
+question = "Can Kevin take time to verify the debts before deciding?"
+answer_a = "The brother says Kevin can wait until about two months from now to decide and review the creditor statements first."
+answer_b = "The brother says he needs Kevin’s final answer by 5 p.m. tomorrow and cannot provide statements before then."
+expected = "changes the choice"
+about = "shape of the decision"
+source = "gpt-5.5 draft"
+
+# ---- family-loan-b
+# Ruth is 67, retired, and lives on $3,400 a month from Social Security and a small pension, with $90,000 in savings. Her 40-year-old daughter has asked to borrow $20,000 to avoid foreclosure after a divorce. The daughter has two children and has never asked for money before. Ruth's son has told her privately that he thinks it is a bad idea.
+
+[[probe]]
+id = "family-loan-b-1"
+task = "family-loan-b"
+question = "How much money does Ruth need to keep accessible for her own near-term security?"
+answer_a = "Ruth's monthly basic expenses are $3,250, and her doctor has estimated that she may need $15,000 in dental and hearing-aid costs within the next year."
+answer_b = "Ruth's monthly basic expenses are $2,350, and she has Medicare plus a long-term-care policy with a $120 daily benefit."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "family-loan-b-2"
+task = "family-loan-b"
+question = "Would the $20,000 actually prevent the foreclosure, and for how long?"
+answer_a = "The mortgage servicer has offered a written reinstatement quote of $18,740 due in three weeks, which would bring the loan current and cancel the foreclosure sale."
+answer_b = "The lender has already accelerated the loan and says the daughter would still owe $61,000 in about four months even after a $20,000 payment."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "family-loan-b-3"
+task = "family-loan-b"
+question = "Does the daughter have a realistic repayment plan?"
+answer_a = "The daughter has a signed job offer starting in three weeks at $74,000 a year and proposes automatic payments of $500 a month for 40 months."
+answer_b = "The daughter is unemployed, has no pending job offer, and says she cannot predict when she could repay any of the money."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "family-loan-b-4"
+task = "family-loan-b"
+question = "Is there a less risky third option besides giving the full $20,000 or refusing?"
+answer_a = "A HUD-approved housing counselor has found a repayment plan that would require Ruth to contribute only $5,000 in four months, with the daughter paying the rest over 24 months."
+answer_b = "The mortgage servicer has rejected partial payments, and no state foreclosure-prevention grant is available in the daughter's county this year."
+expected = "changes the choice"
+about = "shape of the decision"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "family-loan-b-5"
+task = "family-loan-b"
+question = "Is the foreclosure deadline firm enough that Ruth must decide immediately?"
+answer_a = "The foreclosure sale is scheduled for in three weeks, and the lender confirmed in writing that no postponement will be granted after next week."
+answer_b = "The court has stayed the foreclosure for 90 days while the daughter applies for a loan modification."
+expected = "does not change the choice"
+about = "shape of the decision"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "family-loan-b-6"
+task = "family-loan-b"
+question = "What does Ruth's son know that makes him think it is a bad idea?"
+answer_a = "Ruth's son says his concern is only that equal gifts to siblings can cause resentment, and he has no information about the daughter's finances."
+answer_b = "Ruth's son says he is angry because Ruth paid for the daughter's car repair eight years ago and did not pay for his new roof five years ago."
+expected = "does not change the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+# ---- parent-care-a
+# Anita is 49 and works full time as an accountant; her husband travels for work most weeks. Her 81-year-old father, a widower with early-stage dementia, lives alone 90 minutes away and has fallen twice this year. She is deciding between moving him into their spare room and an assisted living facility near her that costs $5,200 a month, which his savings would cover for about four years. Her brother lives abroad and says he will support whatever she decides.
+
+[[probe]]
+id = "parent-care-a-1"
+task = "parent-care-a"
+question = "Can Anita’s father afford the assisted living facility beyond the first few years without Anita using her own retirement savings?"
+answer_a = "His pension and long-term care insurance would cover $4,900 of the $5,200 monthly fee after his savings run down."
+answer_b = "After his savings run out, he would have only $1,850 a month in income and no long-term care insurance."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "parent-care-a-2"
+task = "parent-care-a"
+question = "How much hands-on supervision does Anita’s father currently need during a normal day?"
+answer_a = "He manages bathing, dressing, meals, and medication with one daily reminder call and a weekly pill organizer refill."
+answer_b = "He leaves the stove on twice a week, forgets medication most days, and needs help bathing and dressing every morning."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "parent-care-a-3"
+task = "parent-care-a"
+question = "How safe and suitable is Anita’s spare room and home for his dementia and fall risk?"
+answer_a = "The spare room is on the first floor next to a full bathroom, and a contractor quoted $3,200 to add grab bars, lighting, and a ramp within two weeks."
+answer_b = "The spare room is upstairs, the only shower is a tub-shower on the second floor, and the stairs are too narrow for a stairlift."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "parent-care-a-4"
+task = "parent-care-a"
+question = "Is there a realistic third option between Anita’s home and the assisted living facility?"
+answer_a = "A licensed memory-care adult family home three miles from Anita has an opening in three weeks for $3,900 a month."
+answer_b = "The local aging agency told Anita nine months ago that every nearby adult family home and subsidized senior apartment has a waitlist of at least 14 months."
+expected = "changes the choice"
+about = "shape of the decision"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "parent-care-a-5"
+task = "parent-care-a"
+question = "Does anyone else have legal authority to make or block the placement decision?"
+answer_a = "Anita holds a durable power of attorney for health care and finances that her father signed five years ago."
+answer_b = "Anita’s father signed a durable power of attorney five years ago naming only her brother as agent."
+expected = "does not change the choice"
+about = "shape of the decision"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "parent-care-a-6"
+task = "parent-care-a"
+question = "What is the assisted living facility’s pet policy?"
+answer_a = "The facility allows one cat under 20 pounds with a $400 deposit and proof of vaccination."
+answer_b = "The facility does not allow residents to keep pets in any apartment or common area."
+expected = "does not change the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+# ---- parent-care-b
+# Marcus is 33, single, and rents a one-bedroom apartment in the city where he works as a physical therapist. His 70-year-old mother, who lives three hours away in the house he grew up in, has had a stroke and will need help with daily tasks for at least six months. He is deciding between taking unpaid family leave to move back in with her and hiring in-home aides at about $4,000 a month, which she can afford for roughly a year. He is her only child.
+
+[[probe]]
+id = "parent-care-b-1"
+task = "parent-care-b"
+question = "Does Marcus have a realistic way to keep his job while providing substantial care from his mother's home?"
+answer_a = "Marcus's employer will let him work a temporary three-day-a-week schedule at a partner clinic 12 miles from his mother's house for six months."
+answer_b = "Marcus's employer has no remote or transfer option and will replace him if he is absent from the clinic for more than 12 weeks."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "parent-care-b-2"
+task = "parent-care-b"
+question = "How much daily hands-on care does his mother actually need right now?"
+answer_a = "His mother needs help with bathing, toileting, transfers, meal preparation, and medication reminders every day, including two overnight checks."
+answer_b = "His mother can toilet, transfer, dress, and take prefilled medications independently and mainly needs rides to therapy twice a week and grocery help."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "parent-care-b-3"
+task = "parent-care-b"
+question = "What would Marcus's finances look like if he stopped earning wages for six months?"
+answer_a = "Marcus has $68,000 in liquid savings, no debt beyond a $320 monthly student loan payment, and monthly rent of $1,450."
+answer_b = "Marcus has $4,200 in liquid savings, $19,000 in credit card debt, and would owe a $3,000 lease break fee if he left his apartment."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "parent-care-b-4"
+task = "parent-care-b"
+question = "Is there a viable third arrangement besides Marcus moving in or hiring full-time aides?"
+answer_a = "Marcus's aunt Denise lives 15 minutes from his mother and has offered to cover mornings and weekends if Marcus pays for weekday afternoon aide coverage."
+answer_b = "No relative, neighbor, church volunteer, adult day program, or Medicaid waiver provider is available within 40 miles of his mother's house."
+expected = "changes the choice"
+about = "shape of the decision"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "parent-care-b-5"
+task = "parent-care-b"
+question = "Does Marcus have a romantic partner whose plans would be affected by either option?"
+answer_a = "Marcus has been dating Lena for four months, and they do not share housing, finances, pets, or caregiving duties."
+answer_b = "Marcus is not dating anyone and has no partner whose housing or finances would be affected by the caregiving plan."
+expected = "does not change the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "parent-care-b-6"
+task = "parent-care-b"
+question = "Is Marcus legally the only person allowed to make care arrangements for his mother?"
+answer_a = "His mother signed a durable power of attorney naming Marcus as her health-care and financial agent four years ago."
+answer_b = "His mother remains legally competent and has not signed any power of attorney or advance directive naming Marcus as decision-maker."
+expected = "does not change the choice"
+about = "shape of the decision"
+source = "gpt-5.5 draft"
+
+# ---- go-freelance-a
+# Tessa is 34 and a senior graphic designer at an agency, earning $92,000 with health insurance. She already makes about $2,000 a month from freelance clients on the side, and one of them has offered a six-month contract worth $60,000 if she goes independent. She has eight months of expenses saved and no dependents. Her agency has a rule against moonlighting for clients in the same industry as this one.
+
+[[probe]]
+id = "go-freelance-a-1"
+task = "go-freelance-a"
+question = "Would Tessa's current agency offer an unpaid leave or contractor arrangement that lets her take the six-month contract without resigning permanently?"
+answer_a = "The agency's managing director has offered Tessa a six-month unpaid sabbatical starting in three weeks with a guaranteed return to her senior designer role at the same salary."
+answer_b = "The agency's HR policy says employees who leave for outside client work are not eligible for rehire for 18 months."
+expected = "changes the choice"
+about = "shape of the decision"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "go-freelance-a-2"
+task = "go-freelance-a"
+question = "Does the $60,000 contract have a firm deadline or exclusivity requirement that forces an immediate yes-or-no decision?"
+answer_a = "The client will hold the $60,000 contract open until three weeks from now and does not require exclusivity during the six-month term."
+answer_b = "The client requires Tessa to sign by Friday at 5 p.m. and begin full-time work the following Monday with no other agency employment."
+expected = "changes the choice"
+about = "shape of the decision"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "go-freelance-a-3"
+task = "go-freelance-a"
+question = "What is the likelihood that the contract leads to enough follow-on work after the six months end?"
+answer_a = "The client has already budgeted two additional six-month extensions at $60,000 each if the first launch meets the milestone in about six months."
+answer_b = "The client has told Tessa in writing that this is a one-time rebrand project with no work planned after six months from now."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "go-freelance-a-4"
+task = "go-freelance-a"
+question = "What accounting and tax setup does Tessa currently have for freelance income?"
+answer_a = "Tessa already has an LLC, a separate business bank account, and a CPA who prepares quarterly estimated taxes for $900 per year."
+answer_b = "Tessa reports freelance income on Schedule C, has no separate business account, and has never paid quarterly estimated taxes."
+expected = "does not change the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "go-freelance-a-5"
+task = "go-freelance-a"
+question = "What equipment and software would Tessa need to buy if she went independent?"
+answer_a = "Tessa owns a MacBook Pro bought about two years ago and already pays for Adobe Creative Cloud, Figma Professional, and a calibrated monitor for freelance work."
+answer_b = "Tessa would need to buy a $3,200 laptop, a $600 monitor, and $95 per month in design software subscriptions before starting."
+expected = "does not change the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "go-freelance-a-6"
+task = "go-freelance-a"
+question = "How comfortable is Tessa with business development and client management?"
+answer_a = "Tessa has independently closed four freelance clients in the past year and sends proposals using a standard statement-of-work template."
+answer_b = "Tessa dislikes sales calls and has only received freelance projects through referrals from former coworkers."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+# ---- go-freelance-b
+# Omar is 46 and a licensed electrician who has worked for the same contractor for 15 years, earning $78,000. He is considering starting his own one-person business; he would need about $35,000 for a van, tools and insurance. His wife works part time and the family's health insurance comes through his job. They have three children, the oldest starting college in two years, and several of his employer's customers have said they would follow him.
+
+[[probe]]
+id = "go-freelance-b-1"
+task = "go-freelance-b"
+question = "How much cash reserve would the family have left after paying the $35,000 startup cost?"
+answer_a = "After paying the startup cost, the family would still have $42,000 in an emergency fund, equal to about eight months of household expenses."
+answer_b = "After paying the startup cost, the family would have only $3,000 left in savings, equal to less than one month of household expenses."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "go-freelance-b-2"
+task = "go-freelance-b"
+question = "Can Omar obtain affordable replacement health insurance if he leaves his job?"
+answer_a = "A comparable family health plan on the ACA marketplace would cost $740 per month after subsidies with a $6,000 family deductible."
+answer_b = "A comparable family health plan would cost $2,150 per month with no subsidy and a $14,000 family deductible."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "go-freelance-b-3"
+task = "go-freelance-b"
+question = "How firm is the customer demand if Omar starts his own business?"
+answer_a = "Seven customers have each signed a one-year service agreement that would bring in about $9,500 per month in revenue starting in three months."
+answer_b = "No customer has agreed in writing to hire Omar, and the likely work amounts to only occasional small repair calls worth about $1,200 per month."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "go-freelance-b-4"
+task = "go-freelance-b"
+question = "Is there a lower-risk third option between staying employed and starting a full-time business?"
+answer_a = "Omar’s employer would allow him to work four days a week while doing licensed side jobs on Saturdays for non-company customers."
+answer_b = "Omar’s employment contract bars outside electrical work, and his employer would terminate him if he took paid side jobs."
+expected = "changes the choice"
+about = "shape of the decision"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "go-freelance-b-5"
+task = "go-freelance-b"
+question = "Does Omar’s state require a separate electrical contractor license beyond his current electrician license?"
+answer_a = "His state requires a $250 electrical contractor registration that can be issued online within 10 business days."
+answer_b = "His state requires a master contractor license, a $15,000 bond, and proof of two years of supervisory experience before he can bid jobs under his own name."
+expected = "does not change the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "go-freelance-b-6"
+task = "go-freelance-b"
+question = "Does Omar have to decide by a fixed date?"
+answer_a = "The van discount he is considering expires in about seven weeks, but the same dealer has similar fleet vans available every month."
+answer_b = "His preferred insurer quoted the business policy only through about two months from now, after which a new quote would be required."
+expected = "does not change the choice"
+about = "shape of the decision"
+source = "gpt-5.5 draft"
+
+# ---- partner-move-a
+# Claire is 30 and a middle school teacher with tenure in her district. Her boyfriend of three years has been offered a job in a city 1,200 miles away that would nearly double his salary, and he wants her to come. They are not engaged. Her teaching license would not transfer without additional coursework, and her family lives within an hour of where she is now.
+
+[[probe]]
+id = "partner-move-a-1"
+task = "partner-move-a"
+question = "Has the boyfriend made a concrete commitment about their future together?"
+answer_a = "He has bought a ring, booked an appointment with a premarital counselor in four months, and told her he wants to marry her within the next year."
+answer_b = "He has told her he does not want to discuss engagement until they have lived together in the new city for at least two more years."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "partner-move-a-2"
+task = "partner-move-a"
+question = "Can Claire realistically keep or regain a comparable teaching position if she moves?"
+answer_a = "The new state would grant her a one-year provisional license if she completes two online courses costing $1,800 within nine months."
+answer_b = "The new state would require 24 graduate credits, a new exam, and unpaid student teaching before she could apply for a regular classroom job."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "partner-move-a-3"
+task = "partner-move-a"
+question = "Is there a serious reason for Claire to stay near her current family network?"
+answer_a = "Her mother starts chemotherapy in three weeks and Claire is scheduled to drive her to treatment every Tuesday for six months."
+answer_b = "Her parents are healthy, have two other adult children nearby, and see Claire mainly for Sunday dinner twice a month."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "partner-move-a-4"
+task = "partner-move-a"
+question = "Is there a viable third option besides Claire moving now or the relationship ending?"
+answer_a = "His employer has approved a 12-month remote-work arrangement from Claire's city if he visits headquarters one week each quarter."
+answer_b = "His employer requires him to be in the new office full-time in three weeks and will withdraw the offer if he does not relocate."
+expected = "changes the choice"
+about = "shape of the decision"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "partner-move-a-5"
+task = "partner-move-a"
+question = "What is the exact deadline for deciding and moving?"
+answer_a = "He must sign the relocation agreement in three weeks and start in the new city in eight weeks."
+answer_b = "He can defer his start date until about ten months from now without losing the offer or salary increase."
+expected = "changes the choice"
+about = "shape of the decision"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "partner-move-a-6"
+task = "partner-move-a"
+question = "How does Claire feel about the climate and size of the new city?"
+answer_a = "The new city has 300,000 residents, averages 38 inches of snow each year, and Claire enjoys winter sports."
+answer_b = "The new city has 300,000 residents, averages 38 inches of snow each year, and Claire strongly dislikes cold weather."
+expected = "does not change the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+# ---- partner-move-b
+# David is 41 and works remotely as a technical writer, earning $85,000. His wife, a physician, has been offered a department leadership position at a hospital in another state. They have a 7-year-old and a 10-year-old, and David shares custody of a 15-year-old son from his first marriage, who lives nearby with his mother every other week. His wife has to answer within a month.
+
+[[probe]]
+id = "partner-move-b-1"
+task = "partner-move-b"
+question = "Would David be legally able to relocate with his 15-year-old son or maintain the current custody schedule if he moved?"
+answer_a = "The custody order requires David to live within 40 miles of his son's current school unless his ex-wife gives written consent, and she has said she will not consent."
+answer_b = "David's ex-wife has signed a proposed modification allowing the teen to spend summers and school breaks with David if he moves out of state."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "partner-move-b-2"
+task = "partner-move-b"
+question = "How much higher or lower would the household's after-tax income be if his wife accepts the leadership role?"
+answer_a = "The new role would raise his wife's after-tax pay by about $95,000 per year and include a $30,000 relocation allowance."
+answer_b = "The new role would raise his wife's after-tax pay by only $8,000 per year and include no relocation support."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "partner-move-b-3"
+task = "partner-move-b"
+question = "How would the move affect the two younger children's schooling and support needs?"
+answer_a = "The new city has a public elementary school rated 9 out of 10 within a 10-minute walk, and both children have guaranteed seats for the fall term."
+answer_b = "The only available school slots near the hospital are at a private school costing $28,000 per child per year, and the 10-year-old's current dyslexia services would not be available there."
+expected = "changes the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "partner-move-b-4"
+task = "partner-move-b"
+question = "Is there a workable third option besides accepting the move now or declining the job?"
+answer_a = "The hospital has offered to let his wife start the leadership role remotely for one year while visiting on site one week per month."
+answer_b = "The hospital's written offer requires her to be physically present full time in the new state starting in a month, with no remote or delayed-start option."
+expected = "changes the choice"
+about = "shape of the decision"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "partner-move-b-5"
+task = "partner-move-b"
+question = "What is the exact housing situation in their current home?"
+answer_a = "They own a four-bedroom house with a 3.1% fixed mortgage and could rent it for about $3,200 per month."
+answer_b = "They rent their current home on a month-to-month lease and would owe no penalty for leaving after 30 days' notice."
+expected = "does not change the choice"
+about = "details"
+source = "gpt-5.5 draft"
+
+[[probe]]
+id = "partner-move-b-6"
+task = "partner-move-b"
+question = "Is the one-month deadline flexible enough to allow more investigation before deciding?"
+answer_a = "The hospital's offer letter says the acceptance deadline is in one month and can be extended by two weeks on written request."
+answer_b = "The hospital's offer letter says the acceptance deadline is in a month and will automatically expire at 5:00 p.m. Eastern time with no extensions."
+expected = "does not change the choice"
+about = "shape of the decision"
+source = "gpt-5.5 draft"
